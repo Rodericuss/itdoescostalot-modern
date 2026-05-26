@@ -1,0 +1,1350 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/idcal_web/components/core_components.ex:342
+#, elixir-autogen, elixir-format
+msgid "Actions"
+msgstr "Ações"
+
+#: lib/idcal_web/live/profile_live/show.ex:125
+#, elixir-autogen, elixir-format
+msgid "All Ledgers"
+msgstr "Todos os Livros-razão"
+
+#: lib/idcal_web/components/layouts.ex:151
+#: lib/idcal_web/components/layouts.ex:163
+#, elixir-autogen, elixir-format
+msgid "Attempting to reconnect"
+msgstr "Tentando reconectar"
+
+#: lib/idcal_web/live/expense_live/index.ex:299
+#: lib/idcal_web/live/expense_live/index.ex:316
+#: lib/idcal_web/live/expense_live/index.ex:383
+#: lib/idcal_web/live/expense_live/index.ex:437
+#: lib/idcal_web/live/income_live/index.ex:237
+#: lib/idcal_web/live/income_live/index.ex:295
+#: lib/idcal_web/live/income_live/index.ex:349
+#: lib/idcal_web/live/profile_live/form.ex:214
+#: lib/idcal_web/live/savings_goal_live/index.ex:205
+#: lib/idcal_web/live/savings_goal_live/index.ex:296
+#, elixir-autogen, elixir-format
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Chart the coin of your realm — income, expense, and the balance between."
+msgstr "Mapeie as moedas do seu reino — receitas, despesas e o saldo entre elas."
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:19
+#, elixir-autogen, elixir-format
+msgid "Create your Adventurer"
+msgstr "Crie seu Aventureiro"
+
+#: lib/idcal_web/live/profile_live/index.ex:73
+#, elixir-autogen, elixir-format
+msgid "Delete"
+msgstr "Excluir"
+
+#: lib/idcal_web/live/profile_live/index.ex:69
+#, elixir-autogen, elixir-format
+msgid "Destroy the ledger \"%{name}\"? All its data is lost forever."
+msgstr "Destruir o livro-razão \"%{name}\"? Todos os seus dados serão perdidos para sempre."
+
+#: lib/idcal_web/components/layouts.ex:71
+#: lib/idcal_web/controllers/page_html/home.html.heex:21
+#, elixir-autogen, elixir-format
+msgid "Enter the Vault"
+msgstr "Entrar no Cofre"
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:16
+#, elixir-autogen, elixir-format
+msgid "Enter your Ledgers"
+msgstr "Acesse seus Livros-razão"
+
+#: lib/idcal_web/live/profile_live/form.ex:16
+#, elixir-autogen, elixir-format
+msgid "Forge a New Ledger"
+msgstr "Forjar um Novo Livro-razão"
+
+#: lib/idcal_web/components/layouts.ex:44
+#: lib/idcal_web/controllers/page_html/home.html.heex:8
+#, elixir-autogen, elixir-format
+msgid "It Does Cost A Lot"
+msgstr "Custa Caro Sim"
+
+#: lib/idcal_web/components/layouts.ex:95
+#, elixir-autogen, elixir-format
+msgid "Language"
+msgstr "Idioma"
+
+#: lib/idcal_web/live/profile_live/index.ex:23
+#, elixir-autogen, elixir-format
+msgid "Ledger \"%{name}\" was destroyed."
+msgstr "O livro-razão \"%{name}\" foi destruído."
+
+#: lib/idcal_web/live/profile_live/form.ex:107
+#, elixir-autogen, elixir-format
+msgid "Ledger \"%{name}\" was forged."
+msgstr "O livro-razão \"%{name}\" foi forjado."
+
+#: lib/idcal_web/live/profile_live/form.ex:120
+#, elixir-autogen, elixir-format
+msgid "Ledger renamed."
+msgstr "Livro-razão renomeado."
+
+#: lib/idcal_web/components/layouts.ex:60
+#, elixir-autogen, elixir-format
+msgid "Log out"
+msgstr "Sair"
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:46
+#, elixir-autogen, elixir-format
+msgid "Many ledgers"
+msgstr "Vários livros-razão"
+
+#: lib/idcal_web/live/profile_live/index.ex:38
+#, elixir-autogen, elixir-format
+msgid "New Ledger"
+msgstr "Novo Livro-razão"
+
+#: lib/idcal_web/live/profile_live/index.ex:46
+#, elixir-autogen, elixir-format
+msgid "No ledgers yet — forge your first to begin tracking your coin."
+msgstr "Nenhum livro-razão ainda — forje o primeiro para começar a acompanhar suas moedas."
+
+#: lib/idcal_web/live/profile_live/index.ex:55
+#, elixir-autogen, elixir-format
+msgid "Open"
+msgstr "Abrir"
+
+#: lib/idcal_web/components/layouts.ex:66
+#, elixir-autogen, elixir-format
+msgid "Register"
+msgstr "Cadastrar"
+
+#: lib/idcal_web/live/profile_live/index.ex:60
+#, elixir-autogen, elixir-format
+msgid "Rename"
+msgstr "Renomear"
+
+#: lib/idcal_web/live/profile_live/form.ex:30
+#, elixir-autogen, elixir-format
+msgid "Rename Ledger"
+msgstr "Renomear Livro-razão"
+
+#: lib/idcal_web/live/expense_live/index.ex:315
+#: lib/idcal_web/live/expense_live/index.ex:382
+#: lib/idcal_web/live/expense_live/index.ex:436
+#: lib/idcal_web/live/income_live/index.ex:236
+#: lib/idcal_web/live/income_live/index.ex:294
+#: lib/idcal_web/live/income_live/index.ex:348
+#: lib/idcal_web/live/profile_live/form.ex:213
+#: lib/idcal_web/live/savings_goal_live/index.ex:204
+#: lib/idcal_web/live/savings_goal_live/index.ex:295
+#, elixir-autogen, elixir-format
+msgid "Save"
+msgstr "Salvar"
+
+#: lib/idcal_web/components/layouts.ex:55
+#, elixir-autogen, elixir-format
+msgid "Settings"
+msgstr "Configurações"
+
+#: lib/idcal_web/components/layouts.ex:158
+#, elixir-autogen, elixir-format
+msgid "Something went wrong!"
+msgstr "Algo deu errado!"
+
+#: lib/idcal_web/components/layouts.ex:146
+#, elixir-autogen, elixir-format
+msgid "We can't find the internet"
+msgstr "Não encontramos a internet"
+
+#: lib/idcal_web/live/profile_live/index.ex:12
+#: lib/idcal_web/live/profile_live/index.ex:32
+#, elixir-autogen, elixir-format
+msgid "Your Ledgers"
+msgstr "Seus Livros-razão"
+
+#: lib/idcal_web/components/core_components.ex:74
+#, elixir-autogen, elixir-format
+msgid "close"
+msgstr "fechar"
+
+#: lib/idcal_web/live/profile_live/form.ex:144
+#, elixir-autogen, elixir-format
+msgid "e.g. Personal, Freelance Coffers"
+msgstr "ex.: Pessoal, Cofres Freelance"
+
+#: lib/idcal_web/live/expense_live/index.ex:432
+#: lib/idcal_web/live/expense_live/index.ex:463
+#: lib/idcal_web/live/income_live/index.ex:344
+#: lib/idcal_web/live/income_live/index.ex:375
+#: lib/idcal_web/live/month_live/show.ex:318
+#: lib/idcal_web/live/quick_entry_live/index.ex:71
+#: lib/idcal_web/live/savings_goal_live/index.ex:291
+#: lib/idcal_web/live/savings_goal_live/index.ex:310
+#: lib/idcal_web/live/search_live/index.ex:64
+#, elixir-autogen, elixir-format
+msgid "Amount"
+msgstr "Valor"
+
+#: lib/idcal_web/live/expense_live/index.ex:431
+#: lib/idcal_web/live/expense_live/index.ex:462
+#: lib/idcal_web/live/forecast_live/show.ex:167
+#: lib/idcal_web/live/income_live/index.ex:343
+#: lib/idcal_web/live/income_live/index.ex:374
+#: lib/idcal_web/live/profile_live/compare.ex:128
+#: lib/idcal_web/live/profile_live/form.ex:174
+#: lib/idcal_web/live/quick_entry_live/index.ex:80
+#: lib/idcal_web/live/savings_goal_live/index.ex:290
+#: lib/idcal_web/live/savings_goal_live/index.ex:309
+#, elixir-autogen, elixir-format
+msgid "Month"
+msgstr "Mês"
+
+#: lib/idcal_web/live/expense_live/index.ex:377
+#: lib/idcal_web/live/expense_live/index.ex:398
+#: lib/idcal_web/live/income_live/index.ex:289
+#: lib/idcal_web/live/income_live/index.ex:310
+#, elixir-autogen, elixir-format
+msgid "Monthly"
+msgstr "Mensal"
+
+#: lib/idcal_web/live/calendar_live/index.ex:78
+#: lib/idcal_web/live/expense_live/index.ex:311
+#: lib/idcal_web/live/expense_live/index.ex:372
+#: lib/idcal_web/live/income_live/index.ex:235
+#: lib/idcal_web/live/income_live/index.ex:284
+#: lib/idcal_web/live/savings_goal_live/index.ex:193
+#: lib/idcal_web/live/search_live/index.ex:62
+#, elixir-autogen, elixir-format
+msgid "Name"
+msgstr "Nome"
+
+#: lib/idcal_web/live/expense_live/index.ex:433
+#: lib/idcal_web/live/expense_live/index.ex:464
+#: lib/idcal_web/live/income_live/index.ex:345
+#: lib/idcal_web/live/income_live/index.ex:376
+#: lib/idcal_web/live/quick_entry_live/index.ex:86
+#: lib/idcal_web/live/savings_goal_live/index.ex:292
+#: lib/idcal_web/live/savings_goal_live/index.ex:311
+#: lib/idcal_web/live/search_live/index.ex:65
+#, elixir-autogen, elixir-format
+msgid "Note"
+msgstr "Observação"
+
+#: lib/idcal_web/live/expense_live/index.ex:376
+#: lib/idcal_web/live/income_live/index.ex:288
+#, elixir-autogen, elixir-format
+msgid "Recurrence"
+msgstr "Recorrência"
+
+#: lib/idcal_web/live/expense_live/index.ex:377
+#: lib/idcal_web/live/expense_live/index.ex:398
+#: lib/idcal_web/live/income_live/index.ex:289
+#: lib/idcal_web/live/income_live/index.ex:310
+#, elixir-autogen, elixir-format
+msgid "Sporadic"
+msgstr "Esporádico"
+
+#: lib/idcal_web/live/expense_live/index.ex:430
+#: lib/idcal_web/live/expense_live/index.ex:461
+#: lib/idcal_web/live/income_live/index.ex:342
+#: lib/idcal_web/live/income_live/index.ex:373
+#: lib/idcal_web/live/profile_live/form.ex:162
+#: lib/idcal_web/live/quick_entry_live/index.ex:76
+#: lib/idcal_web/live/savings_goal_live/index.ex:289
+#: lib/idcal_web/live/savings_goal_live/index.ex:308
+#, elixir-autogen, elixir-format
+msgid "Year"
+msgstr "Ano"
+
+#: lib/idcal_web/live/expense_live/index.ex:312
+#: lib/idcal_web/live/expense_live/index.ex:433
+#: lib/idcal_web/live/income_live/index.ex:345
+#: lib/idcal_web/live/savings_goal_live/index.ex:292
+#, elixir-autogen, elixir-format
+msgid "optional"
+msgstr "opcional"
+
+#: lib/idcal_web/live/month_live/show.ex:200
+#, elixir-autogen, elixir-format
+msgid "%{month} %{year}"
+msgstr "%{month} %{year}"
+
+#: lib/idcal_web/live/month_live/show.ex:330
+#: lib/idcal_web/live/month_live/show.ex:381
+#: lib/idcal_web/live/profile_live/compare.ex:150
+#, elixir-autogen, elixir-format
+msgid "Total"
+msgstr "Total"
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:84
+#, elixir-autogen, elixir-format
+msgid "Begin your Quest"
+msgstr "Comece sua Jornada"
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:81
+#, elixir-autogen, elixir-format
+msgid "Free. No ads. Your data stays yours."
+msgstr "Grátis. Sem anúncios. Seus dados são seus."
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:28
+#, elixir-autogen, elixir-format
+msgid "Your Financial Quest"
+msgstr "Sua Jornada Financeira"
+
+#: lib/idcal_web/live/profile_live/show.ex:188
+#, elixir-autogen, elixir-format
+msgid "Not tracked"
+msgstr "Não rastreado"
+
+#: lib/idcal_web/live/expense_live/index.ex:415
+#, elixir-autogen, elixir-format
+msgid "Abolish this levy and all its records?"
+msgstr "Abolir esta taxa e todos os seus registros?"
+
+#: lib/idcal_web/live/expense_live/index.ex:342
+#, elixir-autogen, elixir-format
+msgid "Add Levy"
+msgstr "Adicionar Taxa"
+
+#: lib/idcal_web/live/income_live/index.ex:257
+#, elixir-autogen, elixir-format
+msgid "Add Wellspring"
+msgstr "Adicionar Nascente"
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:64
+#, elixir-autogen, elixir-format
+msgid "Add wellsprings & levies"
+msgstr "Adicione nascentes e taxas"
+
+#: lib/idcal_web/live/forecast_live/show.ex:94
+#: lib/idcal_web/live/forecast_live/show.ex:171
+#: lib/idcal_web/live/profile_live/show.ex:85
+#: lib/idcal_web/live/profile_live/show.ex:206
+#, elixir-autogen, elixir-format
+msgid "Amassed Hoard"
+msgstr "Tesouro Acumulado"
+
+#: lib/idcal_web/live/expense_live/index.ex:379
+#: lib/idcal_web/live/income_live/index.ex:291
+#: lib/idcal_web/live/month_live/show.ex:375
+#, elixir-autogen, elixir-format
+msgid "Base Tithe"
+msgstr "Dízimo Base"
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:74
+#, elixir-autogen, elixir-format
+msgid "Behold your treasury map"
+msgstr "Contemple o mapa do tesouro"
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:39
+#, elixir-autogen, elixir-format
+msgid "Chart the realm"
+msgstr "Mapeie o reino"
+
+#: lib/idcal_web/live/profile_live/form.ex:156
+#, elixir-autogen, elixir-format
+msgid "Chronicle Begins"
+msgstr "Início da Crônica"
+
+#: lib/idcal_web/live/forecast_live/show.ex:90
+#: lib/idcal_web/live/forecast_live/show.ex:168
+#: lib/idcal_web/live/income_live/index.ex:14
+#: lib/idcal_web/live/income_live/index.ex:222
+#: lib/idcal_web/live/insights_live/show.ex:159
+#: lib/idcal_web/live/insights_live/show.ex:177
+#: lib/idcal_web/live/insights_live/show.ex:197
+#: lib/idcal_web/live/month_live/show.ex:309
+#: lib/idcal_web/live/profile_live/compare.ex:178
+#: lib/idcal_web/live/profile_live/show.ex:71
+#: lib/idcal_web/live/profile_live/show.ex:131
+#, elixir-autogen, elixir-format
+msgid "Coffers"
+msgstr "Cofres"
+
+#: lib/idcal_web/live/profile_live/show.ex:196
+#, elixir-autogen, elixir-format
+msgid "Coffers vs Tributes"
+msgstr "Cofres vs Tributos"
+
+#: lib/idcal_web/live/month_live/show.ex:301
+#, elixir-autogen, elixir-format
+msgid "Coffers:"
+msgstr "Cofres:"
+
+#: lib/idcal_web/live/expense_live/index.ex:354
+#, elixir-autogen, elixir-format
+msgid "Disband this guild and all its levies?"
+msgstr "Dissolver esta guilda e todas as suas taxas?"
+
+#: lib/idcal_web/live/income_live/index.ex:269
+#, elixir-autogen, elixir-format
+msgid "Disband this guild and all its wellsprings?"
+msgstr "Dissolver esta guilda e todas as suas nascentes?"
+
+#: lib/idcal_web/live/income_live/index.ex:327
+#, elixir-autogen, elixir-format
+msgid "Dry up this wellspring and all its records?"
+msgstr "Secar esta nascente e todos os seus registros?"
+
+#: lib/idcal_web/live/expense_live/index.ex:307
+#: lib/idcal_web/live/income_live/index.ex:232
+#, elixir-autogen, elixir-format
+msgid "Edit Guild"
+msgstr "Editar Guilda"
+
+#: lib/idcal_web/live/expense_live/index.ex:367
+#, elixir-autogen, elixir-format
+msgid "Edit Levy"
+msgstr "Editar Taxa"
+
+#: lib/idcal_web/live/expense_live/index.ex:425
+#: lib/idcal_web/live/income_live/index.ex:337
+#, elixir-autogen, elixir-format
+msgid "Edit Record"
+msgstr "Editar Registro"
+
+#: lib/idcal_web/live/income_live/index.ex:279
+#, elixir-autogen, elixir-format
+msgid "Edit Wellspring"
+msgstr "Editar Nascente"
+
+#: lib/idcal_web/live/expense_live/index.ex:483
+#: lib/idcal_web/live/income_live/index.ex:395
+#: lib/idcal_web/live/savings_goal_live/index.ex:330
+#, elixir-autogen, elixir-format
+msgid "Expunge this record?"
+msgstr "Expurgar este registro?"
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:59
+#, elixir-autogen, elixir-format
+msgid "Forge a ledger"
+msgstr "Forje um livro-razão"
+
+#: lib/idcal_web/live/insights_live/show.ex:225
+#: lib/idcal_web/live/month_live/show.ex:317
+#: lib/idcal_web/live/quick_entry_live/index.ex:62
+#: lib/idcal_web/live/search_live/index.ex:61
+#, elixir-autogen, elixir-format
+msgid "Guild"
+msgstr "Guilda"
+
+#: lib/idcal_web/live/expense_live/index.ex:84
+#: lib/idcal_web/live/income_live/index.ex:77
+#, elixir-autogen, elixir-format
+msgid "Guild disbanded."
+msgstr "Guilda dissolvida."
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:69
+#, elixir-autogen, elixir-format
+msgid "Inscribe monthly records"
+msgstr "Inscreva registros mensais"
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:47
+#, elixir-autogen, elixir-format
+msgid "Keep separate tomes for each purse you carry."
+msgstr "Mantenha tomos separados para cada bolsa que você carrega."
+
+#: lib/idcal_web/components/layouts.ex:51
+#, elixir-autogen, elixir-format
+msgid "Ledgers"
+msgstr "Livros-razão"
+
+#: lib/idcal_web/live/expense_live/index.ex:142
+#, elixir-autogen, elixir-format
+msgid "Levy abolished."
+msgstr "Taxa abolida."
+
+#: lib/idcal_web/live/profile_live/form.ex:158
+#, elixir-autogen, elixir-format
+msgid "Moons before this date shall be excluded from the chronicles."
+msgstr "Luas antes desta data serão excluídas das crônicas."
+
+#: lib/idcal_web/live/forecast_live/show.ex:170
+#: lib/idcal_web/live/insights_live/show.ex:205
+#: lib/idcal_web/live/month_live/show.ex:293
+#: lib/idcal_web/live/profile_live/compare.ex:186
+#, elixir-autogen, elixir-format
+msgid "Net Purse"
+msgstr "Bolsa Líquida"
+
+#: lib/idcal_web/live/expense_live/index.ex:281
+#: lib/idcal_web/live/expense_live/index.ex:307
+#: lib/idcal_web/live/income_live/index.ex:225
+#: lib/idcal_web/live/income_live/index.ex:232
+#, elixir-autogen, elixir-format
+msgid "New Guild"
+msgstr "Nova Guilda"
+
+#: lib/idcal_web/live/expense_live/index.ex:367
+#, elixir-autogen, elixir-format
+msgid "New Levy"
+msgstr "Nova Taxa"
+
+#: lib/idcal_web/live/expense_live/index.ex:425
+#: lib/idcal_web/live/income_live/index.ex:337
+#, elixir-autogen, elixir-format
+msgid "New Record"
+msgstr "Novo Registro"
+
+#: lib/idcal_web/live/income_live/index.ex:279
+#, elixir-autogen, elixir-format
+msgid "New Wellspring"
+msgstr "Nova Nascente"
+
+#: lib/idcal_web/live/month_live/show.ex:311
+#, elixir-autogen, elixir-format
+msgid "No coin entered the coffers this moon."
+msgstr "Nenhuma moeda entrou nos cofres nesta lua."
+
+#: lib/idcal_web/live/income_live/index.ex:245
+#, elixir-autogen, elixir-format
+msgid "No guilds yet — establish one to start tallying your coin."
+msgstr "Nenhuma guilda ainda — estabeleça uma para começar a contabilizar suas moedas."
+
+#: lib/idcal_web/live/expense_live/index.ex:325
+#, elixir-autogen, elixir-format
+msgid "No guilds yet — establish one to start tracking your tributes."
+msgstr "Nenhuma guilda ainda — estabeleça uma para começar a acompanhar seus tributos."
+
+#: lib/idcal_web/live/expense_live/index.ex:448
+#, elixir-autogen, elixir-format
+msgid "No levies yet."
+msgstr "Nenhuma taxa ainda."
+
+#: lib/idcal_web/live/month_live/show.ex:341
+#, elixir-autogen, elixir-format
+msgid "No tributes paid this moon."
+msgstr "Nenhum tributo pago nesta lua."
+
+#: lib/idcal_web/live/income_live/index.ex:360
+#, elixir-autogen, elixir-format
+msgid "No wellsprings yet."
+msgstr "Nenhuma nascente ainda."
+
+#: lib/idcal_web/live/expense_live/index.ex:406
+#: lib/idcal_web/live/income_live/index.ex:318
+#: lib/idcal_web/live/quick_entry_live/index.ex:89
+#, elixir-autogen, elixir-format
+msgid "Record"
+msgstr "Registro"
+
+#: lib/idcal_web/live/expense_live/index.ex:210
+#: lib/idcal_web/live/income_live/index.ex:203
+#: lib/idcal_web/live/savings_goal_live/index.ex:144
+#, elixir-autogen, elixir-format
+msgid "Record expunged."
+msgstr "Registro expurgado."
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:34
+#, elixir-autogen, elixir-format
+msgid "Recurring tithes and sporadic bounties alike, month by month."
+msgstr "Dízimos recorrentes e recompensas esporádicas, lua a lua."
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:32
+#, elixir-autogen, elixir-format
+msgid "Tally every coin"
+msgstr "Contabilize cada moeda"
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:54
+#, elixir-autogen, elixir-format
+msgid "The Adventurer's Path"
+msgstr "O Caminho do Aventureiro"
+
+#: lib/idcal_web/live/expense_live/index.ex:401
+#: lib/idcal_web/live/income_live/index.ex:313
+#, elixir-autogen, elixir-format
+msgid "Tithe:"
+msgstr "Dízimo:"
+
+#: lib/idcal_web/live/profile_live/form.ex:138
+#, elixir-autogen, elixir-format
+msgid "Title"
+msgstr "Título"
+
+#: lib/idcal_web/live/month_live/show.ex:389
+#, elixir-autogen, elixir-format
+msgid "Tribute Guilds"
+msgstr "Guildas de Tributos"
+
+#: lib/idcal_web/live/expense_live/index.ex:18
+#: lib/idcal_web/live/expense_live/index.ex:277
+#: lib/idcal_web/live/forecast_live/show.ex:91
+#: lib/idcal_web/live/forecast_live/show.ex:169
+#: lib/idcal_web/live/insights_live/show.ex:165
+#: lib/idcal_web/live/insights_live/show.ex:183
+#: lib/idcal_web/live/insights_live/show.ex:201
+#: lib/idcal_web/live/month_live/show.ex:339
+#: lib/idcal_web/live/profile_live/compare.ex:182
+#: lib/idcal_web/live/profile_live/show.ex:72
+#: lib/idcal_web/live/profile_live/show.ex:134
+#, elixir-autogen, elixir-format
+msgid "Tributes"
+msgstr "Tributos"
+
+#: lib/idcal_web/live/month_live/show.ex:302
+#, elixir-autogen, elixir-format
+msgid "Tributes:"
+msgstr "Tributos:"
+
+#: lib/idcal_web/controllers/page_html/home.html.heex:41
+#, elixir-autogen, elixir-format
+msgid "Twelve moons at a glance — surplus in gold, deficit in crimson."
+msgstr "Doze luas num relance — superávit em ouro, déficit em carmesim."
+
+#: lib/idcal_web/live/month_live/show.ex:316
+#, elixir-autogen, elixir-format
+msgid "Wellspring"
+msgstr "Nascente"
+
+#: lib/idcal_web/live/income_live/index.ex:135
+#, elixir-autogen, elixir-format
+msgid "Wellspring dried up."
+msgstr "Nascente secou."
+
+#: lib/idcal_web/live/income_live/index.ex:235
+#, elixir-autogen, elixir-format
+msgid "e.g. Crown's Pay, Mercenary Work"
+msgstr "ex.: Soldo da Coroa, Trabalho Mercenário"
+
+#: lib/idcal_web/live/income_live/index.ex:284
+#, elixir-autogen, elixir-format
+msgid "e.g. Lord Pemberton"
+msgstr "ex.: Lorde Pemberton"
+
+#: lib/idcal_web/live/expense_live/index.ex:311
+#, elixir-autogen, elixir-format
+msgid "e.g. Provisions, Revelry"
+msgstr "ex.: Provisões, Festividades"
+
+#: lib/idcal_web/live/expense_live/index.ex:372
+#, elixir-autogen, elixir-format
+msgid "e.g. Torchlight, Arena"
+msgstr "ex.: Tochas, Arena"
+
+#: lib/idcal_web/format_helpers.ex:10
+#, elixir-autogen, elixir-format
+msgid "April"
+msgstr "Abril"
+
+#: lib/idcal_web/format_helpers.ex:14
+#, elixir-autogen, elixir-format
+msgid "August"
+msgstr "Agosto"
+
+#: lib/idcal_web/format_helpers.ex:18
+#, elixir-autogen, elixir-format
+msgid "December"
+msgstr "Dezembro"
+
+#: lib/idcal_web/format_helpers.ex:8
+#, elixir-autogen, elixir-format
+msgid "February"
+msgstr "Fevereiro"
+
+#: lib/idcal_web/format_helpers.ex:7
+#, elixir-autogen, elixir-format
+msgid "January"
+msgstr "Janeiro"
+
+#: lib/idcal_web/format_helpers.ex:13
+#, elixir-autogen, elixir-format
+msgid "July"
+msgstr "Julho"
+
+#: lib/idcal_web/format_helpers.ex:12
+#, elixir-autogen, elixir-format
+msgid "June"
+msgstr "Junho"
+
+#: lib/idcal_web/format_helpers.ex:9
+#, elixir-autogen, elixir-format
+msgid "March"
+msgstr "Março"
+
+#: lib/idcal_web/format_helpers.ex:11
+#, elixir-autogen, elixir-format
+msgid "May"
+msgstr "Maio"
+
+#: lib/idcal_web/format_helpers.ex:17
+#, elixir-autogen, elixir-format
+msgid "November"
+msgstr "Novembro"
+
+#: lib/idcal_web/format_helpers.ex:16
+#, elixir-autogen, elixir-format
+msgid "October"
+msgstr "Outubro"
+
+#: lib/idcal_web/format_helpers.ex:15
+#, elixir-autogen, elixir-format
+msgid "September"
+msgstr "Setembro"
+
+#: lib/idcal_web/live/profile_live/show.ex:185
+#, elixir-autogen, elixir-format
+msgid "%{count} guild over limit"
+msgid_plural "%{count} guilds over limit"
+msgstr[0] "%{count} guilda acima do limite"
+msgstr[1] "%{count} guildas acima do limite"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:230
+#, elixir-autogen, elixir-format
+msgid "%{count} month left"
+msgid_plural "%{count} months left"
+msgstr[0] "%{count} mês restante"
+msgstr[1] "%{count} meses restantes"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:248
+#, elixir-autogen, elixir-format
+msgid "Abandon this quest?"
+msgstr "Abandonar esta missão?"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:151
+#: lib/idcal_web/live/savings_goal_live/index.ex:200
+#, elixir-autogen, elixir-format
+msgid "Auto (from surplus)"
+msgstr "Auto (do superávit)"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:239
+#, elixir-autogen, elixir-format
+msgid "Contribute"
+msgstr "Contribuir"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:303
+#, elixir-autogen, elixir-format
+msgid "Contributions"
+msgstr "Contribuições"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:195
+#, elixir-autogen, elixir-format
+msgid "Deadline"
+msgstr "Prazo"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:285
+#, elixir-autogen, elixir-format
+msgid "Edit Contribution"
+msgstr "Editar Contribuição"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:189
+#, elixir-autogen, elixir-format
+msgid "Edit Quest"
+msgstr "Editar Missão"
+
+#: lib/idcal_web/live/expense_live/index.ex:312
+#, elixir-autogen, elixir-format
+msgid "Gold Limit"
+msgstr "Limite de Ouro"
+
+#: lib/idcal_web/live/expense_live/index.ex:337
+#, elixir-autogen, elixir-format
+msgid "Gold Limit:"
+msgstr "Limite de Ouro:"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:152
+#: lib/idcal_web/live/savings_goal_live/index.ex:200
+#, elixir-autogen, elixir-format
+msgid "Manual contributions"
+msgstr "Contribuições manuais"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:285
+#, elixir-autogen, elixir-format
+msgid "New Contribution"
+msgstr "Nova Contribuição"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:182
+#: lib/idcal_web/live/savings_goal_live/index.ex:189
+#, elixir-autogen, elixir-format
+msgid "New Quest"
+msgstr "Nova Missão"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:214
+#, elixir-autogen, elixir-format
+msgid "No quests yet — embark on one to start saving toward your goal."
+msgstr "Nenhuma missão ainda — embarque em uma para começar a poupar rumo ao seu objetivo."
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:76
+#, elixir-autogen, elixir-format
+msgid "Quest abandoned."
+msgstr "Missão abandonada."
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:276
+#, elixir-autogen, elixir-format
+msgid "Quest complete! Thy goal hath been achieved!"
+msgstr "Missão concluída! Teu objetivo foi alcançado!"
+
+#: lib/idcal_web/live/profile_live/show.ex:137
+#: lib/idcal_web/live/savings_goal_live/index.ex:16
+#: lib/idcal_web/live/savings_goal_live/index.ex:179
+#, elixir-autogen, elixir-format
+msgid "Quests"
+msgstr "Missões"
+
+#: lib/idcal_web/live/expense_live/index.ex:509
+#, elixir-autogen, elixir-format
+msgid "Spent:"
+msgstr "Gasto:"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:194
+#, elixir-autogen, elixir-format
+msgid "Target Amount"
+msgstr "Valor Alvo"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:226
+#, elixir-autogen, elixir-format
+msgid "Target:"
+msgstr "Alvo:"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:279
+#, elixir-autogen, elixir-format
+msgid "The deadline hath passed and the quest remains unfinished."
+msgstr "O prazo já passou e a missão permanece inacabada."
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:271
+#, elixir-autogen, elixir-format
+msgid "To reach thy goal, thou must save"
+msgstr "Para alcançar teu objetivo, deves poupar"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:199
+#, elixir-autogen, elixir-format
+msgid "Tracking"
+msgstr "Rastreamento"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:193
+#, elixir-autogen, elixir-format
+msgid "e.g. Travel to Africa"
+msgstr "ex. Viagem para a África"
+
+#: lib/idcal_web/live/savings_goal_live/index.ex:273
+#, elixir-autogen, elixir-format
+msgid "per month."
+msgstr "por mês."
+
+#: lib/idcal_web/live/insights_live/show.ex:241
+#, elixir-autogen, elixir-format
+msgid "Above 1.0 = surplus, below 1.0 = deficit"
+msgstr "Acima de 1.0 = superávit, abaixo de 1.0 = déficit"
+
+#: lib/idcal_web/live/insights_live/show.ex:226
+#, elixir-autogen, elixir-format
+msgid "Average"
+msgstr "Média"
+
+#: lib/idcal_web/live/insights_live/show.ex:240
+#, elixir-autogen, elixir-format
+msgid "Coffers / Tributes Ratio"
+msgstr "Proporção Cofres / Tributos"
+
+#: lib/idcal_web/live/month_live/show.ex:370
+#, elixir-autogen, elixir-format
+msgid "Entry"
+msgstr "Registro"
+
+#: lib/idcal_web/live/insights_live/show.ex:79
+#, elixir-autogen, elixir-format
+msgid "Income / Expense Ratio"
+msgstr "Proporção Receita / Despesa"
+
+#: lib/idcal_web/live/insights_live/show.ex:15
+#: lib/idcal_web/live/insights_live/show.ex:142
+#: lib/idcal_web/live/profile_live/show.ex:140
+#, elixir-autogen, elixir-format
+msgid "Insights"
+msgstr "Análises"
+
+#: lib/idcal_web/live/insights_live/show.ex:220
+#, elixir-autogen, elixir-format
+msgid "No tribute data to analyze."
+msgstr "Nenhum dado de tributo para analisar."
+
+#: lib/idcal_web/live/insights_live/show.ex:218
+#, elixir-autogen, elixir-format
+msgid "Rolling 6-Month Averages by Guild"
+msgstr "Médias de 6 Meses por Guilda"
+
+#: lib/idcal_web/live/insights_live/show.ex:194
+#, elixir-autogen, elixir-format
+msgid "This Moon"
+msgstr "Esta Lua"
+
+#: lib/idcal_web/live/insights_live/show.ex:156
+#, elixir-autogen, elixir-format
+msgid "vs Previous Month"
+msgstr "vs Mês Anterior"
+
+#: lib/idcal_web/live/insights_live/show.ex:174
+#, elixir-autogen, elixir-format
+msgid "vs Same Month Last Year"
+msgstr "vs Mesmo Mês do Ano Passado"
+
+#: lib/idcal_web/live/forecast_live/show.ex:143
+#, elixir-autogen, elixir-format
+msgid "%{count} month"
+msgid_plural "%{count} months"
+msgstr[0] "%{count} mês"
+msgstr[1] "%{count} meses"
+
+#: lib/idcal_web/live/forecast_live/show.ex:16
+#: lib/idcal_web/live/forecast_live/show.ex:134
+#: lib/idcal_web/live/profile_live/show.ex:143
+#, elixir-autogen, elixir-format
+msgid "Forecast"
+msgstr "Previsão"
+
+#: lib/idcal_web/live/forecast_live/show.ex:236
+#, elixir-autogen, elixir-format
+msgid "Levies"
+msgstr "Taxas"
+
+#: lib/idcal_web/live/forecast_live/show.ex:162
+#: lib/idcal_web/live/profile_live/compare.ex:124
+#, elixir-autogen, elixir-format
+msgid "Monthly Breakdown"
+msgstr "Detalhamento Mensal"
+
+#: lib/idcal_web/live/forecast_live/show.ex:239
+#, elixir-autogen, elixir-format
+msgid "No recurring levies."
+msgstr "Nenhuma taxa recorrente."
+
+#: lib/idcal_web/live/forecast_live/show.ex:201
+#, elixir-autogen, elixir-format
+msgid "No recurring wellsprings."
+msgstr "Nenhuma nascente recorrente."
+
+#: lib/idcal_web/live/forecast_live/show.ex:150
+#, elixir-autogen, elixir-format
+msgid "Projected Cash Flow"
+msgstr "Fluxo de Caixa Projetado"
+
+#: lib/idcal_web/live/forecast_live/show.ex:197
+#, elixir-autogen, elixir-format
+msgid "Reset"
+msgstr "Reiniciar"
+
+#: lib/idcal_web/live/forecast_live/show.ex:237
+#, elixir-autogen, elixir-format
+msgid "Toggle levies on/off to see projected impact."
+msgstr "Ative/desative taxas para ver o impacto projetado."
+
+#: lib/idcal_web/live/forecast_live/show.ex:199
+#, elixir-autogen, elixir-format
+msgid "Toggle sources on/off to see projected impact."
+msgstr "Ative/desative nascentes para ver o impacto projetado."
+
+#: lib/idcal_web/live/forecast_live/show.ex:196
+#, elixir-autogen, elixir-format
+msgid "Wellsprings"
+msgstr "Nascentes"
+
+#: lib/idcal_web/live/month_live/show.ex:167
+#, elixir-autogen, elixir-format
+msgid "%{count} entry applied."
+msgid_plural "%{count} entries applied."
+msgstr[0] "%{count} entrada aplicada."
+msgstr[1] "%{count} entradas aplicadas."
+
+#: lib/idcal_web/live/month_live/show.ex:127
+#, elixir-autogen, elixir-format
+msgid "%{count} entry cloned."
+msgid_plural "%{count} entries cloned."
+msgstr[0] "%{count} entrada clonada."
+msgstr[1] "%{count} entradas clonadas."
+
+#: lib/idcal_web/live/expense_live/index.ex:258
+#, elixir-autogen, elixir-format
+msgid "%{count} entry imported."
+msgid_plural "%{count} entries imported."
+msgstr[0] "%{count} entrada importada."
+msgstr[1] "%{count} entradas importadas."
+
+#: lib/idcal_web/live/month_live/show.ex:247
+#, elixir-autogen, elixir-format
+msgid "%{count} item"
+msgid_plural "%{count} items"
+msgstr[0] "%{count} item"
+msgstr[1] "%{count} itens"
+
+#: lib/idcal_web/live/month_live/show.ex:257
+#, elixir-autogen, elixir-format
+msgid "Apply"
+msgstr "Aplicar"
+
+#: lib/idcal_web/live/month_live/show.ex:255
+#, elixir-autogen, elixir-format
+msgid "Apply this template to the current month?"
+msgstr "Aplicar este pergaminho ao mês atual?"
+
+#: lib/idcal_web/live/expense_live/index.ex:293
+#, elixir-autogen, elixir-format
+msgid "CSV format: Category, Type, Amount, Note (optional). First row is skipped as header."
+msgstr "Formato CSV: Guilda, Tipo, Valor, Nota (opcional). A primeira linha é ignorada como cabeçalho."
+
+#: lib/idcal_web/live/month_live/show.ex:216
+#, elixir-autogen, elixir-format
+msgid "Clone"
+msgstr "Clonar"
+
+#: lib/idcal_web/live/month_live/show.ex:130
+#, elixir-autogen, elixir-format
+msgid "Clone failed."
+msgstr "Falha ao clonar."
+
+#: lib/idcal_web/live/month_live/show.ex:214
+#, elixir-autogen, elixir-format
+msgid "Clone sporadic entries to the next month?"
+msgstr "Clonar entradas esporádicas para o próximo mês?"
+
+#: lib/idcal_web/live/month_live/show.ex:263
+#, elixir-autogen, elixir-format
+msgid "Delete this template?"
+msgstr "Apagar este pergaminho?"
+
+#: lib/idcal_web/live/month_live/show.ex:211
+#, elixir-autogen, elixir-format
+msgid "Export CSV"
+msgstr "Exportar CSV"
+
+#: lib/idcal_web/live/month_live/show.ex:170
+#, elixir-autogen, elixir-format
+msgid "Failed to apply template."
+msgstr "Falha ao aplicar pergaminho."
+
+#: lib/idcal_web/live/month_live/show.ex:186
+#, elixir-autogen, elixir-format
+msgid "Failed to delete template."
+msgstr "Falha ao apagar pergaminho."
+
+#: lib/idcal_web/live/month_live/show.ex:157
+#, elixir-autogen, elixir-format
+msgid "Failed to save template."
+msgstr "Falha ao salvar pergaminho."
+
+#: lib/idcal_web/live/expense_live/index.ex:298
+#, elixir-autogen, elixir-format
+msgid "Import"
+msgstr "Importar"
+
+#: lib/idcal_web/live/expense_live/index.ex:284
+#: lib/idcal_web/live/expense_live/index.ex:291
+#, elixir-autogen, elixir-format
+msgid "Import CSV"
+msgstr "Importar CSV"
+
+#: lib/idcal_web/live/month_live/show.ex:226
+#, elixir-autogen, elixir-format
+msgid "Month Templates"
+msgstr "Pergaminhos do Mês"
+
+#: lib/idcal_web/live/month_live/show.ex:271
+#, elixir-autogen, elixir-format
+msgid "No templates saved yet."
+msgstr "Nenhum pergaminho salvo ainda."
+
+#: lib/idcal_web/live/month_live/show.ex:238
+#, elixir-autogen, elixir-format
+msgid "Save Current"
+msgstr "Salvar Atual"
+
+#: lib/idcal_web/live/month_live/show.ex:182
+#, elixir-autogen, elixir-format
+msgid "Template deleted."
+msgstr "Pergaminho apagado."
+
+#: lib/idcal_web/live/month_live/show.ex:233
+#, elixir-autogen, elixir-format
+msgid "Template name..."
+msgstr "Nome do pergaminho..."
+
+#: lib/idcal_web/live/month_live/show.ex:151
+#, elixir-autogen, elixir-format
+msgid "Template saved."
+msgstr "Pergaminho salvo."
+
+#: lib/idcal_web/live/month_live/show.ex:219
+#, elixir-autogen, elixir-format
+msgid "Templates"
+msgstr "Pergaminhos"
+
+#: lib/idcal_web/live/month_live/show.ex:287
+#, elixir-autogen, elixir-format
+msgid "Guild %{name} approaches its gold limit (%{pct}%)"
+msgstr "Guilda %{name} aproxima-se do limite de ouro (%{pct}%)"
+
+#: lib/idcal_web/live/month_live/show.ex:284
+#, elixir-autogen, elixir-format
+msgid "Guild %{name} hath exceeded its gold limit! (%{pct}%)"
+msgstr "Guilda %{name} excedeu o limite de ouro! (%{pct}%)"
+
+#: lib/idcal_web/live/profile_live/form.ex:231
+#, elixir-autogen, elixir-format
+msgid "Adventurer's email..."
+msgstr "Email do aventureiro..."
+
+#: lib/idcal_web/live/profile_live/form.ex:68
+#, elixir-autogen, elixir-format
+msgid "Already shared with this adventurer."
+msgstr "Já compartilhado com este aventureiro."
+
+#: lib/idcal_web/live/profile_live/form.ex:65
+#, elixir-autogen, elixir-format
+msgid "Cannot share with thyself."
+msgstr "Não podes compartilhar contigo mesmo."
+
+#: lib/idcal_web/live/profile_live/index.ex:35
+#, elixir-autogen, elixir-format
+msgid "Compare"
+msgstr "Comparar"
+
+#: lib/idcal_web/live/profile_live/compare.ex:15
+#: lib/idcal_web/live/profile_live/compare.ex:87
+#, elixir-autogen, elixir-format
+msgid "Compare Ledgers"
+msgstr "Comparar Livros-razão"
+
+#: lib/idcal_web/live/profile_live/form.ex:268
+#, elixir-autogen, elixir-format
+msgid "Demote"
+msgstr "Rebaixar"
+
+#: lib/idcal_web/live/profile_live/compare.ex:131
+#, elixir-autogen, elixir-format
+msgid "Difference"
+msgstr "Diferença"
+
+#: lib/idcal_web/live/profile_live/form.ex:237
+#, elixir-autogen, elixir-format
+msgid "Editor"
+msgstr "Editor"
+
+#: lib/idcal_web/live/profile_live/form.ex:240
+#, elixir-autogen, elixir-format
+msgid "Invite"
+msgstr "Convidar"
+
+#: lib/idcal_web/live/profile_live/form.ex:223
+#, elixir-autogen, elixir-format
+msgid "Invite another adventurer to view or edit this ledger."
+msgstr "Convide outro aventureiro para visualizar ou editar este livro-razão."
+
+#: lib/idcal_web/live/profile_live/form.ex:59
+#, elixir-autogen, elixir-format
+msgid "Ledger shared."
+msgstr "Livro-razão compartilhado."
+
+#: lib/idcal_web/live/profile_live/compare.ex:92
+#, elixir-autogen, elixir-format
+msgid "Left Ledger"
+msgstr "Livro-razão Esquerdo"
+
+#: lib/idcal_web/live/profile_live/form.ex:62
+#, elixir-autogen, elixir-format
+msgid "No adventurer found with that email."
+msgstr "Nenhum aventureiro encontrado com esse email."
+
+#: lib/idcal_web/live/profile_live/form.ex:282
+#, elixir-autogen, elixir-format
+msgid "No adventurers share this ledger yet."
+msgstr "Nenhum aventureiro compartilha este livro-razão ainda."
+
+#: lib/idcal_web/live/profile_live/form.ex:259
+#, elixir-autogen, elixir-format
+msgid "Promote"
+msgstr "Promover"
+
+#: lib/idcal_web/live/profile_live/form.ex:274
+#, elixir-autogen, elixir-format
+msgid "Remove this adventurer's access?"
+msgstr "Remover o acesso deste aventureiro?"
+
+#: lib/idcal_web/live/profile_live/compare.ex:101
+#, elixir-autogen, elixir-format
+msgid "Right Ledger"
+msgstr "Livro-razão Direito"
+
+#: lib/idcal_web/live/profile_live/form.ex:96
+#, elixir-autogen, elixir-format
+msgid "Role updated."
+msgstr "Papel atualizado."
+
+#: lib/idcal_web/live/profile_live/compare.ex:166
+#, elixir-autogen, elixir-format
+msgid "Select two ledgers above to compare their chronicles."
+msgstr "Selecione dois livros-razão acima para comparar suas crônicas."
+
+#: lib/idcal_web/live/profile_live/compare.ex:94
+#: lib/idcal_web/live/profile_live/compare.ex:103
+#, elixir-autogen, elixir-format
+msgid "Select..."
+msgstr "Selecionar..."
+
+#: lib/idcal_web/live/profile_live/form.ex:81
+#, elixir-autogen, elixir-format
+msgid "Share removed."
+msgstr "Compartilhamento removido."
+
+#: lib/idcal_web/live/profile_live/form.ex:221
+#, elixir-autogen, elixir-format
+msgid "Shared Adventurers"
+msgstr "Aventureiros Compartilhados"
+
+#: lib/idcal_web/live/profile_live/form.ex:236
+#, elixir-autogen, elixir-format
+msgid "Viewer"
+msgstr "Visualizador"
+
+#: lib/idcal_web/live/search_live/index.ex:55
+#, elixir-autogen, elixir-format
+msgid "%{count} result found"
+msgid_plural "%{count} results found"
+msgstr[0] "%{count} resultado encontrado"
+msgstr[1] "%{count} resultados encontrados"
+
+#: lib/idcal_web/live/profile_live/show.ex:152
+#, elixir-autogen, elixir-format
+msgid "Calendar"
+msgstr "Calendário"
+
+#: lib/idcal_web/live/profile_live/form.ex:196
+#, elixir-autogen, elixir-format
+msgid "Currency"
+msgstr "Moeda"
+
+#: lib/idcal_web/live/profile_live/form.ex:206
+#, elixir-autogen, elixir-format
+msgid "Dark"
+msgstr "Escuro"
+
+#: lib/idcal_web/live/quick_entry_live/index.ex:39
+#, elixir-autogen, elixir-format
+msgid "Entry recorded!"
+msgstr "Entrada registrada!"
+
+#: lib/idcal_web/live/calendar_live/index.ex:61
+#, elixir-autogen, elixir-format
+msgid "Expense Levies"
+msgstr "Taxas de Tributos"
+
+#: lib/idcal_web/live/quick_entry_live/index.ex:45
+#, elixir-autogen, elixir-format
+msgid "Failed to record entry."
+msgstr "Falha ao registrar entrada."
+
+#: lib/idcal_web/live/calendar_live/index.ex:56
+#, elixir-autogen, elixir-format
+msgid "Income Wellsprings"
+msgstr "Nascentes de Cofres"
+
+#: lib/idcal_web/live/quick_entry_live/index.ex:66
+#, elixir-autogen, elixir-format
+msgid "Levy"
+msgstr "Taxa"
+
+#: lib/idcal_web/live/profile_live/form.ex:207
+#, elixir-autogen, elixir-format
+msgid "Light"
+msgstr "Claro"
+
+#: lib/idcal_web/live/quick_entry_live/index.ex:58
+#, elixir-autogen, elixir-format
+msgid "Log a sporadic expense fast."
+msgstr "Registre uma despesa esporádica rapidamente."
+
+#: lib/idcal_web/live/calendar_live/index.ex:47
+#, elixir-autogen, elixir-format
+msgid "Monthly entries with highlighted gaps."
+msgstr "Entradas mensais com lacunas destacadas."
+
+#: lib/idcal_web/live/search_live/index.ex:86
+#, elixir-autogen, elixir-format
+msgid "No entries found with that note."
+msgstr "Nenhuma entrada encontrada com essa nota."
+
+#: lib/idcal_web/live/calendar_live/index.ex:66
+#, elixir-autogen, elixir-format
+msgid "No recurring entries to display."
+msgstr "Nenhuma entrada recorrente para exibir."
+
+#: lib/idcal_web/live/quick_entry_live/index.ex:87
+#, elixir-autogen, elixir-format
+msgid "Optional note..."
+msgstr "Nota opcional..."
+
+#: lib/idcal_web/live/search_live/index.ex:63
+#, elixir-autogen, elixir-format
+msgid "Period"
+msgstr "Período"
+
+#: lib/idcal_web/live/expense_live/index.ex:344
+#: lib/idcal_web/live/income_live/index.ex:259
+#, elixir-autogen, elixir-format
+msgid "Pin"
+msgstr "Fixar"
+
+#: lib/idcal_web/live/profile_live/show.ex:146
+#, elixir-autogen, elixir-format
+msgid "Quick"
+msgstr "Rápido"
+
+#: lib/idcal_web/live/quick_entry_live/index.ex:13
+#: lib/idcal_web/live/quick_entry_live/index.ex:57
+#, elixir-autogen, elixir-format
+msgid "Quick Entry"
+msgstr "Entrada Rápida"
+
+#: lib/idcal_web/live/calendar_live/index.ex:15
+#: lib/idcal_web/live/calendar_live/index.ex:46
+#, elixir-autogen, elixir-format
+msgid "Recurring Calendar"
+msgstr "Calendário Recorrente"
+
+#: lib/idcal_web/live/profile_live/show.ex:149
+#, elixir-autogen, elixir-format
+msgid "Search"
+msgstr "Buscar"
+
+#: lib/idcal_web/live/search_live/index.ex:14
+#: lib/idcal_web/live/search_live/index.ex:40
+#, elixir-autogen, elixir-format
+msgid "Search Notes"
+msgstr "Buscar Notas"
+
+#: lib/idcal_web/live/search_live/index.ex:48
+#, elixir-autogen, elixir-format
+msgid "Search by note text..."
+msgstr "Buscar por texto da nota..."
+
+#: lib/idcal_web/live/profile_live/form.ex:204
+#, elixir-autogen, elixir-format
+msgid "Theme"
+msgstr "Tema"
+
+#: lib/idcal_web/live/search_live/index.ex:60
+#, elixir-autogen, elixir-format
+msgid "Type"
+msgstr "Tipo"
+
+#: lib/idcal_web/live/quick_entry_live/index.ex:63
+#, elixir-autogen, elixir-format
+msgid "e.g. Leisure"
+msgstr "ex.: Lazer"
+
+#: lib/idcal_web/live/quick_entry_live/index.ex:67
+#, elixir-autogen, elixir-format
+msgid "e.g. Tavern Bill"
+msgstr "ex.: Conta da Taverna"
