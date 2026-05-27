@@ -45,6 +45,9 @@ DESIGN.md
 ROADMAP.md
 GLOSSARY.md
 
+# Environment variables
+.env
+
 # Design reference files
 /docs/
 neobruta.diff
