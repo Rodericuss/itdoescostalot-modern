@@ -39,7 +39,7 @@ defmodule IdcalWeb.CalendarLive.Index do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
+    <Layouts.profile_app flash={@flash} current_scope={@current_scope} profile={@profile} active_page={:calendar}>
       <.link navigate={~p"/profiles/#{@profile}"} class="text-slate hover:text-[#A31F34] text-sm">
         &larr; {@profile.nickname}
       </.link>
@@ -65,7 +65,7 @@ defmodule IdcalWeb.CalendarLive.Index do
       <div :if={@calendar.income_sources == [] && @calendar.expense_types == []} class="card-neo p-5 text-center">
         <p class="text-slate">{gettext("No recurring entries to display.")}</p>
       </div>
-    </Layouts.app>
+    </Layouts.profile_app>
     """
   end
 

@@ -170,7 +170,7 @@ defmodule IdcalWeb.SavingsGoalLive.Index do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
+    <Layouts.profile_app flash={@flash} current_scope={@current_scope} profile={@profile} active_page={:goals}>
       <div class="flex items-center justify-between">
         <div>
           <.link navigate={~p"/profiles/#{@profile}"} class="text-slate hover:text-[#A31F34] text-sm">
@@ -337,7 +337,7 @@ defmodule IdcalWeb.SavingsGoalLive.Index do
           </div>
         </div>
       </div>
-    </Layouts.app>
+    </Layouts.profile_app>
     """
   end
 end

@@ -16,8 +16,8 @@ msgstr ""
 msgid "Actions"
 msgstr "Ações"
 
-#: lib/idcal_web/components/layouts.ex:155
-#: lib/idcal_web/components/layouts.ex:167
+#: lib/idcal_web/components/layouts.ex:286
+#: lib/idcal_web/components/layouts.ex:298
 #, elixir-autogen, elixir-format
 msgid "Attempting to reconnect"
 msgstr "Tentando reconectar"
@@ -29,7 +29,7 @@ msgstr "Tentando reconectar"
 #: lib/idcal_web/live/income_live/index.ex:237
 #: lib/idcal_web/live/income_live/index.ex:294
 #: lib/idcal_web/live/income_live/index.ex:348
-#: lib/idcal_web/live/profile_live/form.ex:214
+#: lib/idcal_web/live/profile_live/form.ex:232
 #: lib/idcal_web/live/savings_goal_live/index.ex:205
 #: lib/idcal_web/live/savings_goal_live/index.ex:295
 #, elixir-autogen, elixir-format
@@ -54,6 +54,7 @@ msgid "Language"
 msgstr "Idioma"
 
 #: lib/idcal_web/components/layouts.ex:64
+#: lib/idcal_web/components/layouts.ex:224
 #, elixir-autogen, elixir-format
 msgid "Log out"
 msgstr "Sair"
@@ -79,7 +80,7 @@ msgstr "Renomear"
 #: lib/idcal_web/live/income_live/index.ex:236
 #: lib/idcal_web/live/income_live/index.ex:293
 #: lib/idcal_web/live/income_live/index.ex:347
-#: lib/idcal_web/live/profile_live/form.ex:213
+#: lib/idcal_web/live/profile_live/form.ex:231
 #: lib/idcal_web/live/quick_entry_live/index.ex:89
 #: lib/idcal_web/live/savings_goal_live/index.ex:204
 #: lib/idcal_web/live/savings_goal_live/index.ex:294
@@ -92,12 +93,12 @@ msgstr "Salvar"
 msgid "Settings"
 msgstr "Configurações"
 
-#: lib/idcal_web/components/layouts.ex:162
+#: lib/idcal_web/components/layouts.ex:293
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
 msgstr "Algo deu errado!"
 
-#: lib/idcal_web/components/layouts.ex:150
+#: lib/idcal_web/components/layouts.ex:281
 #, elixir-autogen, elixir-format
 msgid "We can't find the internet"
 msgstr "Não encontramos a internet"
@@ -122,11 +123,11 @@ msgstr "Valor"
 
 #: lib/idcal_web/live/expense_live/index.ex:430
 #: lib/idcal_web/live/expense_live/index.ex:461
-#: lib/idcal_web/live/forecast_live/show.ex:167
+#: lib/idcal_web/live/forecast_live/show.ex:171
 #: lib/idcal_web/live/income_live/index.ex:342
 #: lib/idcal_web/live/income_live/index.ex:373
 #: lib/idcal_web/live/profile_live/compare.ex:128
-#: lib/idcal_web/live/profile_live/form.ex:174
+#: lib/idcal_web/live/profile_live/form.ex:192
 #: lib/idcal_web/live/quick_entry_live/index.ex:80
 #: lib/idcal_web/live/savings_goal_live/index.ex:289
 #: lib/idcal_web/live/savings_goal_live/index.ex:308
@@ -183,7 +184,7 @@ msgstr "Esporádico"
 #: lib/idcal_web/live/expense_live/index.ex:460
 #: lib/idcal_web/live/income_live/index.ex:341
 #: lib/idcal_web/live/income_live/index.ex:372
-#: lib/idcal_web/live/profile_live/form.ex:162
+#: lib/idcal_web/live/profile_live/form.ex:180
 #: lib/idcal_web/live/quick_entry_live/index.ex:76
 #: lib/idcal_web/live/savings_goal_live/index.ex:288
 #: lib/idcal_web/live/savings_goal_live/index.ex:307
@@ -216,7 +217,7 @@ msgstr "Total"
 msgid "Free. No ads. Your data stays yours."
 msgstr "Grátis. Sem anúncios. Seus dados são seus."
 
-#: lib/idcal_web/live/profile_live/show.ex:270
+#: lib/idcal_web/live/profile_live/show.ex:234
 #, elixir-autogen, elixir-format
 msgid "Not tracked"
 msgstr "Não rastreado"
@@ -378,9 +379,9 @@ msgstr "Registro"
 msgid "Income / Expense Ratio"
 msgstr "Proporção Receita / Despesa"
 
+#: lib/idcal_web/components/layouts.ex:207
 #: lib/idcal_web/live/insights_live/show.ex:15
 #: lib/idcal_web/live/insights_live/show.ex:142
-#: lib/idcal_web/live/profile_live/show.ex:168
 #, elixir-autogen, elixir-format
 msgid "Insights"
 msgstr "Análises"
@@ -402,14 +403,14 @@ msgid_plural "%{count} months"
 msgstr[0] "%{count} mês"
 msgstr[1] "%{count} meses"
 
+#: lib/idcal_web/components/layouts.ex:208
 #: lib/idcal_web/live/forecast_live/show.ex:16
 #: lib/idcal_web/live/forecast_live/show.ex:134
-#: lib/idcal_web/live/profile_live/show.ex:171
 #, elixir-autogen, elixir-format
 msgid "Forecast"
 msgstr "Previsão"
 
-#: lib/idcal_web/live/forecast_live/show.ex:162
+#: lib/idcal_web/live/forecast_live/show.ex:166
 #: lib/idcal_web/live/profile_live/compare.ex:124
 #, elixir-autogen, elixir-format
 msgid "Monthly Breakdown"
@@ -420,12 +421,12 @@ msgstr "Detalhamento Mensal"
 msgid "Projected Cash Flow"
 msgstr "Fluxo de Caixa Projetado"
 
-#: lib/idcal_web/live/forecast_live/show.ex:197
+#: lib/idcal_web/live/forecast_live/show.ex:201
 #, elixir-autogen, elixir-format
 msgid "Reset"
 msgstr "Reiniciar"
 
-#: lib/idcal_web/live/forecast_live/show.ex:199
+#: lib/idcal_web/live/forecast_live/show.ex:203
 #, elixir-autogen, elixir-format
 msgid "Toggle sources on/off to see projected impact."
 msgstr "Ative/desative nascentes para ver o impacto projetado."
@@ -564,7 +565,7 @@ msgstr "Pergaminhos"
 msgid "Compare"
 msgstr "Comparar"
 
-#: lib/idcal_web/live/profile_live/form.ex:268
+#: lib/idcal_web/live/profile_live/form.ex:286
 #, elixir-autogen, elixir-format
 msgid "Demote"
 msgstr "Rebaixar"
@@ -574,17 +575,17 @@ msgstr "Rebaixar"
 msgid "Difference"
 msgstr "Diferença"
 
-#: lib/idcal_web/live/profile_live/form.ex:237
+#: lib/idcal_web/live/profile_live/form.ex:255
 #, elixir-autogen, elixir-format
 msgid "Editor"
 msgstr "Editor"
 
-#: lib/idcal_web/live/profile_live/form.ex:240
+#: lib/idcal_web/live/profile_live/form.ex:258
 #, elixir-autogen, elixir-format
 msgid "Invite"
 msgstr "Convidar"
 
-#: lib/idcal_web/live/profile_live/form.ex:259
+#: lib/idcal_web/live/profile_live/form.ex:277
 #, elixir-autogen, elixir-format
 msgid "Promote"
 msgstr "Promover"
@@ -605,7 +606,7 @@ msgstr "Selecionar..."
 msgid "Share removed."
 msgstr "Compartilhamento removido."
 
-#: lib/idcal_web/live/profile_live/form.ex:236
+#: lib/idcal_web/live/profile_live/form.ex:254
 #, elixir-autogen, elixir-format
 msgid "Viewer"
 msgstr "Visualizador"
@@ -617,17 +618,17 @@ msgid_plural "%{count} results found"
 msgstr[0] "%{count} resultado encontrado"
 msgstr[1] "%{count} resultados encontrados"
 
-#: lib/idcal_web/live/profile_live/show.ex:180
+#: lib/idcal_web/components/layouts.ex:209
 #, elixir-autogen, elixir-format
 msgid "Calendar"
 msgstr "Calendário"
 
-#: lib/idcal_web/live/profile_live/form.ex:196
+#: lib/idcal_web/live/profile_live/form.ex:214
 #, elixir-autogen, elixir-format
 msgid "Currency"
 msgstr "Moeda"
 
-#: lib/idcal_web/live/profile_live/form.ex:206
+#: lib/idcal_web/live/profile_live/form.ex:224
 #, elixir-autogen, elixir-format
 msgid "Dark"
 msgstr "Escuro"
@@ -642,7 +643,7 @@ msgstr "Entrada registrada!"
 msgid "Failed to record entry."
 msgstr "Falha ao registrar entrada."
 
-#: lib/idcal_web/live/profile_live/form.ex:207
+#: lib/idcal_web/live/profile_live/form.ex:225
 #, elixir-autogen, elixir-format
 msgid "Light"
 msgstr "Claro"
@@ -683,11 +684,7 @@ msgstr "Período"
 msgid "Pin"
 msgstr "Fixar"
 
-#: lib/idcal_web/live/profile_live/show.ex:174
-#, elixir-autogen, elixir-format
-msgid "Quick"
-msgstr "Rápido"
-
+#: lib/idcal_web/components/layouts.ex:214
 #: lib/idcal_web/live/quick_entry_live/index.ex:13
 #: lib/idcal_web/live/quick_entry_live/index.ex:57
 #, elixir-autogen, elixir-format
@@ -700,7 +697,7 @@ msgstr "Entrada Rápida"
 msgid "Recurring Calendar"
 msgstr "Calendário Recorrente"
 
-#: lib/idcal_web/live/profile_live/show.ex:177
+#: lib/idcal_web/components/layouts.ex:215
 #, elixir-autogen, elixir-format
 msgid "Search"
 msgstr "Buscar"
@@ -716,7 +713,7 @@ msgstr "Buscar Notas"
 msgid "Search by note text..."
 msgstr "Buscar por texto da nota..."
 
-#: lib/idcal_web/live/profile_live/form.ex:204
+#: lib/idcal_web/live/profile_live/form.ex:222
 #, elixir-autogen, elixir-format
 msgid "Theme"
 msgstr "Tema"
@@ -732,7 +729,7 @@ msgstr "Tipo"
 msgid "e.g. Leisure"
 msgstr "ex.: Lazer"
 
-#: lib/idcal_web/live/profile_live/show.ex:267
+#: lib/idcal_web/live/profile_live/show.ex:231
 #, elixir-autogen, elixir-format
 msgid "%{count} category over budget"
 msgid_plural "%{count} categories over budget"
@@ -754,7 +751,7 @@ msgstr "Adicionar Tipo"
 msgid "Add income and expenses"
 msgstr "Adicione receitas e despesas"
 
-#: lib/idcal_web/live/profile_live/show.ex:153
+#: lib/idcal_web/components/layouts.ex:220
 #, elixir-autogen, elixir-format
 msgid "All Profiles"
 msgstr "Todos os Perfis"
@@ -764,7 +761,7 @@ msgstr "Todos os Perfis"
 msgid "Already shared with this user."
 msgstr "Já compartilhado com este usuário."
 
-#: lib/idcal_web/live/profile_live/show.ex:241
+#: lib/idcal_web/live/profile_live/show.ex:205
 #, elixir-autogen, elixir-format
 msgid "Average Balance"
 msgstr "Saldo Médio"
@@ -782,7 +779,7 @@ msgstr "Valor Base"
 msgid "Base:"
 msgstr "Base:"
 
-#: lib/idcal_web/live/profile_live/show.ex:229
+#: lib/idcal_web/live/profile_live/show.ex:193
 #, elixir-autogen, elixir-format
 msgid "Best Month"
 msgstr "Melhor Mês"
@@ -843,9 +840,9 @@ msgid "Create an account"
 msgstr "Criar uma conta"
 
 #: lib/idcal_web/live/forecast_live/show.ex:94
-#: lib/idcal_web/live/forecast_live/show.ex:171
+#: lib/idcal_web/live/forecast_live/show.ex:175
 #: lib/idcal_web/live/profile_live/show.ex:113
-#: lib/idcal_web/live/profile_live/show.ex:288
+#: lib/idcal_web/live/profile_live/show.ex:256
 #, elixir-autogen, elixir-format
 msgid "Cumulative Balance"
 msgstr "Saldo Acumulado"
@@ -936,17 +933,17 @@ msgstr "Categorias de Despesas"
 msgid "Expense Types"
 msgstr "Tipos de Despesas"
 
+#: lib/idcal_web/components/layouts.ex:201
 #: lib/idcal_web/live/expense_live/index.ex:18
 #: lib/idcal_web/live/expense_live/index.ex:277
 #: lib/idcal_web/live/forecast_live/show.ex:91
-#: lib/idcal_web/live/forecast_live/show.ex:169
+#: lib/idcal_web/live/forecast_live/show.ex:173
 #: lib/idcal_web/live/insights_live/show.ex:165
 #: lib/idcal_web/live/insights_live/show.ex:183
 #: lib/idcal_web/live/insights_live/show.ex:201
 #: lib/idcal_web/live/month_live/show.ex:338
 #: lib/idcal_web/live/profile_live/compare.ex:182
 #: lib/idcal_web/live/profile_live/show.ex:100
-#: lib/idcal_web/live/profile_live/show.ex:162
 #, elixir-autogen, elixir-format
 msgid "Expenses"
 msgstr "Despesas"
@@ -976,7 +973,7 @@ msgstr "Meta excluída."
 msgid "Goal reached!"
 msgstr "Meta atingida!"
 
-#: lib/idcal_web/live/profile_live/show.ex:165
+#: lib/idcal_web/components/layouts.ex:202
 #: lib/idcal_web/live/savings_goal_live/index.ex:16
 #: lib/idcal_web/live/savings_goal_live/index.ex:179
 #, elixir-autogen, elixir-format
@@ -988,8 +985,9 @@ msgstr "Metas"
 msgid "How It Works"
 msgstr "Como Funciona"
 
+#: lib/idcal_web/components/layouts.ex:200
 #: lib/idcal_web/live/forecast_live/show.ex:90
-#: lib/idcal_web/live/forecast_live/show.ex:168
+#: lib/idcal_web/live/forecast_live/show.ex:172
 #: lib/idcal_web/live/income_live/index.ex:14
 #: lib/idcal_web/live/income_live/index.ex:222
 #: lib/idcal_web/live/insights_live/show.ex:159
@@ -998,7 +996,6 @@ msgstr "Como Funciona"
 #: lib/idcal_web/live/month_live/show.ex:308
 #: lib/idcal_web/live/profile_live/compare.ex:178
 #: lib/idcal_web/live/profile_live/show.ex:99
-#: lib/idcal_web/live/profile_live/show.ex:159
 #, elixir-autogen, elixir-format
 msgid "Income"
 msgstr "Receita"
@@ -1008,7 +1005,7 @@ msgstr "Receita"
 msgid "Income Sources"
 msgstr "Fontes de Receita"
 
-#: lib/idcal_web/live/profile_live/show.ex:278
+#: lib/idcal_web/live/profile_live/show.ex:242
 #, elixir-autogen, elixir-format
 msgid "Income vs Expenses"
 msgstr "Receita vs Despesas"
@@ -1018,7 +1015,7 @@ msgstr "Receita vs Despesas"
 msgid "Income:"
 msgstr "Receita:"
 
-#: lib/idcal_web/live/profile_live/form.ex:223
+#: lib/idcal_web/live/profile_live/form.ex:241
 #, elixir-autogen, elixir-format
 msgid "Invite another user to view or edit this profile."
 msgstr "Convide outro usuário para visualizar ou editar este perfil."
@@ -1044,12 +1041,12 @@ msgstr "Entrar"
 msgid "Log monthly entries"
 msgstr "Registre lançamentos mensais"
 
-#: lib/idcal_web/live/profile_live/show.ex:220
+#: lib/idcal_web/live/profile_live/show.ex:184
 #, elixir-autogen, elixir-format
 msgid "Months Tracked"
 msgstr "Meses Rastreados"
 
-#: lib/idcal_web/live/profile_live/form.ex:158
+#: lib/idcal_web/live/profile_live/form.ex:176
 #, elixir-autogen, elixir-format
 msgid "Months before this date will not be tracked."
 msgstr "Meses antes desta data não serão rastreados."
@@ -1059,11 +1056,11 @@ msgstr "Meses antes desta data não serão rastreados."
 msgid "Multiple profiles"
 msgstr "Vários perfis"
 
-#: lib/idcal_web/live/forecast_live/show.ex:170
+#: lib/idcal_web/live/forecast_live/show.ex:174
 #: lib/idcal_web/live/insights_live/show.ex:205
 #: lib/idcal_web/live/month_live/show.ex:292
 #: lib/idcal_web/live/profile_live/compare.ex:186
-#: lib/idcal_web/live/profile_live/show.ex:214
+#: lib/idcal_web/live/profile_live/show.ex:178
 #, elixir-autogen, elixir-format
 msgid "Net Balance"
 msgstr "Saldo Líquido"
@@ -1104,7 +1101,7 @@ msgstr "Nova Fonte"
 msgid "New Type"
 msgstr "Novo Tipo"
 
-#: lib/idcal_web/live/profile_live/form.ex:138
+#: lib/idcal_web/live/profile_live/form.ex:156
 #, elixir-autogen, elixir-format
 msgid "Nickname"
 msgstr "Apelido"
@@ -1115,8 +1112,8 @@ msgstr "Apelido"
 msgid "No categories yet — add one to start tracking."
 msgstr "Nenhuma categoria ainda — adicione uma para começar a acompanhar."
 
-#: lib/idcal_web/live/profile_live/show.ex:232
-#: lib/idcal_web/live/profile_live/show.ex:238
+#: lib/idcal_web/live/profile_live/show.ex:196
+#: lib/idcal_web/live/profile_live/show.ex:202
 #, elixir-autogen, elixir-format
 msgid "No data"
 msgstr "Sem dados"
@@ -1146,12 +1143,12 @@ msgstr "Nenhuma receita neste mês."
 msgid "No profiles yet — create your first one to start tracking."
 msgstr "Nenhum perfil ainda — crie o primeiro para começar a acompanhar."
 
-#: lib/idcal_web/live/forecast_live/show.ex:201
+#: lib/idcal_web/live/forecast_live/show.ex:205
 #, elixir-autogen, elixir-format
 msgid "No recurring sources."
 msgstr "Nenhuma fonte recorrente."
 
-#: lib/idcal_web/live/forecast_live/show.ex:239
+#: lib/idcal_web/live/forecast_live/show.ex:243
 #, elixir-autogen, elixir-format
 msgid "No recurring types."
 msgstr "Nenhum tipo recorrente."
@@ -1171,7 +1168,7 @@ msgstr "Nenhum tipo ainda."
 msgid "No user found with that email."
 msgstr "Nenhum usuário encontrado com esse email."
 
-#: lib/idcal_web/live/profile_live/form.ex:282
+#: lib/idcal_web/live/profile_live/form.ex:300
 #, elixir-autogen, elixir-format
 msgid "No users share this profile yet."
 msgstr "Nenhum usuário compartilha este perfil ainda."
@@ -1206,7 +1203,7 @@ msgstr "Perfis"
 msgid "Recurring and one-time entries, organized by month."
 msgstr "Lançamentos recorrentes e avulsos, organizados por mês."
 
-#: lib/idcal_web/live/profile_live/form.ex:274
+#: lib/idcal_web/live/profile_live/form.ex:292
 #, elixir-autogen, elixir-format
 msgid "Remove this user's access?"
 msgstr "Remover o acesso deste usuário?"
@@ -1231,7 +1228,7 @@ msgstr "Veja seu painel financeiro"
 msgid "Select two profiles above to compare them."
 msgstr "Selecione dois perfis acima para compará-los."
 
-#: lib/idcal_web/live/profile_live/form.ex:221
+#: lib/idcal_web/live/profile_live/form.ex:239
 #, elixir-autogen, elixir-format
 msgid "Shared Users"
 msgstr "Usuários Compartilhados"
@@ -1246,12 +1243,12 @@ msgstr "Fonte"
 msgid "Source removed."
 msgstr "Fonte removida."
 
-#: lib/idcal_web/live/forecast_live/show.ex:196
+#: lib/idcal_web/live/forecast_live/show.ex:200
 #, elixir-autogen, elixir-format
 msgid "Sources"
 msgstr "Fontes"
 
-#: lib/idcal_web/live/profile_live/form.ex:156
+#: lib/idcal_web/live/profile_live/form.ex:174
 #, elixir-autogen, elixir-format
 msgid "Start Date"
 msgstr "Data de Início"
@@ -1271,22 +1268,22 @@ msgstr "Este Mês"
 msgid "To reach your goal, save"
 msgstr "Para atingir sua meta, economize"
 
-#: lib/idcal_web/live/forecast_live/show.ex:237
+#: lib/idcal_web/live/forecast_live/show.ex:241
 #, elixir-autogen, elixir-format
 msgid "Toggle types on/off to see projected impact."
 msgstr "Ative/desative tipos para ver o impacto projetado."
 
-#: lib/idcal_web/live/profile_live/show.ex:197
+#: lib/idcal_web/live/profile_live/show.ex:161
 #, elixir-autogen, elixir-format
 msgid "Total Balance"
 msgstr "Saldo Total"
 
-#: lib/idcal_web/live/profile_live/show.ex:210
+#: lib/idcal_web/live/profile_live/show.ex:174
 #, elixir-autogen, elixir-format
 msgid "Total Expenses"
 msgstr "Total de Despesas"
 
-#: lib/idcal_web/live/profile_live/show.ex:206
+#: lib/idcal_web/live/profile_live/show.ex:170
 #, elixir-autogen, elixir-format
 msgid "Total Income"
 msgstr "Total de Receita"
@@ -1311,12 +1308,12 @@ msgstr "Doze meses num relance — superávit em verde, déficit em vermelho."
 msgid "Type removed."
 msgstr "Tipo removido."
 
-#: lib/idcal_web/live/forecast_live/show.ex:236
+#: lib/idcal_web/live/forecast_live/show.ex:240
 #, elixir-autogen, elixir-format
 msgid "Types"
 msgstr "Tipos"
 
-#: lib/idcal_web/live/profile_live/form.ex:231
+#: lib/idcal_web/live/profile_live/form.ex:249
 #, elixir-autogen, elixir-format
 msgid "User's email..."
 msgstr "Email do usuário..."
@@ -1326,7 +1323,7 @@ msgstr "Email do usuário..."
 msgid "Visualize your year"
 msgstr "Visualize seu ano"
 
-#: lib/idcal_web/live/profile_live/show.ex:235
+#: lib/idcal_web/live/profile_live/show.ex:199
 #, elixir-autogen, elixir-format
 msgid "Worst Month"
 msgstr "Pior Mês"
@@ -1357,7 +1354,7 @@ msgstr "ex.: Eletricidade, Academia"
 msgid "e.g. Housing, Leisure"
 msgstr "ex.: Moradia, Lazer"
 
-#: lib/idcal_web/live/profile_live/form.ex:144
+#: lib/idcal_web/live/profile_live/form.ex:162
 #, elixir-autogen, elixir-format
 msgid "e.g. Personal, Freelance Income"
 msgstr "ex.: Pessoal, Renda Freelance"
@@ -1372,7 +1369,27 @@ msgstr "ex.: Restaurante"
 msgid "e.g. Salary, Freelance"
 msgstr "ex.: Salário, Freelance"
 
-#: lib/idcal_web/live/profile_live/show.ex:245
+#: lib/idcal_web/live/profile_live/show.ex:209
 #, elixir-autogen, elixir-format
 msgid "per month"
 msgstr "por mês"
+
+#: lib/idcal_web/components/layouts.ex:205
+#, elixir-autogen, elixir-format
+msgid "Analysis"
+msgstr "Análises"
+
+#: lib/idcal_web/components/layouts.ex:199
+#, elixir-autogen, elixir-format
+msgid "Dashboard"
+msgstr "Painel"
+
+#: lib/idcal_web/components/layouts.ex:221
+#, elixir-autogen, elixir-format
+msgid "Profile Settings"
+msgstr "Config. Perfil"
+
+#: lib/idcal_web/components/layouts.ex:212
+#, elixir-autogen, elixir-format
+msgid "Tools"
+msgstr "Ferramentas"

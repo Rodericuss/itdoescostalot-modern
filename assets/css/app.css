@@ -260,6 +260,44 @@ h1, h2, h3, h4, .font-heading {
   padding: 1.5rem 2rem;
 }
 
+/* Sidebar navigation */
+.sidebar-neo {
+  background: #FFFFFF;
+  border-right: 2px solid #1A1A1A;
+  box-shadow: 3px 0 0 #1A1A1A;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  border-radius: 0.375rem;
+  transition: background 0.15s, color 0.15s;
+}
+.sidebar-link:hover {
+  background: #F0EFEB;
+}
+.sidebar-link.active {
+  background: #A31F34;
+  color: #FFFFFF;
+  border: 2px solid #1A1A1A;
+  box-shadow: 2px 2px 0 #1A1A1A;
+}
+
+.sidebar-section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #5F5E5A;
+  padding: 0 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
 /* Pill toggle buttons */
 .btn-pill {
   display: inline-flex;

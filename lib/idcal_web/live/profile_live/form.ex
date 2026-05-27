@@ -126,10 +126,28 @@ defmodule IdcalWeb.ProfileLive.Form do
   end
 
   @impl true
-  def render(assigns) do
+  def render(%{live_action: :new} = assigns) do
     ~H"""
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <div class="mx-auto max-w-md">
+        {render_form(assigns)}
+      </div>
+    </Layouts.app>
+    """
+  end
+
+  def render(%{live_action: :edit} = assigns) do
+    ~H"""
+    <Layouts.profile_app flash={@flash} current_scope={@current_scope} profile={@profile} active_page={:settings}>
+      <div class="mx-auto max-w-md">
+        {render_form(assigns)}
+      </div>
+    </Layouts.profile_app>
+    """
+  end
+
+  defp render_form(assigns) do
+    ~H"""
         <div class="card-neo p-6 space-y-4">
           <h1 class="font-bold text-2xl text-[#A31F34]">{@page_title}</h1>
 
@@ -282,8 +300,6 @@ defmodule IdcalWeb.ProfileLive.Form do
             {gettext("No users share this profile yet.")}
           </p>
         </div>
-      </div>
-    </Layouts.app>
     """
   end
 end

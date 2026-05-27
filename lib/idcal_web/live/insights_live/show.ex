@@ -133,7 +133,7 @@ defmodule IdcalWeb.InsightsLive.Show do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
+    <Layouts.profile_app flash={@flash} current_scope={@current_scope} profile={@profile} active_page={:insights}>
       <div class="flex items-center justify-between">
         <div>
           <.link navigate={~p"/profiles/#{@profile}"} class="text-slate hover:text-[#A31F34] text-sm">
@@ -239,15 +239,19 @@ defmodule IdcalWeb.InsightsLive.Show do
       <div class="card-neo p-5">
         <h2 class="card-title text-lg mb-3">{gettext("Income / Expense Ratio")} ({@year})</h2>
         <p class="text-slate text-xs mb-3">{gettext("Above 1.0 = surplus, below 1.0 = deficit")}</p>
-        <canvas
-          id={"ratio-chart-#{@year}"}
-          phx-hook="ChartHook"
-          data-chart-type="line"
-          data-chart-data={@ratio_chart}
-          data-chart-options={ratio_chart_options()}
-        />
+        <div class="overflow-x-auto -mx-5 px-5 lg:mx-0 lg:px-0">
+          <div class="min-w-[420px]">
+            <canvas
+              id={"ratio-chart-#{@year}"}
+              phx-hook="ChartHook"
+              data-chart-type="line"
+              data-chart-data={@ratio_chart}
+              data-chart-options={ratio_chart_options()}
+            />
+          </div>
+        </div>
       </div>
-    </Layouts.app>
+    </Layouts.profile_app>
     """
   end
 end

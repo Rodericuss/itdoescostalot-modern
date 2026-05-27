@@ -114,6 +114,137 @@ defmodule IdcalWeb.Layouts do
     """
   end
 
+  @doc """
+  Layout for profile-scoped pages with a persistent sidebar navigation.
+
+  Desktop (lg+): fixed sidebar on the left, content on the right.
+  Mobile (<lg): hamburger button opens a drawer overlay.
+  """
+  attr :flash, :map, required: true
+  attr :current_scope, :map, default: nil
+  attr :profile, :map, required: true
+  attr :active_page, :atom, required: true
+  slot :inner_block, required: true
+
+  def profile_app(assigns) do
+    ~H"""
+    <%!-- Mobile top bar --%>
+    <header class="lg:hidden bg-white border-b-2 border-[#1A1A1A] sticky top-0 z-30">
+      <div class="flex items-center justify-between px-4 py-3">
+        <button
+          phx-click={JS.show(to: "#sidebar-overlay") |> JS.show(to: "#sidebar-drawer", transition: {"transition-transform duration-200", "-translate-x-full", "translate-x-0"})}
+          class="p-1"
+          aria-label="Menu"
+        >
+          <.icon name="hero-bars-3" class="size-6 text-[#1A1A1A]" />
+        </button>
+        <a href="/" class="flex items-center gap-2">
+          <span class="inline-block w-6 h-6 bg-[#A31F34] border-2 border-[#1A1A1A] rounded-sm"></span>
+          <span class="font-bold text-lg text-[#1A1A1A]">IDCAL</span>
+        </a>
+        <span class="text-sm font-medium text-slate truncate max-w-[8rem]">{@profile.nickname}</span>
+      </div>
+    </header>
+
+    <%!-- Mobile drawer overlay --%>
+    <div id="sidebar-overlay" class="fixed inset-0 z-40 lg:hidden hidden">
+      <div
+        class="fixed inset-0 bg-black/30"
+        phx-click={JS.hide(to: "#sidebar-overlay") |> JS.hide(to: "#sidebar-drawer", transition: {"transition-transform duration-200", "translate-x-0", "-translate-x-full"})}
+      />
+      <nav id="sidebar-drawer" class="fixed left-0 top-0 bottom-0 w-72 sidebar-neo overflow-y-auto -translate-x-full transition-transform duration-200">
+        <.sidebar_nav profile={@profile} active_page={@active_page} current_scope={@current_scope} />
+      </nav>
+    </div>
+
+    <%!-- Desktop sidebar --%>
+    <aside class="hidden lg:flex lg:flex-col lg:fixed lg:inset-y-0 lg:w-64 sidebar-neo overflow-y-auto z-20">
+      <.sidebar_nav profile={@profile} active_page={@active_page} current_scope={@current_scope} />
+    </aside>
+
+    <%!-- Main content --%>
+    <main class="lg:pl-64">
+      <div class="px-4 py-8 sm:px-6 mx-auto max-w-5xl space-y-6">
+        {render_slot(@inner_block)}
+      </div>
+    </main>
+
+    <.flash_group flash={@flash} />
+    """
+  end
+
+  attr :profile, :map, required: true
+  attr :active_page, :atom, required: true
+  attr :current_scope, :map, default: nil
+
+  defp sidebar_nav(assigns) do
+    ~H"""
+    <div class="flex flex-col h-full">
+      <%!-- Profile header --%>
+      <div class="p-4 border-b-2 border-[#1A1A1A]">
+        <a href="/" class="flex items-center gap-2 mb-3">
+          <span class="inline-block w-6 h-6 bg-[#A31F34] border-2 border-[#1A1A1A] rounded-sm"></span>
+          <span class="font-bold text-lg text-[#1A1A1A]">IDCAL</span>
+        </a>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#A31F34] text-white text-sm font-bold border-2 border-[#1A1A1A]">
+            {String.first(@profile.nickname) |> String.upcase()}
+          </span>
+          <span class="font-semibold text-[#1A1A1A] truncate">{@profile.nickname}</span>
+        </div>
+      </div>
+
+      <%!-- Navigation --%>
+      <nav class="flex-1 p-3 space-y-1">
+        <.sidebar_item navigate={~p"/profiles/#{@profile}"} icon="hero-home" label={gettext("Dashboard")} active={@active_page == :dashboard} />
+        <.sidebar_item navigate={~p"/profiles/#{@profile}/income"} icon="hero-arrow-trending-up" label={gettext("Income")} active={@active_page == :income} />
+        <.sidebar_item navigate={~p"/profiles/#{@profile}/expenses"} icon="hero-arrow-trending-down" label={gettext("Expenses")} active={@active_page == :expenses} />
+        <.sidebar_item navigate={~p"/profiles/#{@profile}/goals"} icon="hero-flag" label={gettext("Goals")} active={@active_page == :goals} />
+
+        <div class="pt-3 pb-1">
+          <span class="sidebar-section-label">{gettext("Analysis")}</span>
+        </div>
+        <.sidebar_item navigate={~p"/profiles/#{@profile}/insights"} icon="hero-light-bulb" label={gettext("Insights")} active={@active_page == :insights} />
+        <.sidebar_item navigate={~p"/profiles/#{@profile}/forecast"} icon="hero-chart-bar-square" label={gettext("Forecast")} active={@active_page == :forecast} />
+        <.sidebar_item navigate={~p"/profiles/#{@profile}/calendar"} icon="hero-calendar" label={gettext("Calendar")} active={@active_page == :calendar} />
+
+        <div class="pt-3 pb-1">
+          <span class="sidebar-section-label">{gettext("Tools")}</span>
+        </div>
+        <.sidebar_item navigate={~p"/profiles/#{@profile}/quick"} icon="hero-bolt" label={gettext("Quick Entry")} active={@active_page == :quick} />
+        <.sidebar_item navigate={~p"/profiles/#{@profile}/search"} icon="hero-magnifying-glass" label={gettext("Search")} active={@active_page == :search} />
+      </nav>
+
+      <%!-- System links --%>
+      <div class="p-3 border-t-2 border-[#E0DEDB] space-y-1">
+        <.sidebar_item navigate={~p"/profiles"} icon="hero-user-group" label={gettext("All Profiles")} active={false} />
+        <.sidebar_item navigate={~p"/profiles/#{@profile}/settings"} icon="hero-cog-6-tooth" label={gettext("Profile Settings")} active={@active_page == :settings} />
+        <.link href={~p"/users/log-out"} method="delete" class="sidebar-link">
+          <.icon name="hero-arrow-right-on-rectangle" class="size-5" />
+          {gettext("Log out")}
+        </.link>
+        <div class="pt-2">
+          <.locale_switcher />
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  attr :navigate, :string, required: true
+  attr :icon, :string, required: true
+  attr :label, :string, required: true
+  attr :active, :boolean, required: true
+
+  defp sidebar_item(assigns) do
+    ~H"""
+    <.link navigate={@navigate} class={["sidebar-link", @active && "active"]}>
+      <.icon name={@icon} class="size-5" />
+      {@label}
+    </.link>
+    """
+  end
+
   @doc "A simple inline SVG coin icon."
   attr :class, :string, default: "size-6"
 
