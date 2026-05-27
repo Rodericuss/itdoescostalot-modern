@@ -48,8 +48,9 @@ defmodule IdcalWeb.UserLive.Registration do
     {:ok, redirect(socket, to: IdcalWeb.UserAuth.signed_in_path(socket))}
   end
 
-  def mount(_params, _session, socket) do
-    changeset = Accounts.change_user_email(%User{}, %{}, validate_unique: false)
+  def mount(params, _session, socket) do
+    initial = if email = params["email"], do: %{"email" => email}, else: %{}
+    changeset = Accounts.change_user_email(%User{}, initial, validate_unique: false)
 
     {:ok, assign_form(socket, changeset), temporary_assigns: [form: nil]}
   end

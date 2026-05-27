@@ -6,5 +6,7 @@ defmodule IdcalWeb.PageHTML do
   """
   use IdcalWeb, :html
 
+  import IdcalWeb.FormatHelpers, only: [format_amount: 1, month_name: 1]
+
   embed_templates "page_html/*"
 end

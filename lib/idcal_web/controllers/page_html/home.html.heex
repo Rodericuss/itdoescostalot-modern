@@ -1,87 +1,336 @@
 <Layouts.app flash={@flash} current_scope={@current_scope}>
-  <%!-- Hero Section --%>
-  <div class="card-neo px-6 py-16 sm:py-24 text-center">
-    <h1 class="font-bold text-5xl sm:text-6xl text-[#A31F34]">
-      {gettext("It Does Cost A Lot")}
-    </h1>
-    <p class="mt-4 text-lg sm:text-xl max-w-xl mx-auto text-slate">
-      {gettext("Track your income, expenses, and balance — month by month.")}
-    </p>
+  <%= if @current_scope do %>
+    <%!-- ============ LOGGED-IN HOME ============ --%>
+    <% today = Date.utc_today() %>
+    <div class="space-y-6">
+      <div class="card-neo p-6 sm:p-8 text-center">
+        <p class="text-slate text-sm">{gettext("Welcome back")}</p>
+        <h1 class="font-bold text-3xl sm:text-4xl text-[#A31F34] mt-1">
+          It Does Cost A Lot
+        </h1>
+        <p class="mt-2 text-slate text-sm max-w-md mx-auto">
+          {gettext("Aristotle said revenue should exceed expenditure. That was 2,400 years ago. Let's see how you're doing.")}
+        </p>
+      </div>
 
-    <div class="mt-10 flex flex-wrap justify-center gap-4">
-      <%= if @current_scope do %>
-        <.link href={~p"/profiles"} class="btn-primary !py-3 !px-6 text-lg">{gettext("Go to Profiles")}</.link>
+      <%!-- Profile balance cards --%>
+      <%= if @profile_summaries != [] do %>
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-[#A31F34] text-lg font-bold">
+              {gettext("Your profiles")} · {month_name(today.month)} {today.year}
+            </h2>
+            <.link href={~p"/profiles"} class="btn-ghost text-xs">{gettext("See all")}</.link>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <%= for s <- @profile_summaries do %>
+              <.link href={~p"/profiles/#{s.profile}"} class="card-neo p-5 hover:shadow-[4px_4px_0_#1A1A1A] transition-shadow block">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="w-9 h-9 rounded-full bg-[#A31F34] text-white flex items-center justify-center font-bold text-sm border-2 border-[#1A1A1A]" style="box-shadow: 2px 2px 0 #1A1A1A;">
+                    {String.first(s.profile.nickname) |> String.upcase()}
+                  </div>
+                  <span class="font-semibold text-ink">{s.profile.nickname}</span>
+                  <span class="text-slate text-xs ml-auto">{s.profile.currency}</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-center">
+                  <div>
+                    <p class="text-slate text-xs">{gettext("Income")}</p>
+                    <p class="text-[#1D9E75] font-amount text-sm">{format_amount(s.income)}</p>
+                  </div>
+                  <div>
+                    <p class="text-slate text-xs">{gettext("Expenses")}</p>
+                    <p class="text-[#E24B4A] font-amount text-sm">{format_amount(s.expenses)}</p>
+                  </div>
+                  <div>
+                    <p class="text-slate text-xs">{gettext("Balance")}</p>
+                    <p class={["font-amount text-sm", if(Decimal.compare(s.balance, 0) == :lt, do: "text-[#E24B4A]", else: "text-[#1D9E75]")]}>
+                      {format_amount(s.balance)}
+                    </p>
+                  </div>
+                </div>
+              </.link>
+            <% end %>
+          </div>
+        </div>
       <% else %>
-        <.link href={~p"/users/register"} class="btn-primary !py-3 !px-6 text-lg">
-          {gettext("Create an account")}
-        </.link>
-        <.link href={~p"/users/log-in"} class="btn-ghost !py-3 !px-6 text-lg">{gettext("Log in")}</.link>
+        <div class="card-neo p-8 text-center">
+          <.icon name="hero-folder-plus" class="size-10 text-slate mx-auto" />
+          <p class="text-slate mt-3">{gettext("No profiles yet, create your first one to start tracking.")}</p>
+          <.link href={~p"/profiles/new"} class="btn-primary mt-4">{gettext("Create a profile")}</.link>
+        </div>
       <% end %>
-    </div>
-  </div>
 
-  <%!-- Features Section --%>
-  <div class="mt-2">
-    <h2 class="text-[#A31F34] text-2xl font-bold text-center mb-6">{gettext("Your Financial Overview")}</h2>
-    <div class="grid gap-4 sm:grid-cols-3">
-      <div class="card-neo p-6 text-center">
-        <div class="text-4xl mb-3">
-          <.icon name="hero-currency-dollar" class="size-10 text-[#1D9E75] mx-auto" />
-        </div>
-        <h3 class="font-semibold text-ink text-lg">{gettext("Track every entry")}</h3>
-        <p class="text-slate mt-2">
-          {gettext("Recurring and one-time entries, organized by month.")}
+      <div class="text-center py-2">
+        <p class="text-slate text-sm italic">
+          {gettext("\"The amount of property which suffices for a good life is not unlimited.\", Aristotle")}
         </p>
       </div>
-      <div class="card-neo p-6 text-center">
-        <div class="text-4xl mb-3">
-          <.icon name="hero-chart-bar" class="size-10 text-[#A31F34] mx-auto" />
+    </div>
+  <% else %>
+    <%!-- ============ VISITOR LANDING ============ --%>
+    <div class="space-y-8">
+      <%!-- Hero with inline registration --%>
+      <div class=" px-6 py-12 sm:py-20">
+        <div class="max-w-2xl mx-auto text-center">
+          <h1 class="font-bold text-5xl sm:text-6xl text-[#A31F34] leading-tight">
+            It Does Cost A Lot
+          </h1>
+          <p class="mt-4 text-xl text-slate max-w-lg mx-auto">
+            {gettext(
+              "You already know where your money goes. Everywhere. Let's at least write it down."
+            )}
+          </p>
+
+          <%!-- Inline registration card --%>
+          <div class="card-neo p-6 mt-8 max-w-sm mx-auto text-left">
+            <p class="text-ink font-semibold text-sm mb-3">
+              {gettext("Start tracking, it's free")}
+            </p>
+            <form action={~p"/users/register"} method="get" class="space-y-3">
+              <input
+                type="email"
+                name="email"
+                placeholder={gettext("Your email")}
+                class="input-field w-full text-sm"
+                required
+              />
+              <button type="submit" class="btn-primary w-full">
+                {gettext("Create an account")}
+              </button>
+            </form>
+            <p class="text-slate text-xs mt-2 text-center">
+              {gettext("Already have an account?")}
+              <.link href={~p"/users/log-in"} class="text-[#A31F34] hover:underline font-medium">
+                {gettext("Log in")}
+              </.link>
+            </p>
+          </div>
         </div>
-        <h3 class="font-semibold text-ink text-lg">{gettext("Visualize your year")}</h3>
-        <p class="text-slate mt-2">
-          {gettext("Twelve months at a glance — surplus in green, deficit in red.")}
+      </div>
+
+      <%!-- Aristotle section --%>
+      <div class="card-neo p-6 sm:p-8">
+        <div class="max-w-2xl mx-auto">
+          <h2 class="text-[#A31F34] text-2xl font-bold text-center mb-2">
+            {gettext("2,400 Years of Bad Budgeting")}
+          </h2>
+          <p class="text-slate text-center text-sm mb-6">
+            {gettext(
+              "Humanity has been failing at personal finance since Ancient Greece. You're in good company."
+            )}
+          </p>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="border-l-4 border-[#A31F34] pl-4 py-2">
+              <p class="text-ink text-sm italic">
+                {gettext("\"Revenue should exceed expenditure.\"")}
+              </p>
+              <p class="text-slate text-xs mt-1">{gettext("Aristotle, Oeconomica, ~350 BC")}</p>
+              <p class="text-[#BA7517] text-xs mt-1">
+                {gettext("Groundbreaking. We built an app because you still need reminding.")}
+              </p>
+            </div>
+            <div class="border-l-4 border-[#A31F34] pl-4 py-2">
+              <p class="text-ink text-sm italic">
+                {gettext(
+                  "\"The amount of property which suffices for a good life is not unlimited.\""
+                )}
+              </p>
+              <p class="text-slate text-xs mt-1">{gettext("Aristotle, Politics, Book I")}</p>
+              <p class="text-[#BA7517] text-xs mt-1">
+                {gettext("Tell that to your credit card.")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%!-- Features with personality --%>
+      <div>
+        <h2 class="text-[#A31F34] text-2xl font-bold text-center mb-6">
+          {gettext("What You Get")}
+        </h2>
+        <div class="grid gap-4 sm:grid-cols-3">
+          <div class="card-neo p-6 text-center">
+            <.icon name="hero-currency-dollar" class="size-10 text-[#1D9E75] mx-auto" />
+            <h3 class="font-semibold text-ink text-lg mt-3">{gettext("Track every entry")}</h3>
+            <p class="text-slate mt-2 text-sm">
+              {gettext(
+                "Recurring and one-time entries, organized by month. No transaction escapes."
+              )}
+            </p>
+          </div>
+          <div class="card-neo p-6 text-center">
+            <.icon name="hero-chart-bar" class="size-10 text-[#A31F34] mx-auto" />
+            <h3 class="font-semibold text-ink text-lg mt-3">{gettext("Visualize your year")}</h3>
+            <p class="text-slate mt-2 text-sm">
+              {gettext(
+                "Twelve months at a glance, surplus in green, deficit in red. Reality in full color."
+              )}
+            </p>
+          </div>
+          <div class="card-neo p-6 text-center">
+            <.icon name="hero-user-group" class="size-10 text-[#185FA5] mx-auto" />
+            <h3 class="font-semibold text-ink text-lg mt-3">{gettext("Multiple profiles")}</h3>
+            <p class="text-slate mt-2 text-sm">
+              {gettext(
+                "Personal, freelance, shared household, keep each financial life separate and honest."
+              )}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <%!-- Fun facts section --%>
+      <div class="card-neo p-6 sm:p-8">
+        <h2 class="text-[#A31F34] text-2xl font-bold text-center mb-6">
+          {gettext("Things You Didn't Ask to Know")}
+        </h2>
+        <div class="grid gap-6 sm:grid-cols-2 max-w-2xl mx-auto">
+          <div class="flex gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-[#BA7517] text-white flex items-center justify-center flex-shrink-0 font-bold border-2 border-[#1A1A1A]"
+              style="box-shadow: 2px 2px 0 #1A1A1A;"
+            >
+              $
+            </div>
+            <div>
+              <p class="text-ink text-sm font-medium">
+                {gettext("\"Budget\" comes from the French bougette, a small wallet.")}
+              </p>
+              <p class="text-slate text-xs mt-1">
+                {gettext("It originally meant opening your wallet. Now it means the opposite.")}
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-[#1D9E75] text-white flex items-center justify-center flex-shrink-0 font-bold border-2 border-[#1A1A1A]"
+              style="box-shadow: 2px 2px 0 #1A1A1A;"
+            >
+              %
+            </div>
+            <div>
+              <p class="text-ink text-sm font-medium">
+                {gettext("A monk who swore off money invented accounting.")}
+              </p>
+              <p class="text-slate text-xs mt-1">
+                {gettext(
+                  "Luca Pacioli, 1494. A Franciscan friar wrote the book on tracking money. Ironic."
+                )}
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-[#E24B4A] text-white flex items-center justify-center flex-shrink-0 font-bold border-2 border-[#1A1A1A]"
+              style="box-shadow: 2px 2px 0 #1A1A1A;"
+            >
+              !
+            </div>
+            <div>
+              <p class="text-ink text-sm font-medium">
+                {gettext("The first consumer debt crisis? Ancient Rome, 326 BC.")}
+              </p>
+              <p class="text-slate text-xs mt-1">
+                {gettext(
+                  "People rioted over personal debt. The government had to intervene. Sound familiar?"
+                )}
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-[#185FA5] text-white flex items-center justify-center flex-shrink-0 font-bold border-2 border-[#1A1A1A]"
+              style="box-shadow: 2px 2px 0 #1A1A1A;"
+            >
+              ~
+            </div>
+            <div>
+              <p class="text-ink text-sm font-medium">
+                {gettext("Personal budgeting only became mainstream in the 20th century.")}
+              </p>
+              <p class="text-slate text-xs mt-1">
+                {gettext("Before that, people just spent until they couldn't. Some still do.")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%!-- How it works --%>
+      <div class="card-neo p-6 sm:p-8">
+        <h2 class="text-[#A31F34] text-2xl font-bold text-center mb-8">
+          {gettext("How It Works")}
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center max-w-2xl mx-auto">
+          <div>
+            <div
+              class="w-10 h-10 rounded-full bg-[#A31F34] text-white flex items-center justify-center mx-auto font-bold border-2 border-[#1A1A1A]"
+              style="box-shadow: 2px 2px 0 #1A1A1A;"
+            >
+              1
+            </div>
+            <p class="text-ink text-sm mt-2 font-medium">{gettext("Create a profile")}</p>
+            <p class="text-slate text-xs mt-1">{gettext("Name it. Set a currency. Done.")}</p>
+          </div>
+          <div>
+            <div
+              class="w-10 h-10 rounded-full bg-[#A31F34] text-white flex items-center justify-center mx-auto font-bold border-2 border-[#1A1A1A]"
+              style="box-shadow: 2px 2px 0 #1A1A1A;"
+            >
+              2
+            </div>
+            <p class="text-ink text-sm mt-2 font-medium">{gettext("Add income and expenses")}</p>
+            <p class="text-slate text-xs mt-1">
+              {gettext("Categories, types, amounts. The truth hurts.")}
+            </p>
+          </div>
+          <div>
+            <div
+              class="w-10 h-10 rounded-full bg-[#A31F34] text-white flex items-center justify-center mx-auto font-bold border-2 border-[#1A1A1A]"
+              style="box-shadow: 2px 2px 0 #1A1A1A;"
+            >
+              3
+            </div>
+            <p class="text-ink text-sm mt-2 font-medium">{gettext("Log monthly entries")}</p>
+            <p class="text-slate text-xs mt-1">
+              {gettext("Each month, face reality. Or don't, the app will remember anyway.")}
+            </p>
+          </div>
+          <div>
+            <div
+              class="w-10 h-10 rounded-full bg-[#A31F34] text-white flex items-center justify-center mx-auto font-bold border-2 border-[#1A1A1A]"
+              style="box-shadow: 2px 2px 0 #1A1A1A;"
+            >
+              4
+            </div>
+            <p class="text-ink text-sm mt-2 font-medium">
+              {gettext("See your financial dashboard")}
+            </p>
+            <p class="text-slate text-xs mt-1">
+              {gettext("Charts, trends, forecasts. Knowledge is power, and sometimes pain.")}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <%!-- Philosophy closing --%>
+      <div class="card-neo p-6 sm:p-10 text-center">
+        <p class="text-[#A31F34] text-lg font-bold">
+          {gettext("Oikonomia")}
         </p>
-      </div>
-      <div class="card-neo p-6 text-center">
-        <div class="text-4xl mb-3">
-          <.icon name="hero-user-group" class="size-10 text-[#185FA5] mx-auto" />
+        <p class="text-slate text-sm max-w-lg mx-auto mt-2">
+          {gettext(
+            "The Greek word for \"household management\", the root of \"economy.\" Aristotle thought managing your household well was a virtue. He also thought the desire for unlimited wealth was a moral defect. Your bank statement may have an opinion."
+          )}
+        </p>
+        <div class="mt-6">
+          <.link href={~p"/users/register"} class="btn-primary !py-3 !px-8 text-lg">
+            {gettext("Start managing yours")}
+          </.link>
         </div>
-        <h3 class="font-semibold text-ink text-lg">{gettext("Multiple profiles")}</h3>
-        <p class="text-slate mt-2">{gettext("Keep separate profiles for each financial context.")}</p>
+        <p class="text-slate text-xs mt-6">{gettext("Free. No ads. Your data stays yours.")}</p>
       </div>
     </div>
-  </div>
-
-  <%!-- How it works section --%>
-  <div class="card-neo p-6 sm:p-8">
-    <h2 class="text-[#A31F34] text-2xl font-bold text-center mb-8">{gettext("How It Works")}</h2>
-    <div class="grid grid-cols-4 gap-4 text-center">
-      <div>
-        <div class="w-10 h-10 rounded-full bg-[#A31F34] text-white flex items-center justify-center mx-auto font-bold border-2 border-[#1A1A1A]" style="box-shadow: 2px 2px 0 #1A1A1A;">1</div>
-        <p class="text-ink text-sm mt-2 font-medium">{gettext("Create a profile")}</p>
-      </div>
-      <div>
-        <div class="w-10 h-10 rounded-full bg-[#A31F34] text-white flex items-center justify-center mx-auto font-bold border-2 border-[#1A1A1A]" style="box-shadow: 2px 2px 0 #1A1A1A;">2</div>
-        <p class="text-ink text-sm mt-2 font-medium">{gettext("Add income and expenses")}</p>
-      </div>
-      <div>
-        <div class="w-10 h-10 rounded-full bg-[#A31F34] text-white flex items-center justify-center mx-auto font-bold border-2 border-[#1A1A1A]" style="box-shadow: 2px 2px 0 #1A1A1A;">3</div>
-        <p class="text-ink text-sm mt-2 font-medium">{gettext("Log monthly entries")}</p>
-      </div>
-      <div>
-        <div class="w-10 h-10 rounded-full bg-[#A31F34] text-white flex items-center justify-center mx-auto font-bold border-2 border-[#1A1A1A]" style="box-shadow: 2px 2px 0 #1A1A1A;">4</div>
-        <p class="text-ink text-sm mt-2 font-medium">{gettext("See your financial dashboard")}</p>
-      </div>
-    </div>
-  </div>
-
-  <%!-- Bottom CTA --%>
-  <div class="text-center py-6">
-    <p class="text-slate">{gettext("Free. No ads. Your data stays yours.")}</p>
-    <%= unless @current_scope do %>
-      <.link href={~p"/users/register"} class="btn-primary mt-4">
-        {gettext("Get started")}
-      </.link>
-    <% end %>
-  </div>
+  <% end %>
 </Layouts.app>

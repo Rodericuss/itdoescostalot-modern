@@ -126,10 +126,28 @@ defmodule IdcalWeb.ProfileLive.Form do
   end
 
   @impl true
-  def render(assigns) do
+  def render(%{live_action: :new} = assigns) do
     ~H"""
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <div class="mx-auto max-w-md">
+        {render_form(assigns)}
+      </div>
+    </Layouts.app>
+    """
+  end
+
+  def render(%{live_action: :edit} = assigns) do
+    ~H"""
+    <Layouts.profile_app flash={@flash} current_scope={@current_scope} profile={@profile} active_page={:settings}>
+      <div class="mx-auto max-w-md">
+        {render_form(assigns)}
+      </div>
+    </Layouts.profile_app>
+    """
+  end
+
+  defp render_form(assigns) do
+    ~H"""
         <div class="card-neo p-6 space-y-4">
           <h1 class="font-bold text-2xl text-[#A31F34]">{@page_title}</h1>
 
@@ -223,22 +241,24 @@ defmodule IdcalWeb.ProfileLive.Form do
             {gettext("Invite another user to view or edit this profile.")}
           </p>
 
-          <form phx-submit="share_profile" class="flex gap-2">
+          <form phx-submit="share_profile" class="flex flex-wrap gap-2">
             <input
               type="email"
               name="email"
               value={@share_email}
               placeholder={gettext("User's email...")}
-              class="input-field flex-1 text-sm"
+              class="input-field flex-1 min-w-0 text-sm"
               required
             />
-            <select name="role" class="input-field text-sm">
-              <option value="viewer">{gettext("Viewer")}</option>
-              <option value="editor">{gettext("Editor")}</option>
-            </select>
-            <button type="submit" class="btn-primary text-sm">
-              {gettext("Invite")}
-            </button>
+            <div class="flex gap-2">
+              <select name="role" class="input-field text-sm">
+                <option value="viewer">{gettext("Viewer")}</option>
+                <option value="editor">{gettext("Editor")}</option>
+              </select>
+              <button type="submit" class="btn-primary text-sm whitespace-nowrap">
+                {gettext("Invite")}
+              </button>
+            </div>
           </form>
           <p :if={@share_error} class="text-[#E24B4A] text-sm">{@share_error}</p>
 
@@ -282,8 +302,6 @@ defmodule IdcalWeb.ProfileLive.Form do
             {gettext("No users share this profile yet.")}
           </p>
         </div>
-      </div>
-    </Layouts.app>
     """
   end
 end

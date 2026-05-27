@@ -146,44 +146,8 @@ defmodule IdcalWeb.ProfileLive.Show do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
-      <div class="flex items-center justify-between">
-        <div>
-          <.link navigate={~p"/profiles"} class="text-slate hover:text-[#A31F34] text-sm">
-            &larr; {gettext("All Profiles")}
-          </.link>
-          <h1 class="font-bold text-3xl text-[#A31F34] mt-1">{@profile.nickname}</h1>
-        </div>
-        <div class="flex items-center gap-2 flex-wrap">
-          <.link navigate={~p"/profiles/#{@profile}/income"} class="btn-pill">
-            {gettext("Income")}
-          </.link>
-          <.link navigate={~p"/profiles/#{@profile}/expenses"} class="btn-pill">
-            {gettext("Expenses")}
-          </.link>
-          <.link navigate={~p"/profiles/#{@profile}/goals"} class="btn-pill">
-            {gettext("Goals")}
-          </.link>
-          <.link navigate={~p"/profiles/#{@profile}/insights"} class="btn-pill">
-            {gettext("Insights")}
-          </.link>
-          <.link navigate={~p"/profiles/#{@profile}/forecast"} class="btn-pill">
-            {gettext("Forecast")}
-          </.link>
-          <.link navigate={~p"/profiles/#{@profile}/quick"} class="btn-pill">
-            {gettext("Quick")}
-          </.link>
-          <.link navigate={~p"/profiles/#{@profile}/search"} class="btn-pill">
-            {gettext("Search")}
-          </.link>
-          <.link navigate={~p"/profiles/#{@profile}/calendar"} class="btn-pill">
-            {gettext("Calendar")}
-          </.link>
-          <.link navigate={~p"/profiles/#{@profile}/settings"} class="btn-pill">
-            <.icon name="hero-cog-6-tooth" class="size-4" />
-          </.link>
-        </div>
-      </div>
+    <Layouts.profile_app flash={@flash} current_scope={@current_scope} profile={@profile} active_page={:dashboard}>
+      <h1 class="font-bold text-3xl text-[#A31F34]">{@profile.nickname}</h1>
 
       <%!-- Year selector --%>
       <div class="flex items-center justify-center gap-4">
@@ -276,26 +240,34 @@ defmodule IdcalWeb.ProfileLive.Show do
       <div class="grid gap-6 lg:grid-cols-2">
         <div class="card-neo p-5">
           <h2 class="card-title text-lg mb-3">{gettext("Income vs Expenses")}</h2>
-          <canvas
-            id={"bar-chart-#{@year}"}
-            phx-hook="ChartHook"
-            data-chart-type="bar"
-            data-chart-data={@bar_chart_data}
-            data-chart-options={bar_chart_options()}
-          />
+          <div class="overflow-x-auto -mx-5 px-5 lg:mx-0 lg:px-0">
+            <div class="min-w-[420px]">
+              <canvas
+                id={"bar-chart-#{@year}"}
+                phx-hook="ChartHook"
+                data-chart-type="bar"
+                data-chart-data={@bar_chart_data}
+                data-chart-options={bar_chart_options()}
+              />
+            </div>
+          </div>
         </div>
         <div class="card-neo p-5">
           <h2 class="card-title text-lg mb-3">{gettext("Cumulative Balance")}</h2>
-          <canvas
-            id={"line-chart-#{@year}"}
-            phx-hook="ChartHook"
-            data-chart-type="line"
-            data-chart-data={@line_chart_data}
-            data-chart-options={line_chart_options()}
-          />
+          <div class="overflow-x-auto -mx-5 px-5 lg:mx-0 lg:px-0">
+            <div class="min-w-[420px]">
+              <canvas
+                id={"line-chart-#{@year}"}
+                phx-hook="ChartHook"
+                data-chart-type="line"
+                data-chart-data={@line_chart_data}
+                data-chart-options={line_chart_options()}
+              />
+            </div>
+          </div>
         </div>
       </div>
-    </Layouts.app>
+    </Layouts.profile_app>
     """
   end
 

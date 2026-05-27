@@ -125,7 +125,7 @@ defmodule IdcalWeb.ForecastLive.Show do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
+    <Layouts.profile_app flash={@flash} current_scope={@current_scope} profile={@profile} active_page={:forecast}>
       <div class="flex items-center justify-between">
         <div>
           <.link navigate={~p"/profiles/#{@profile}"} class="text-slate hover:text-[#A31F34] text-sm">
@@ -148,13 +148,17 @@ defmodule IdcalWeb.ForecastLive.Show do
       <%!-- Projection chart --%>
       <div class="card-neo p-5">
         <h2 class="card-title text-lg mb-3">{gettext("Projected Cash Flow")}</h2>
-        <canvas
-          id={"forecast-chart-#{@horizon}-#{:erlang.phash2({@toggles, @amount_overrides})}"}
-          phx-hook="ChartHook"
-          data-chart-type="bar"
-          data-chart-data={@chart_data}
-          data-chart-options={chart_options()}
-        />
+        <div class="overflow-x-auto -mx-5 px-5 lg:mx-0 lg:px-0">
+          <div class="min-w-[420px]">
+            <canvas
+              id={"forecast-chart-#{@horizon}-#{:erlang.phash2({@toggles, @amount_overrides})}"}
+              phx-hook="ChartHook"
+              data-chart-type="bar"
+              data-chart-data={@chart_data}
+              data-chart-options={chart_options()}
+            />
+          </div>
+        </div>
       </div>
 
       <%!-- Projection table --%>
@@ -269,7 +273,7 @@ defmodule IdcalWeb.ForecastLive.Show do
           </div>
         </div>
       </div>
-    </Layouts.app>
+    </Layouts.profile_app>
     """
   end
 end

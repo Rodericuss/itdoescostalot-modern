@@ -22,20 +22,18 @@ defmodule Idcal.Finances.Notifier do
 
   @doc "Sends a monthly check-in reminder to review the ledger."
   def deliver_monthly_reminder(user, year, month) do
-    deliver(user.email, "Hark! The month hath ended — review thy ledger.", """
+    deliver(user.email, "Month closed, time to review your finances", """
     ==============================
 
-    Greetings, #{user.email}!
+    Hi, #{user.email}!
 
-    The moon of #{month_name(month)} #{year} hath drawn to a close.
+    #{month_name(month)} #{year} is over.
 
-    'Tis time to review thy ledger and ensure every coin is accounted for.
+    Time to review your entries and make sure everything is accounted for.
 
-    Visit thy profiles and inspect the monthly tally.
+    Visit your profiles and check the monthly summary.
 
-    May thy coffers overflow!
-
-    — The IDCAL Herald
+    - IDCAL
 
     ==============================
     """)
@@ -48,18 +46,18 @@ defmodule Idcal.Finances.Notifier do
         "  - #{category_name}: #{spent} / #{limit} (#{pct}%)"
       end)
 
-    deliver(user.email, "Budget Alert — #{profile.nickname}", """
+    deliver(user.email, "Budget Alert, #{profile.nickname}", """
     ==============================
 
-    Hail, #{user.email}!
+    Hi, #{user.email}!
 
-    Some guilds in thy ledger "#{profile.nickname}" approach or exceed their gold limit:
+    Some categories in your profile "#{profile.nickname}" are approaching or exceeding their limit:
 
     #{alert_lines}
 
-    Review thy tributes and adjust thy spending ere the coffers run dry.
+    Review your expenses and adjust your spending before things get tight.
 
-    — The IDCAL Herald
+    - IDCAL
 
     ==============================
     """)
