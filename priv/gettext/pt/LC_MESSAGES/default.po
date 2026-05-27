@@ -1403,7 +1403,7 @@ msgstr "A humanidade se enrola com dinheiro desde a Grécia Antiga. Você não e
 #: lib/idcal_web/controllers/page_html/home.html.heex:201
 #, elixir-autogen, elixir-format
 msgid "It originally meant opening your wallet. Now it means the opposite."
-msgstr "O nome original significava abrir a carteira. Hoje significa o contrário."
+msgstr "Ou seja, sempre foi sobre adivinhar quanto vai sobrar. Spoiler: nunca sobra."
 
 #: lib/idcal_web/controllers/page_html/home.html.heex:217
 #, elixir-autogen, elixir-format
@@ -1478,7 +1478,7 @@ msgstr "Seu email"
 #: lib/idcal_web/controllers/page_html/home.html.heex:198
 #, elixir-autogen, elixir-format
 msgid "\"Budget\" comes from the French bougette, a small wallet."
-msgstr "\"Orçamento\" vem do francês bougette, uma pequena carteira."
+msgstr "\"Orçamento\" vem do verbo orçar, que significava calcular, estimar."
 
 #: lib/idcal_web/controllers/page_html/home.html.heex:65
 #, elixir-autogen, elixir-format
