@@ -53,11 +53,39 @@ defmodule IdcalWeb.ProfileLive.Show do
     bar_chart_data = build_bar_chart(tracked_months)
     line_chart_data = build_line_chart(tracked_months, cumulative)
 
+    total_income = Enum.reduce(tracked_months, Decimal.new(0), fn m, acc -> Decimal.add(acc, m.income) end)
+    total_expenses = Enum.reduce(tracked_months, Decimal.new(0), fn m, acc -> Decimal.add(acc, m.expenses) end)
+    total_balance = Decimal.sub(total_income, total_expenses)
+    months_tracked = length(tracked_months)
+
+    {best_month, worst_month} =
+      case tracked_months do
+        [] ->
+          {nil, nil}
+
+        list ->
+          best = Enum.max_by(list, fn m -> Decimal.to_float(m.balance) end)
+          worst = Enum.min_by(list, fn m -> Decimal.to_float(m.balance) end)
+          {best, worst}
+      end
+
+    avg_balance =
+      if months_tracked > 0,
+        do: Decimal.div(total_balance, months_tracked) |> Decimal.round(2),
+        else: Decimal.new(0)
+
     socket
     |> assign(:months, months)
     |> assign(:cumulative, cumulative)
     |> assign(:bar_chart_data, bar_chart_data)
     |> assign(:line_chart_data, line_chart_data)
+    |> assign(:total_income, total_income)
+    |> assign(:total_expenses, total_expenses)
+    |> assign(:total_balance, total_balance)
+    |> assign(:months_tracked, months_tracked)
+    |> assign(:best_month, best_month)
+    |> assign(:worst_month, worst_month)
+    |> assign(:avg_balance, avg_balance)
   end
 
   defp build_bar_chart(months) do
@@ -68,8 +96,8 @@ defmodule IdcalWeb.ProfileLive.Show do
     Jason.encode!(%{
       labels: labels,
       datasets: [
-        %{label: gettext("Coffers"), data: income_data, backgroundColor: "#3d8b3d"},
-        %{label: gettext("Tributes"), data: expense_data, backgroundColor: "#8b1a1a"}
+        %{label: gettext("Income"), data: income_data, backgroundColor: "#1D9E75"},
+        %{label: gettext("Expenses"), data: expense_data, backgroundColor: "#E24B4A"}
       ]
     })
   end
@@ -82,10 +110,10 @@ defmodule IdcalWeb.ProfileLive.Show do
       labels: labels,
       datasets: [
         %{
-          label: gettext("Amassed Hoard"),
+          label: gettext("Cumulative Balance"),
           data: data,
-          borderColor: "#d4a017",
-          backgroundColor: "rgba(212, 160, 23, 0.1)",
+          borderColor: "#A31F34",
+          backgroundColor: "rgba(163, 31, 52, 0.1)",
           fill: true,
           tension: 0.3
         }
@@ -96,10 +124,10 @@ defmodule IdcalWeb.ProfileLive.Show do
   defp bar_chart_options do
     Jason.encode!(%{
       responsive: true,
-      plugins: %{legend: %{labels: %{color: "#f0dfa0", font: %{family: "Cinzel"}}}},
+      plugins: %{legend: %{labels: %{color: "#1A1A1A", font: %{family: "Inter"}}}},
       scales: %{
-        x: %{ticks: %{color: "#a08050"}, grid: %{color: "rgba(122,92,30,0.3)"}},
-        y: %{ticks: %{color: "#a08050"}, grid: %{color: "rgba(122,92,30,0.3)"}}
+        x: %{ticks: %{color: "#5F5E5A"}, grid: %{color: "rgba(224,222,219,0.5)"}},
+        y: %{ticks: %{color: "#5F5E5A"}, grid: %{color: "rgba(224,222,219,0.5)"}}
       }
     })
   end
@@ -107,10 +135,10 @@ defmodule IdcalWeb.ProfileLive.Show do
   defp line_chart_options do
     Jason.encode!(%{
       responsive: true,
-      plugins: %{legend: %{labels: %{color: "#f0dfa0", font: %{family: "Cinzel"}}}},
+      plugins: %{legend: %{labels: %{color: "#1A1A1A", font: %{family: "Inter"}}}},
       scales: %{
-        x: %{ticks: %{color: "#a08050"}, grid: %{color: "rgba(122,92,30,0.3)"}},
-        y: %{ticks: %{color: "#a08050"}, grid: %{color: "rgba(122,92,30,0.3)"}}
+        x: %{ticks: %{color: "#5F5E5A"}, grid: %{color: "rgba(224,222,219,0.5)"}},
+        y: %{ticks: %{color: "#5F5E5A"}, grid: %{color: "rgba(224,222,219,0.5)"}}
       }
     })
   end
@@ -121,37 +149,37 @@ defmodule IdcalWeb.ProfileLive.Show do
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <div class="flex items-center justify-between">
         <div>
-          <.link navigate={~p"/profiles"} class="text-muted hover:text-gold font-cinzel text-sm">
-            &larr; {gettext("All Ledgers")}
+          <.link navigate={~p"/profiles"} class="text-slate hover:text-[#A31F34] text-sm">
+            &larr; {gettext("All Profiles")}
           </.link>
-          <h1 class="font-cinzel-decorative font-bold text-3xl text-gold mt-1">📖 {@profile.nickname}</h1>
+          <h1 class="font-bold text-3xl text-[#A31F34] mt-1">{@profile.nickname}</h1>
         </div>
-        <div class="flex items-center gap-3">
-          <.link navigate={~p"/profiles/#{@profile}/income"} class="btn-medieval text-sm">
-            🪙 {gettext("Coffers")}
+        <div class="flex items-center gap-2 flex-wrap">
+          <.link navigate={~p"/profiles/#{@profile}/income"} class="btn-pill">
+            {gettext("Income")}
           </.link>
-          <.link navigate={~p"/profiles/#{@profile}/expenses"} class="btn-medieval text-sm">
-            💸 {gettext("Tributes")}
+          <.link navigate={~p"/profiles/#{@profile}/expenses"} class="btn-pill">
+            {gettext("Expenses")}
           </.link>
-          <.link navigate={~p"/profiles/#{@profile}/goals"} class="btn-medieval text-sm">
-            🏆 {gettext("Quests")}
+          <.link navigate={~p"/profiles/#{@profile}/goals"} class="btn-pill">
+            {gettext("Goals")}
           </.link>
-          <.link navigate={~p"/profiles/#{@profile}/insights"} class="btn-medieval text-sm">
-            🔍 {gettext("Insights")}
+          <.link navigate={~p"/profiles/#{@profile}/insights"} class="btn-pill">
+            {gettext("Insights")}
           </.link>
-          <.link navigate={~p"/profiles/#{@profile}/forecast"} class="btn-medieval text-sm">
-            🔮 {gettext("Forecast")}
+          <.link navigate={~p"/profiles/#{@profile}/forecast"} class="btn-pill">
+            {gettext("Forecast")}
           </.link>
-          <.link navigate={~p"/profiles/#{@profile}/quick"} class="btn-medieval text-sm">
-            ⚡ {gettext("Quick")}
+          <.link navigate={~p"/profiles/#{@profile}/quick"} class="btn-pill">
+            {gettext("Quick")}
           </.link>
-          <.link navigate={~p"/profiles/#{@profile}/search"} class="btn-medieval text-sm">
-            🔎 {gettext("Search")}
+          <.link navigate={~p"/profiles/#{@profile}/search"} class="btn-pill">
+            {gettext("Search")}
           </.link>
-          <.link navigate={~p"/profiles/#{@profile}/calendar"} class="btn-medieval text-sm">
-            📅 {gettext("Calendar")}
+          <.link navigate={~p"/profiles/#{@profile}/calendar"} class="btn-pill">
+            {gettext("Calendar")}
           </.link>
-          <.link navigate={~p"/profiles/#{@profile}/settings"} class="btn-medieval text-sm">
+          <.link navigate={~p"/profiles/#{@profile}/settings"} class="btn-pill">
             <.icon name="hero-cog-6-tooth" class="size-4" />
           </.link>
         </div>
@@ -159,9 +187,63 @@ defmodule IdcalWeb.ProfileLive.Show do
 
       <%!-- Year selector --%>
       <div class="flex items-center justify-center gap-4">
-        <button phx-click="change_year" phx-value-year={@year - 1} class="btn-medieval text-sm">&larr;</button>
-        <span class="font-cinzel text-2xl text-gold">{@year}</span>
-        <button phx-click="change_year" phx-value-year={@year + 1} class="btn-medieval text-sm">&rarr;</button>
+        <button phx-click="change_year" phx-value-year={@year - 1} class="btn-pill">&larr;</button>
+        <span class="text-2xl text-[#A31F34] font-bold">{@year}</span>
+        <button phx-click="change_year" phx-value-year={@year + 1} class="btn-pill">&rarr;</button>
+      </div>
+
+      <%!-- Hero Balance Card --%>
+      <div class="card-hero">
+        <p class="label-upper" style="color: #9A9893;">{gettext("Total Balance")} · {@year}</p>
+        <p class={[
+          "amount-xl mt-1",
+          if(Decimal.compare(@total_balance, 0) == :lt, do: "text-[#FF7E7E]", else: "text-[#5DD3A8]")
+        ]}>
+          {format_short(@total_balance)}
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
+          <div>
+            <p class="label-upper" style="color: #9A9893;">{gettext("Total Income")}</p>
+            <p class="amount-lg text-[#5DD3A8] mt-0.5">{format_short(@total_income)}</p>
+          </div>
+          <div>
+            <p class="label-upper" style="color: #9A9893;">{gettext("Total Expenses")}</p>
+            <p class="amount-lg text-[#FF7E7E] mt-0.5">{format_short(@total_expenses)}</p>
+          </div>
+          <div>
+            <p class="label-upper" style="color: #9A9893;">{gettext("Net Balance")}</p>
+            <p class={["amount-lg mt-0.5", if(Decimal.compare(@total_balance, 0) == :lt, do: "text-[#FF7E7E]", else: "text-[#5DD3A8]")]}>
+              {format_short(@total_balance)}
+            </p>
+          </div>
+          <div>
+            <p class="label-upper" style="color: #9A9893;">{gettext("Months Tracked")}</p>
+            <p class="amount-lg text-white mt-0.5">{@months_tracked}</p>
+          </div>
+        </div>
+      </div>
+
+      <%!-- Stat Cards --%>
+      <div class="grid gap-4 sm:grid-cols-3">
+        <div class="card-stat">
+          <p class="label-upper">{gettext("Best Month")}</p>
+          <p :if={@best_month} class="amount-lg text-[#1D9E75] mt-1">{format_short(@best_month.balance)}</p>
+          <p :if={@best_month} class="text-slate text-xs mt-0.5">{month_abbr(@best_month.month)}</p>
+          <p :if={!@best_month} class="text-slate text-sm mt-1">{gettext("No data")}</p>
+        </div>
+        <div class="card-stat">
+          <p class="label-upper">{gettext("Worst Month")}</p>
+          <p :if={@worst_month} class="amount-lg text-[#E24B4A] mt-1">{format_short(@worst_month.balance)}</p>
+          <p :if={@worst_month} class="text-slate text-xs mt-0.5">{month_abbr(@worst_month.month)}</p>
+          <p :if={!@worst_month} class="text-slate text-sm mt-1">{gettext("No data")}</p>
+        </div>
+        <div class="card-stat">
+          <p class="label-upper">{gettext("Average Balance")}</p>
+          <p class={["amount-lg mt-1", if(Decimal.compare(@avg_balance, 0) == :lt, do: "text-[#E24B4A]", else: "text-[#1D9E75]")]}>
+            {format_short(@avg_balance)}
+          </p>
+          <p class="text-slate text-xs mt-0.5">{gettext("per month")}</p>
+        </div>
       </div>
 
       <%!-- 12 Month Cards --%>
@@ -170,30 +252,30 @@ defmodule IdcalWeb.ProfileLive.Show do
           :for={m <- @months}
           navigate={~p"/profiles/#{@profile}/month/#{@year}/#{m.month}"}
           class={[
-            "panel p-3 hover:border-[#d4a017] transition-colors text-center",
-            if(m.tracked, do: month_card_border(m.balance), else: "opacity-40 border-dashed")
+            "card-neo p-3 text-center",
+            if(m.tracked, do: month_card_border(m.balance), else: "opacity-40 !border-dashed")
           ]}
         >
-          <p class="font-cinzel text-gold text-sm">{month_abbr(m.month)}</p>
+          <p class="text-[#A31F34] text-sm font-semibold">{month_abbr(m.month)}</p>
           <%= if m.tracked do %>
-            <div class="mt-2 space-y-0.5 text-xs font-mono">
-              <p class="text-[#3d8b3d]">{short_amount(m.income)}</p>
-              <p class="text-[#8b1a1a]">{short_amount(m.expenses)}</p>
-              <p class={balance_color(m.balance)}>{short_amount(m.balance)}</p>
+            <div class="mt-2 space-y-0.5 text-xs font-amount">
+              <p class="text-[#1D9E75]">{short_amount(m.income)}</p>
+              <p class="text-[#E24B4A]">{short_amount(m.expenses)}</p>
+              <p class={["amount-lg", balance_color(m.balance)]}>{short_amount(m.balance)}</p>
             </div>
-            <p :if={m.budget.total > 0 && m.budget.over > 0} class="mt-1 text-xs text-[#8b1a1a]">
-              ⚠️ {ngettext("%{count} guild over limit", "%{count} guilds over limit", m.budget.over)}
+            <p :if={m.budget.total > 0 && m.budget.over > 0} class="mt-1 text-xs text-[#E24B4A]">
+              {ngettext("%{count} category over budget", "%{count} categories over budget", m.budget.over)}
             </p>
           <% else %>
-            <p class="mt-2 text-xs italic-fell text-muted">🚫 {gettext("Not tracked")}</p>
+            <p class="mt-2 text-xs text-slate">{gettext("Not tracked")}</p>
           <% end %>
         </.link>
       </div>
 
       <%!-- Charts --%>
       <div class="grid gap-6 lg:grid-cols-2">
-        <div class="panel p-5">
-          <h2 class="panel-title text-lg mb-3">⚔️ {gettext("Coffers vs Tributes")}</h2>
+        <div class="card-neo p-5">
+          <h2 class="card-title text-lg mb-3">{gettext("Income vs Expenses")}</h2>
           <canvas
             id={"bar-chart-#{@year}"}
             phx-hook="ChartHook"
@@ -202,8 +284,8 @@ defmodule IdcalWeb.ProfileLive.Show do
             data-chart-options={bar_chart_options()}
           />
         </div>
-        <div class="panel p-5">
-          <h2 class="panel-title text-lg mb-3">📊 {gettext("Amassed Hoard")}</h2>
+        <div class="card-neo p-5">
+          <h2 class="card-title text-lg mb-3">{gettext("Cumulative Balance")}</h2>
           <canvas
             id={"line-chart-#{@year}"}
             phx-hook="ChartHook"
@@ -219,16 +301,16 @@ defmodule IdcalWeb.ProfileLive.Show do
 
   defp month_card_border(balance) do
     case Decimal.compare(balance, 0) do
-      :gt -> "border-[#3d8b3d]/50"
-      :lt -> "border-[#8b1a1a]/50"
+      :gt -> "!border-l-[3px] !border-l-[#1D9E75]"
+      :lt -> "!border-l-[3px] !border-l-[#E24B4A]"
       _ -> ""
     end
   end
 
   defp balance_color(balance) do
     case Decimal.compare(balance, 0) do
-      :lt -> "text-[#8b1a1a]"
-      _ -> "text-[#3d8b3d]"
+      :lt -> "text-[#E24B4A]"
+      _ -> "text-[#1D9E75]"
     end
   end
 

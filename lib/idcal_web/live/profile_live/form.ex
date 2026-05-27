@@ -13,7 +13,7 @@ defmodule IdcalWeb.ProfileLive.Form do
     profile = %Profile{}
 
     socket
-    |> assign(:page_title, gettext("Forge a New Ledger"))
+    |> assign(:page_title, gettext("New Profile"))
     |> assign(:profile, profile)
     |> assign(:form, to_form(Finances.change_profile(profile)))
     |> assign(:is_owner, false)
@@ -27,7 +27,7 @@ defmodule IdcalWeb.ProfileLive.Form do
     is_owner = profile.user_id == socket.assigns.current_scope.user.id
 
     socket
-    |> assign(:page_title, gettext("Rename Ledger"))
+    |> assign(:page_title, gettext("Edit Profile"))
     |> assign(:profile, profile)
     |> assign(:form, to_form(Finances.change_profile(profile)))
     |> assign(:is_owner, is_owner)
@@ -56,16 +56,16 @@ defmodule IdcalWeb.ProfileLive.Form do
          |> assign(:shares, Finances.list_profile_shares(profile))
          |> assign(:share_email, "")
          |> assign(:share_error, nil)
-         |> put_flash(:info, gettext("Ledger shared."))}
+         |> put_flash(:info, gettext("Profile shared."))}
 
       {:error, :user_not_found} ->
-        {:noreply, assign(socket, :share_error, gettext("No adventurer found with that email."))}
+        {:noreply, assign(socket, :share_error, gettext("No user found with that email."))}
 
       {:error, :cannot_share_with_self} ->
-        {:noreply, assign(socket, :share_error, gettext("Cannot share with thyself."))}
+        {:noreply, assign(socket, :share_error, gettext("Cannot share with yourself."))}
 
       {:error, _changeset} ->
-        {:noreply, assign(socket, :share_error, gettext("Already shared with this adventurer."))}
+        {:noreply, assign(socket, :share_error, gettext("Already shared with this user."))}
     end
   end
 
@@ -104,7 +104,7 @@ defmodule IdcalWeb.ProfileLive.Form do
       {:ok, profile} ->
         {:noreply,
          socket
-         |> put_flash(:info, gettext("Ledger \"%{name}\" was forged.", name: profile.nickname))
+         |> put_flash(:info, gettext("Profile \"%{name}\" was created.", name: profile.nickname))
          |> push_navigate(to: ~p"/profiles/#{profile}")}
 
       {:error, changeset} ->
@@ -117,7 +117,7 @@ defmodule IdcalWeb.ProfileLive.Form do
       {:ok, profile} ->
         {:noreply,
          socket
-         |> put_flash(:info, gettext("Ledger renamed."))
+         |> put_flash(:info, gettext("Profile updated."))
          |> push_navigate(to: ~p"/profiles/#{profile}")}
 
       {:error, changeset} ->
@@ -130,53 +130,53 @@ defmodule IdcalWeb.ProfileLive.Form do
     ~H"""
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <div class="mx-auto max-w-md">
-        <div class="panel p-6 space-y-4">
-          <h1 class="font-cinzel font-bold text-2xl text-gold">{@page_title}</h1>
+        <div class="card-neo p-6 space-y-4">
+          <h1 class="font-bold text-2xl text-[#A31F34]">{@page_title}</h1>
 
           <.form for={@form} phx-change="validate" phx-submit="save" class="space-y-4">
             <div>
-              <label class="font-cinzel text-sm text-gold">{gettext("Title")}</label>
+              <label class="text-sm text-[#A31F34]">{gettext("Nickname")}</label>
               <input
                 type="text"
                 name={@form[:nickname].name}
                 value={Phoenix.HTML.Form.normalize_value("text", @form[:nickname].value)}
-                class="input-medieval w-full mt-1"
-                placeholder={gettext("e.g. Personal, Freelance Coffers")}
+                class="input-field w-full mt-1"
+                placeholder={gettext("e.g. Personal, Freelance Income")}
                 autocomplete="off"
               />
               <p
                 :for={msg <- Enum.map(@form[:nickname].errors, &translate_error/1)}
-                class="text-expense text-sm mt-1"
+                class="text-negative text-sm mt-1"
               >
                 {msg}
               </p>
             </div>
 
             <div>
-              <label class="font-cinzel text-sm text-gold">📅 {gettext("Chronicle Begins")}</label>
-              <p class="italic-fell text-muted text-xs mb-2">
-                {gettext("Moons before this date shall be excluded from the chronicles.")}
+              <label class="text-sm text-[#A31F34]">{gettext("Start Date")}</label>
+              <p class="text-slate text-xs mb-2">
+                {gettext("Months before this date will not be tracked.")}
               </p>
               <div class="flex gap-3">
                 <div class="flex-1">
-                  <label class="text-muted text-xs">{gettext("Year")}</label>
+                  <label class="text-slate text-xs">{gettext("Year")}</label>
                   <input
                     type="number"
                     name={@form[:start_year].name}
                     value={Phoenix.HTML.Form.normalize_value("number", @form[:start_year].value)}
-                    class="input-medieval w-full mt-1"
+                    class="input-field w-full mt-1"
                     placeholder="2026"
                     min="1970"
                     max="9999"
                   />
                 </div>
                 <div class="flex-1">
-                  <label class="text-muted text-xs">{gettext("Month")}</label>
+                  <label class="text-slate text-xs">{gettext("Month")}</label>
                   <input
                     type="number"
                     name={@form[:start_month].name}
                     value={Phoenix.HTML.Form.normalize_value("number", @form[:start_month].value)}
-                    class="input-medieval w-full mt-1"
+                    class="input-field w-full mt-1"
                     placeholder="1"
                     min="1"
                     max="12"
@@ -185,7 +185,7 @@ defmodule IdcalWeb.ProfileLive.Form do
               </div>
               <p
                 :for={msg <- Enum.map(@form[:start_year].errors ++ @form[:start_month].errors, &translate_error/1)}
-                class="text-expense text-sm mt-1"
+                class="text-negative text-sm mt-1"
               >
                 {msg}
               </p>
@@ -193,16 +193,16 @@ defmodule IdcalWeb.ProfileLive.Form do
 
             <div class="grid grid-cols-2 gap-3">
               <div>
-                <label class="font-cinzel text-sm text-gold">💰 {gettext("Currency")}</label>
-                <select name={@form[:currency].name} class="input-medieval w-full mt-1">
+                <label class="text-sm text-[#A31F34]">{gettext("Currency")}</label>
+                <select name={@form[:currency].name} class="input-field w-full mt-1">
                   <option :for={c <- ~w(BRL USD EUR GBP JPY CAD AUD CHF)} value={c} selected={to_string(@form[:currency].value) == c}>
                     {c}
                   </option>
                 </select>
               </div>
               <div>
-                <label class="font-cinzel text-sm text-gold">🎨 {gettext("Theme")}</label>
-                <select name={@form[:theme].name} class="input-medieval w-full mt-1">
+                <label class="text-sm text-[#A31F34]">{gettext("Theme")}</label>
+                <select name={@form[:theme].name} class="input-field w-full mt-1">
                   <option value="dark" selected={to_string(@form[:theme].value) == "dark"}>{gettext("Dark")}</option>
                   <option value="light" selected={to_string(@form[:theme].value) == "light"}>{gettext("Light")}</option>
                 </select>
@@ -210,17 +210,17 @@ defmodule IdcalWeb.ProfileLive.Form do
             </div>
 
             <div class="flex gap-2">
-              <button type="submit" class="btn-medieval">{gettext("Save")}</button>
-              <.link navigate={~p"/profiles"} class="btn-medieval">{gettext("Cancel")}</.link>
+              <button type="submit" class="btn-primary">{gettext("Save")}</button>
+              <.link navigate={~p"/profiles"} class="btn-ghost">{gettext("Cancel")}</.link>
             </div>
           </.form>
         </div>
 
         <%!-- Sharing section (owner only, edit mode) --%>
-        <div :if={@live_action == :edit && @is_owner} class="panel p-6 space-y-4 mt-6">
-          <h2 class="font-cinzel font-bold text-lg text-gold">🤝 {gettext("Shared Adventurers")}</h2>
-          <p class="italic-fell text-muted text-xs">
-            {gettext("Invite another adventurer to view or edit this ledger.")}
+        <div :if={@live_action == :edit && @is_owner} class="card-neo p-6 space-y-4 mt-6">
+          <h2 class="font-bold text-lg text-[#A31F34]">{gettext("Shared Users")}</h2>
+          <p class="text-slate text-xs">
+            {gettext("Invite another user to view or edit this profile.")}
           </p>
 
           <form phx-submit="share_profile" class="flex gap-2">
@@ -228,25 +228,25 @@ defmodule IdcalWeb.ProfileLive.Form do
               type="email"
               name="email"
               value={@share_email}
-              placeholder={gettext("Adventurer's email...")}
-              class="input-medieval flex-1 text-sm"
+              placeholder={gettext("User's email...")}
+              class="input-field flex-1 text-sm"
               required
             />
-            <select name="role" class="input-medieval text-sm">
+            <select name="role" class="input-field text-sm">
               <option value="viewer">{gettext("Viewer")}</option>
               <option value="editor">{gettext("Editor")}</option>
             </select>
-            <button type="submit" class="btn-medieval text-sm">
+            <button type="submit" class="btn-primary text-sm">
               {gettext("Invite")}
             </button>
           </form>
-          <p :if={@share_error} class="text-[#8b1a1a] text-sm">{@share_error}</p>
+          <p :if={@share_error} class="text-[#E24B4A] text-sm">{@share_error}</p>
 
           <div :if={@shares != []} class="space-y-2 mt-3">
-            <div :for={share <- @shares} class="flex justify-between items-center border-b border-[#7a5c1e]/30 pb-2">
+            <div :for={share <- @shares} class="flex justify-between items-center border-b border-[#E0DEDB]/30 pb-2">
               <div>
-                <span class="text-cream text-sm">{share.user.email}</span>
-                <span class="text-muted text-xs ml-2">({share.role})</span>
+                <span class="text-ink text-sm">{share.user.email}</span>
+                <span class="text-slate text-xs ml-2">({share.role})</span>
               </div>
               <div class="flex gap-2">
                 <button
@@ -254,7 +254,7 @@ defmodule IdcalWeb.ProfileLive.Form do
                   phx-click="update_share_role"
                   phx-value-id={share.id}
                   phx-value-role="editor"
-                  class="btn-medieval text-xs"
+                  class="btn-ghost text-xs"
                 >
                   {gettext("Promote")}
                 </button>
@@ -263,23 +263,23 @@ defmodule IdcalWeb.ProfileLive.Form do
                   phx-click="update_share_role"
                   phx-value-id={share.id}
                   phx-value-role="viewer"
-                  class="btn-medieval text-xs"
+                  class="btn-ghost text-xs"
                 >
                   {gettext("Demote")}
                 </button>
                 <button
                   phx-click="remove_share"
                   phx-value-id={share.id}
-                  class="btn-medieval text-xs text-[#8b1a1a]"
-                  data-confirm={gettext("Remove this adventurer's access?")}
+                  class="btn-ghost text-xs text-[#E24B4A]"
+                  data-confirm={gettext("Remove this user's access?")}
                 >
                   ✕
                 </button>
               </div>
             </div>
           </div>
-          <p :if={@shares == []} class="italic-fell text-muted text-sm">
-            {gettext("No adventurers share this ledger yet.")}
+          <p :if={@shares == []} class="text-slate text-sm">
+            {gettext("No users share this profile yet.")}
           </p>
         </div>
       </div>

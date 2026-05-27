@@ -99,8 +99,8 @@ defmodule IdcalWeb.MonthLive.Show do
       Enum.map(expense_groups, fn {_, _, total} -> Decimal.to_float(total) end)
 
     colors = [
-      "#8b1a1a", "#d4a017", "#3d8b3d", "#7a5c1e", "#a08050",
-      "#6b3d0f", "#4a7c4a", "#c45c1e", "#2e6e8b", "#8b5213"
+      "#E24B4A", "#BA7517", "#1D9E75", "#185FA5", "#A31F34",
+      "#5F5E5A", "#0F6E56", "#7A1626", "#2E6E8B", "#D97706"
     ]
 
     Jason.encode!(%{
@@ -109,7 +109,7 @@ defmodule IdcalWeb.MonthLive.Show do
         %{
           data: amounts,
           backgroundColor: Enum.take(colors, length(labels)),
-          borderColor: "#7a5c1e",
+          borderColor: "#E0DEDB",
           borderWidth: 1
         }
       ]
@@ -193,37 +193,37 @@ defmodule IdcalWeb.MonthLive.Show do
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <div class="flex items-center justify-between">
         <div>
-          <.link navigate={~p"/profiles/#{@profile}"} class="text-muted hover:text-gold font-cinzel text-sm">
+          <.link navigate={~p"/profiles/#{@profile}"} class="text-slate hover:text-[#A31F34] text-sm">
             &larr; {@profile.nickname}
           </.link>
-          <h1 class="font-cinzel-decorative font-bold text-3xl text-gold mt-1">
-            📅 {gettext("%{month} %{year}", month: month_name(@month), year: @year)}
+          <h1 class="font-bold text-3xl text-[#A31F34] mt-1">
+            {gettext("%{month} %{year}", month: month_name(@month), year: @year)}
           </h1>
         </div>
         <div class="flex gap-2">
-          <.link navigate={prev_month_path(@profile, @year, @month)} class="btn-medieval text-sm">
+          <.link navigate={prev_month_path(@profile, @year, @month)} class="btn-ghost text-sm">
             &larr;
           </.link>
-          <.link navigate={next_month_path(@profile, @year, @month)} class="btn-medieval text-sm">
+          <.link navigate={next_month_path(@profile, @year, @month)} class="btn-ghost text-sm">
             &rarr;
           </.link>
-          <.link href={~p"/profiles/#{@profile}/month/#{@year}/#{@month}/export"} class="btn-medieval text-sm">
-            📥 {gettext("Export CSV")}
+          <.link href={~p"/profiles/#{@profile}/month/#{@year}/#{@month}/export"} class="btn-ghost text-sm">
+            {gettext("Export CSV")}
           </.link>
-          <button phx-click="clone_to_next" class="btn-medieval text-sm"
+          <button phx-click="clone_to_next" class="btn-ghost text-sm"
             data-confirm={gettext("Clone sporadic entries to the next month?")}
           >
-            📋 {gettext("Clone")}
+            {gettext("Clone")}
           </button>
-          <button phx-click="toggle_save_template" class="btn-medieval text-sm">
-            📜 {gettext("Templates")}
+          <button phx-click="toggle_save_template" class="btn-ghost text-sm">
+            {gettext("Templates")}
           </button>
         </div>
       </div>
 
       <%!-- Template controls --%>
-      <div :if={@show_save_template} class="panel p-4">
-        <h3 class="font-cinzel text-gold text-sm mb-3">📜 {gettext("Month Templates")}</h3>
+      <div :if={@show_save_template} class="card-neo p-4">
+        <h3 class="text-[#A31F34] text-sm mb-3">{gettext("Month Templates")}</h3>
         <div class="flex gap-3 mb-4">
           <form phx-submit="save_template" class="flex gap-2 flex-1">
             <input
@@ -231,19 +231,19 @@ defmodule IdcalWeb.MonthLive.Show do
               name="name"
               value={@template_name}
               placeholder={gettext("Template name...")}
-              class="input-medieval flex-1 text-sm"
+              class="input-field flex-1 text-sm"
               required
             />
-            <button type="submit" class="btn-medieval text-sm">
-              💾 {gettext("Save Current")}
+            <button type="submit" class="btn-ghost text-sm">
+              {gettext("Save Current")}
             </button>
           </form>
         </div>
         <div :if={@templates != []} class="space-y-2">
-          <div :for={template <- @templates} class="flex justify-between items-center border-b border-[#7a5c1e]/30 pb-2">
+          <div :for={template <- @templates} class="flex justify-between items-center border-b border-[#E0DEDB]/30 pb-2">
             <div>
-              <span class="text-cream text-sm font-cinzel">{template.name}</span>
-              <span class="text-muted text-xs ml-2">
+              <span class="text-ink text-sm">{template.name}</span>
+              <span class="text-slate text-xs ml-2">
                 ({ngettext("%{count} item", "%{count} items", length(template.items))})
               </span>
             </div>
@@ -251,23 +251,23 @@ defmodule IdcalWeb.MonthLive.Show do
               <button
                 phx-click="apply_template"
                 phx-value-template_id={template.id}
-                class="btn-medieval text-xs"
+                class="btn-ghost text-xs"
                 data-confirm={gettext("Apply this template to the current month?")}
               >
-                ▶ {gettext("Apply")}
+                {gettext("Apply")}
               </button>
               <button
                 phx-click="delete_template"
                 phx-value-template_id={template.id}
-                class="btn-medieval text-xs text-[#8b1a1a]"
+                class="btn-ghost text-xs text-[#E24B4A]"
                 data-confirm={gettext("Delete this template?")}
               >
-                ✕
+                {gettext("Delete")}
               </button>
             </div>
           </div>
         </div>
-        <p :if={@templates == []} class="italic-fell text-muted text-sm">
+        <p :if={@templates == []} class="text-slate text-sm">
           {gettext("No templates saved yet.")}
         </p>
       </div>
@@ -276,117 +276,116 @@ defmodule IdcalWeb.MonthLive.Show do
       <div :for={alert <- @budget_alerts} class={[
         "p-3 border text-sm flex items-center gap-2",
         if(alert.level == :exceeded,
-          do: "bg-[#8b1a1a]/20 border-[#8b1a1a] text-[#ff6b6b]",
-          else: "bg-[#d4a017]/20 border-[#d4a017] text-[#d4a017]")
+          do: "bg-[#E24B4A]/20 border-[#E24B4A] text-[#E24B4A]",
+          else: "bg-[#BA7517]/20 border-[#BA7517] text-[#BA7517]")
       ]}>
-        <span>{if alert.level == :exceeded, do: "🚨", else: "⚠️"}</span>
         <span :if={alert.level == :exceeded}>
-          {gettext("Guild %{name} hath exceeded its gold limit! (%{pct}%)", name: alert.name, pct: Decimal.to_string(alert.percentage))}
+          {gettext("Category %{name} has exceeded its budget! (%{pct}%)", name: alert.name, pct: Decimal.to_string(alert.percentage))}
         </span>
         <span :if={alert.level == :warning}>
-          {gettext("Guild %{name} approaches its gold limit (%{pct}%)", name: alert.name, pct: Decimal.to_string(alert.percentage))}
+          {gettext("Category %{name} is approaching its budget (%{pct}%)", name: alert.name, pct: Decimal.to_string(alert.percentage))}
         </span>
       </div>
 
       <%!-- Net Balance --%>
-      <div class="panel p-5 text-center">
-        <p class="font-cinzel text-muted text-sm">⚖️ {gettext("Net Purse")}</p>
+      <div class="card-hero text-center">
+        <p class="label-upper" style="color: #9A9893;">{gettext("Net Balance")}</p>
         <p class={[
-          "font-mono text-3xl font-bold mt-1",
-          if(Decimal.compare(@balance, 0) == :lt, do: "text-[#8b1a1a]", else: "text-[#3d8b3d]")
+          "amount-xl mt-1",
+          if(Decimal.compare(@balance, 0) == :lt, do: "text-[#FF7E7E]", else: "text-[#5DD3A8]")
         ]}>
           {format_amount(@balance)}
         </p>
         <div class="flex justify-center gap-8 mt-3 text-sm">
-          <span class="text-[#3d8b3d]">{gettext("Coffers:")} {format_amount(@total_income)}</span>
-          <span class="text-[#8b1a1a]">{gettext("Tributes:")} {format_amount(@total_expenses)}</span>
+          <span class="tag-status tag-income">{gettext("Income:")} {format_amount(@total_income)}</span>
+          <span class="tag-status tag-expense">{gettext("Expenses:")} {format_amount(@total_expenses)}</span>
         </div>
       </div>
 
       <div class="grid gap-6 lg:grid-cols-2">
         <%!-- Income breakdown --%>
-        <div class="panel p-5">
-          <h2 class="panel-title text-lg text-[#3d8b3d] mb-3">🪙 {gettext("Coffers")}</h2>
-          <div :if={@income_breakdown == []} class="italic-fell text-muted text-sm">
-            🕸️ {gettext("No coin entered the coffers this moon.")}
+        <div class="card-neo p-5">
+          <h2 class="card-title text-lg text-[#1D9E75] mb-3">{gettext("Income")}</h2>
+          <div :if={@income_breakdown == []} class="text-slate text-sm">
+            {gettext("No income this month.")}
           </div>
           <table :if={@income_breakdown != []} class="w-full text-sm">
             <thead>
-              <tr class="text-gold font-cinzel text-xs border-b border-[#7a5c1e]">
-                <th class="text-left py-1 px-2">{gettext("Wellspring")}</th>
-                <th class="text-left py-1 px-2">{gettext("Guild")}</th>
+              <tr class="text-[#A31F34] text-xs border-b border-[#E0DEDB]">
+                <th class="text-left py-1 px-2">{gettext("Source")}</th>
+                <th class="text-left py-1 px-2">{gettext("Category")}</th>
                 <th class="text-right py-1 px-2">{gettext("Amount")}</th>
               </tr>
             </thead>
             <tbody>
-              <tr :for={{source, amount} <- @income_breakdown} class="border-b border-[#7a5c1e]/30">
-                <td class="py-1 px-2 text-cream">{source.name}</td>
-                <td class="py-1 px-2 text-muted">{source.income_category.name}</td>
-                <td class="py-1 px-2 text-right text-[#3d8b3d] font-mono">{format_amount(amount)}</td>
+              <tr :for={{source, amount} <- @income_breakdown} class="border-b border-[#E0DEDB]/30">
+                <td class="py-1 px-2 text-ink">{source.name}</td>
+                <td class="py-1 px-2 text-slate">{source.income_category.name}</td>
+                <td class="py-1 px-2 text-right text-[#1D9E75] font-amount">{format_amount(amount)}</td>
               </tr>
             </tbody>
             <tfoot>
-              <tr class="border-t-2 border-[#7a5c1e]">
-                <td colspan="2" class="py-2 px-2 font-cinzel text-gold">{gettext("Total")}</td>
-                <td class="py-2 px-2 text-right text-[#3d8b3d] font-mono font-bold">{format_amount(@total_income)}</td>
+              <tr class="border-t-2 border-[#E0DEDB]">
+                <td colspan="2" class="py-2 px-2 text-[#A31F34]">{gettext("Total")}</td>
+                <td class="py-2 px-2 text-right text-[#1D9E75] font-amount font-bold">{format_amount(@total_income)}</td>
               </tr>
             </tfoot>
           </table>
         </div>
 
         <%!-- Expense breakdown (grouped by category) --%>
-        <div class="panel p-5">
-          <h2 class="panel-title text-lg text-[#8b1a1a] mb-3">💸 {gettext("Tributes")}</h2>
-          <div :if={@expense_groups == []} class="italic-fell text-muted text-sm">
-            🕸️ {gettext("No tributes paid this moon.")}
+        <div class="card-neo p-5">
+          <h2 class="card-title text-lg text-[#E24B4A] mb-3">{gettext("Expenses")}</h2>
+          <div :if={@expense_groups == []} class="text-slate text-sm">
+            {gettext("No expenses this month.")}
           </div>
           <div :for={{category, items, cat_total} <- @expense_groups} class="mb-4">
             <div
-              class="flex justify-between items-center border-b border-[#7a5c1e] pb-1 mb-1 cursor-pointer hover:bg-[#2e1f0e]/50"
+              class="flex justify-between items-center border-b border-[#E0DEDB] pb-1 mb-1 cursor-pointer hover:bg-[#F8F7F5]"
               phx-click="toggle_category"
               phx-value-id={category.id}
             >
-              <span class="font-cinzel text-gold text-sm">
+              <span class="text-[#A31F34] text-sm">
                 {if @expanded_category == category.id, do: "▾", else: "▸"} {category.name}
               </span>
-              <span class="text-[#8b1a1a] font-mono text-sm">{format_amount(cat_total)}</span>
+              <span class="text-[#E24B4A] font-amount text-sm">{format_amount(cat_total)}</span>
             </div>
             <.budget_bar_mini :for={{cat, status} <- @budget_status} :if={cat.id == category.id} status={status} />
             <table class="w-full text-sm">
-              <tr :for={{type, amount} <- items} class="border-b border-[#7a5c1e]/20">
-                <td class="py-0.5 px-2 text-cream">{type.name}</td>
-                <td class="py-0.5 px-2 text-right text-[#8b1a1a] font-mono">{format_amount(amount)}</td>
+              <tr :for={{type, amount} <- items} class="border-b border-[#E0DEDB]/20">
+                <td class="py-0.5 px-2 text-ink">{type.name}</td>
+                <td class="py-0.5 px-2 text-right text-[#E24B4A] font-amount">{format_amount(amount)}</td>
               </tr>
             </table>
             <%!-- Drilldown: show individual entries when expanded --%>
-            <div :if={@expanded_category == category.id} class="ml-4 mt-2 border-l-2 border-[#7a5c1e] pl-3">
+            <div :if={@expanded_category == category.id} class="ml-4 mt-2 border-l-2 border-[#E0DEDB] pl-3">
               <div :for={{type, _amount} <- items} class="mb-3">
-                <p class="font-cinzel text-cream text-xs mb-1">{type.name}</p>
+                <p class="text-ink text-xs mb-1">{type.name}</p>
                 <div :if={Ecto.assoc_loaded?(type.entries)} class="space-y-0.5">
                   <div
                     :for={entry <- Enum.filter(type.entries, &(&1.year == @year && &1.month == @month))}
                     class="flex justify-between text-xs"
                   >
-                    <span class="text-muted">{entry.note || gettext("Entry")}</span>
-                    <span class="text-[#8b1a1a] font-mono">{format_amount(entry.amount)}</span>
+                    <span class="text-slate">{entry.note || gettext("Entry")}</span>
+                    <span class="text-[#E24B4A] font-amount">{format_amount(entry.amount)}</span>
                   </div>
                 </div>
-                <p :if={type.recurrence == :monthly && !has_entry_for_month?(type, @year, @month)} class="text-xs text-muted italic-fell">
-                  {gettext("Base Tithe")}: {format_amount(type.base_amount)}
+                <p :if={type.recurrence == :monthly && !has_entry_for_month?(type, @year, @month)} class="text-xs text-slate">
+                  {gettext("Base Amount")}: {format_amount(type.base_amount)}
                 </p>
               </div>
             </div>
           </div>
-          <div :if={@expense_groups != []} class="border-t-2 border-[#7a5c1e] pt-2 flex justify-between">
-            <span class="font-cinzel text-gold">{gettext("Total")}</span>
-            <span class="text-[#8b1a1a] font-mono font-bold">{format_amount(@total_expenses)}</span>
+          <div :if={@expense_groups != []} class="border-t-2 border-[#E0DEDB] pt-2 flex justify-between">
+            <span class="text-[#A31F34]">{gettext("Total")}</span>
+            <span class="text-[#E24B4A] font-amount font-bold">{format_amount(@total_expenses)}</span>
           </div>
         </div>
       </div>
 
       <%!-- Expense donut chart --%>
-      <div :if={@expense_groups != []} class="panel p-5">
-        <h2 class="panel-title text-lg mb-3">🥧 {gettext("Tribute Guilds")}</h2>
+      <div :if={@expense_groups != []} class="card-neo p-5">
+        <h2 class="card-title text-lg mb-3">{gettext("Expense Categories")}</h2>
         <div class="max-w-sm mx-auto">
           <canvas
             id="expense-donut"
@@ -406,7 +405,7 @@ defmodule IdcalWeb.MonthLive.Show do
       plugins: %{
         legend: %{
           position: "bottom",
-          labels: %{color: "#f0dfa0", font: %{family: "Cinzel"}}
+          labels: %{color: "#1A1A1A", font: %{family: "Inter"}}
         }
       },
       cutout: "50%"
@@ -422,23 +421,21 @@ defmodule IdcalWeb.MonthLive.Show do
     pct_float = min(Decimal.to_float(assigns.status.percentage), 100)
     color =
       cond do
-        Decimal.gte?(assigns.status.percentage, 100) -> "bg-[#8b1a1a]"
-        Decimal.gte?(assigns.status.percentage, 80) -> "bg-[#d4a017]"
-        true -> "bg-[#3d8b3d]"
+        Decimal.gte?(assigns.status.percentage, 100) -> "bg-[#E24B4A]"
+        Decimal.gte?(assigns.status.percentage, 80) -> "bg-[#BA7517]"
+        true -> "bg-[#1D9E75]"
       end
 
     assigns = assign(assigns, pct_float: pct_float, color: color)
 
     ~H"""
     <div class="my-1">
-      <div class="flex justify-between text-xs">
-        <span class="text-muted">{format_amount(@status.spent)} / {format_amount(@status.limit)}</span>
-        <span class={if Decimal.gte?(@status.percentage, 100), do: "text-[#8b1a1a]", else: "text-muted"}>
-          {Decimal.to_string(@status.percentage)}%
-        </span>
+      <div class="flex justify-between text-xs mb-0.5">
+        <span class="text-slate">{format_amount(@status.spent)} / {format_amount(@status.limit)}</span>
       </div>
-      <div class="w-full bg-[#1a1208] border border-[#7a5c1e] h-2">
-        <div class={["h-full transition-all", @color]} style={"width: #{@pct_float}%"} />
+      <div class="bar-neo">
+        <div class={["bar-fill", @color]} style={"width: #{@pct_float}%"} />
+        <span class="bar-label">{Decimal.to_string(@status.percentage)}%</span>
       </div>
     </div>
     """

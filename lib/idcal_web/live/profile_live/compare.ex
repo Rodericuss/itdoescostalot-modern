@@ -12,7 +12,7 @@ defmodule IdcalWeb.ProfileLive.Compare do
 
     {:ok,
      socket
-     |> assign(:page_title, gettext("Compare Ledgers"))
+     |> assign(:page_title, gettext("Compare Profiles"))
      |> assign(:profiles, profiles)
      |> assign(:year, year)
      |> assign(:left_id, nil)
@@ -84,13 +84,13 @@ defmodule IdcalWeb.ProfileLive.Compare do
   def render(assigns) do
     ~H"""
     <Layouts.app flash={@flash} current_scope={@current_scope}>
-      <h1 class="font-cinzel-decorative font-bold text-3xl text-gold">⚖️ {gettext("Compare Ledgers")}</h1>
+      <h1 class="font-bold text-3xl text-[#A31F34]">{gettext("Compare Profiles")}</h1>
 
-      <div class="panel p-5">
+      <div class="card-neo p-5">
         <form phx-change="select_profiles" class="flex gap-4 items-end flex-wrap">
           <div>
-            <label class="font-cinzel text-sm text-gold">{gettext("Left Ledger")}</label>
-            <select name="left_id" class="input-medieval text-sm mt-1">
+            <label class="text-sm text-[#A31F34]">{gettext("Left Profile")}</label>
+            <select name="left_id" class="input-field text-sm mt-1">
               <option value="">{gettext("Select...")}</option>
               <option :for={p <- @profiles} value={p.id} selected={to_string(p.id) == to_string(@left_id)}>
                 {p.nickname}
@@ -98,8 +98,8 @@ defmodule IdcalWeb.ProfileLive.Compare do
             </select>
           </div>
           <div>
-            <label class="font-cinzel text-sm text-gold">{gettext("Right Ledger")}</label>
-            <select name="right_id" class="input-medieval text-sm mt-1">
+            <label class="text-sm text-[#A31F34]">{gettext("Right Profile")}</label>
+            <select name="right_id" class="input-field text-sm mt-1">
               <option value="">{gettext("Select...")}</option>
               <option :for={p <- @profiles} value={p.id} selected={to_string(p.id) == to_string(@right_id)}>
                 {p.nickname}
@@ -109,9 +109,9 @@ defmodule IdcalWeb.ProfileLive.Compare do
         </form>
 
         <div class="flex items-center justify-center gap-4 mt-4">
-          <button phx-click="change_year" phx-value-year={@year - 1} class="btn-medieval text-sm">&larr;</button>
-          <span class="font-cinzel text-xl text-gold">{@year}</span>
-          <button phx-click="change_year" phx-value-year={@year + 1} class="btn-medieval text-sm">&rarr;</button>
+          <button phx-click="change_year" phx-value-year={@year - 1} class="btn-ghost text-sm">&larr;</button>
+          <span class="text-xl text-[#A31F34]">{@year}</span>
+          <button phx-click="change_year" phx-value-year={@year + 1} class="btn-ghost text-sm">&rarr;</button>
         </div>
       </div>
 
@@ -120,11 +120,11 @@ defmodule IdcalWeb.ProfileLive.Compare do
         <.profile_summary data={@right_data} />
       </div>
 
-      <div :if={@left_data && @right_data} class="panel p-5 mt-6">
-        <h2 class="panel-title text-lg mb-3">📊 {gettext("Monthly Breakdown")}</h2>
+      <div :if={@left_data && @right_data} class="card-neo p-5 mt-6">
+        <h2 class="card-title text-lg mb-3">{gettext("Monthly Breakdown")}</h2>
         <table class="w-full text-sm">
           <thead>
-            <tr class="text-gold font-cinzel text-xs border-b border-[#7a5c1e]">
+            <tr class="text-[#A31F34] text-xs border-b border-[#E0DEDB]">
               <th class="text-left py-1 px-2">{gettext("Month")}</th>
               <th class="text-right py-1 px-2">{@left_data.profile.nickname}</th>
               <th class="text-right py-1 px-2">{@right_data.profile.nickname}</th>
@@ -132,29 +132,29 @@ defmodule IdcalWeb.ProfileLive.Compare do
             </tr>
           </thead>
           <tbody>
-            <tr :for={{lm, rm} <- Enum.zip(@left_data.months, @right_data.months)} class="border-b border-[#7a5c1e]/30">
-              <td class="py-1 px-2 text-cream font-cinzel">{month_abbr(lm.month)}</td>
-              <td class={["py-1 px-2 text-right font-mono", balance_color(lm.balance)]}>
+            <tr :for={{lm, rm} <- Enum.zip(@left_data.months, @right_data.months)} class="border-b border-[#E0DEDB]/30">
+              <td class="py-1 px-2 text-ink">{month_abbr(lm.month)}</td>
+              <td class={["py-1 px-2 text-right font-amount", balance_color(lm.balance)]}>
                 {if lm.tracked, do: format_amount(lm.balance), else: "—"}
               </td>
-              <td class={["py-1 px-2 text-right font-mono", balance_color(rm.balance)]}>
+              <td class={["py-1 px-2 text-right font-amount", balance_color(rm.balance)]}>
                 {if rm.tracked, do: format_amount(rm.balance), else: "—"}
               </td>
-              <td class="py-1 px-2 text-right font-mono text-muted">
+              <td class="py-1 px-2 text-right font-amount text-slate">
                 {if lm.tracked && rm.tracked, do: format_amount(Decimal.sub(lm.balance, rm.balance)), else: "—"}
               </td>
             </tr>
           </tbody>
           <tfoot>
-            <tr class="border-t-2 border-[#7a5c1e]">
-              <td class="py-2 px-2 font-cinzel text-gold">{gettext("Total")}</td>
-              <td class={["py-2 px-2 text-right font-mono font-bold", balance_color(@left_data.total_balance)]}>
+            <tr class="border-t-2 border-[#E0DEDB]">
+              <td class="py-2 px-2 text-[#A31F34]">{gettext("Total")}</td>
+              <td class={["py-2 px-2 text-right font-amount font-bold", balance_color(@left_data.total_balance)]}>
                 {format_amount(@left_data.total_balance)}
               </td>
-              <td class={["py-2 px-2 text-right font-mono font-bold", balance_color(@right_data.total_balance)]}>
+              <td class={["py-2 px-2 text-right font-amount font-bold", balance_color(@right_data.total_balance)]}>
                 {format_amount(@right_data.total_balance)}
               </td>
-              <td class="py-2 px-2 text-right font-mono font-bold text-muted">
+              <td class="py-2 px-2 text-right font-amount font-bold text-slate">
                 {format_amount(Decimal.sub(@left_data.total_balance, @right_data.total_balance))}
               </td>
             </tr>
@@ -162,8 +162,8 @@ defmodule IdcalWeb.ProfileLive.Compare do
         </table>
       </div>
 
-      <div :if={!@left_data || !@right_data} class="panel p-5 mt-6 text-center">
-        <p class="italic-fell text-muted">{gettext("Select two ledgers above to compare their chronicles.")}</p>
+      <div :if={!@left_data || !@right_data} class="card-neo p-5 mt-6 text-center">
+        <p class="text-slate">{gettext("Select two profiles above to compare them.")}</p>
       </div>
     </Layouts.app>
     """
@@ -171,20 +171,20 @@ defmodule IdcalWeb.ProfileLive.Compare do
 
   defp profile_summary(assigns) do
     ~H"""
-    <div class="panel p-5 text-center">
-      <h3 class="font-cinzel text-gold text-lg mb-3">📖 {@data.profile.nickname}</h3>
+    <div class="card-neo p-5 text-center">
+      <h3 class="text-[#A31F34] text-lg mb-3">{@data.profile.nickname}</h3>
       <div class="space-y-2">
         <div>
-          <p class="text-muted text-xs font-cinzel">{gettext("Coffers")}</p>
-          <p class="text-[#3d8b3d] font-mono text-xl font-bold">{format_amount(@data.total_income)}</p>
+          <p class="text-slate text-xs">{gettext("Income")}</p>
+          <p class="text-[#1D9E75] font-amount text-xl font-bold">{format_amount(@data.total_income)}</p>
         </div>
         <div>
-          <p class="text-muted text-xs font-cinzel">{gettext("Tributes")}</p>
-          <p class="text-[#8b1a1a] font-mono text-xl font-bold">{format_amount(@data.total_expenses)}</p>
+          <p class="text-slate text-xs">{gettext("Expenses")}</p>
+          <p class="text-[#E24B4A] font-amount text-xl font-bold">{format_amount(@data.total_expenses)}</p>
         </div>
         <div>
-          <p class="text-muted text-xs font-cinzel">{gettext("Net Purse")}</p>
-          <p class={["font-mono text-xl font-bold", balance_color(@data.total_balance)]}>
+          <p class="text-slate text-xs">{gettext("Net Balance")}</p>
+          <p class={["font-amount text-xl font-bold", balance_color(@data.total_balance)]}>
             {format_amount(@data.total_balance)}
           </p>
         </div>
@@ -195,8 +195,8 @@ defmodule IdcalWeb.ProfileLive.Compare do
 
   defp balance_color(balance) do
     case Decimal.compare(balance, 0) do
-      :lt -> "text-[#8b1a1a]"
-      _ -> "text-[#3d8b3d]"
+      :lt -> "text-[#E24B4A]"
+      _ -> "text-[#1D9E75]"
     end
   end
 end

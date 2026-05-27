@@ -87,14 +87,14 @@ defmodule IdcalWeb.ForecastLive.Show do
     Jason.encode!(%{
       labels: labels,
       datasets: [
-        %{type: "bar", label: gettext("Coffers"), data: income_data, backgroundColor: "#3d8b3d", order: 2},
-        %{type: "bar", label: gettext("Tributes"), data: expense_data, backgroundColor: "#8b1a1a", order: 2},
+        %{type: "bar", label: gettext("Income"), data: income_data, backgroundColor: "#1D9E75", order: 2},
+        %{type: "bar", label: gettext("Expenses"), data: expense_data, backgroundColor: "#E24B4A", order: 2},
         %{
           type: "line",
-          label: gettext("Amassed Hoard"),
+          label: gettext("Cumulative Balance"),
           data: cumulative_data,
-          borderColor: "#d4a017",
-          backgroundColor: "rgba(212, 160, 23, 0.1)",
+          borderColor: "#A31F34",
+          backgroundColor: "rgba(163, 31, 52, 0.1)",
           fill: true,
           tension: 0.3,
           order: 1
@@ -106,10 +106,10 @@ defmodule IdcalWeb.ForecastLive.Show do
   defp chart_options do
     Jason.encode!(%{
       responsive: true,
-      plugins: %{legend: %{labels: %{color: "#f0dfa0", font: %{family: "Cinzel"}}}},
+      plugins: %{legend: %{labels: %{color: "#1A1A1A", font: %{family: "Inter"}}}},
       scales: %{
-        x: %{ticks: %{color: "#a08050"}, grid: %{color: "rgba(122,92,30,0.3)"}},
-        y: %{ticks: %{color: "#a08050"}, grid: %{color: "rgba(122,92,30,0.3)"}}
+        x: %{ticks: %{color: "#5F5E5A"}, grid: %{color: "rgba(224,222,219,0.5)"}},
+        y: %{ticks: %{color: "#5F5E5A"}, grid: %{color: "rgba(224,222,219,0.5)"}}
       }
     })
   end
@@ -128,17 +128,17 @@ defmodule IdcalWeb.ForecastLive.Show do
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <div class="flex items-center justify-between">
         <div>
-          <.link navigate={~p"/profiles/#{@profile}"} class="text-muted hover:text-gold font-cinzel text-sm">
+          <.link navigate={~p"/profiles/#{@profile}"} class="text-slate hover:text-[#A31F34] text-sm">
             &larr; {@profile.nickname}
           </.link>
-          <h1 class="font-cinzel-decorative font-bold text-3xl text-[#d4a017] mt-1">🔮 {gettext("Forecast")}</h1>
+          <h1 class="font-bold text-3xl text-[#BA7517] mt-1">{gettext("Forecast")}</h1>
         </div>
         <div class="flex gap-2">
           <button
             :for={h <- [3, 6, 12]}
             phx-click="set_horizon"
             phx-value-horizon={h}
-            class={["btn-medieval text-sm", if(@horizon == h, do: "border-[#d4a017]", else: "")]}
+            class={["btn-pill", if(@horizon == h, do: "active", else: "")]}
           >
             {ngettext("%{count} month", "%{count} months", h)}
           </button>
@@ -146,8 +146,8 @@ defmodule IdcalWeb.ForecastLive.Show do
       </div>
 
       <%!-- Projection chart --%>
-      <div class="panel p-5">
-        <h2 class="panel-title text-lg mb-3">📈 {gettext("Projected Cash Flow")}</h2>
+      <div class="card-neo p-5">
+        <h2 class="card-title text-lg mb-3">{gettext("Projected Cash Flow")}</h2>
         <canvas
           id={"forecast-chart-#{@horizon}-#{:erlang.phash2({@toggles, @amount_overrides})}"}
           phx-hook="ChartHook"
@@ -158,28 +158,28 @@ defmodule IdcalWeb.ForecastLive.Show do
       </div>
 
       <%!-- Projection table --%>
-      <div class="panel p-5">
-        <h2 class="panel-title text-lg mb-3">📋 {gettext("Monthly Breakdown")}</h2>
+      <div class="card-neo p-5">
+        <h2 class="card-title text-lg mb-3">{gettext("Monthly Breakdown")}</h2>
         <div class="overflow-x-auto">
           <table class="w-full text-sm">
             <thead>
-              <tr class="text-gold font-cinzel text-xs border-b border-[#7a5c1e]">
+              <tr class="text-[#A31F34] text-xs border-b border-[#E0DEDB]">
                 <th class="text-left py-1 px-2">{gettext("Month")}</th>
-                <th class="text-right py-1 px-2">{gettext("Coffers")}</th>
-                <th class="text-right py-1 px-2">{gettext("Tributes")}</th>
-                <th class="text-right py-1 px-2">{gettext("Net Purse")}</th>
-                <th class="text-right py-1 px-2">{gettext("Amassed Hoard")}</th>
+                <th class="text-right py-1 px-2">{gettext("Income")}</th>
+                <th class="text-right py-1 px-2">{gettext("Expenses")}</th>
+                <th class="text-right py-1 px-2">{gettext("Net Balance")}</th>
+                <th class="text-right py-1 px-2">{gettext("Cumulative Balance")}</th>
               </tr>
             </thead>
             <tbody>
-              <tr :for={{m, cum} <- Enum.zip(@projection, @cumulative)} class="border-b border-[#7a5c1e]/30">
-                <td class="py-1 px-2 text-cream font-cinzel">{month_abbr(m.month)} {m.year}</td>
-                <td class="py-1 px-2 text-right text-[#3d8b3d] font-mono">{format_amount(m.income)}</td>
-                <td class="py-1 px-2 text-right text-[#8b1a1a] font-mono">{format_amount(m.expenses)}</td>
-                <td class={["py-1 px-2 text-right font-mono", if(Decimal.compare(m.balance, 0) == :lt, do: "text-[#8b1a1a]", else: "text-[#3d8b3d]")]}>
+              <tr :for={{m, cum} <- Enum.zip(@projection, @cumulative)} class="border-b border-[#E0DEDB]/30">
+                <td class="py-1 px-2 text-ink">{month_abbr(m.month)} {m.year}</td>
+                <td class="py-1 px-2 text-right text-[#1D9E75] font-amount">{format_amount(m.income)}</td>
+                <td class="py-1 px-2 text-right text-[#E24B4A] font-amount">{format_amount(m.expenses)}</td>
+                <td class={["py-1 px-2 text-right font-amount", if(Decimal.compare(m.balance, 0) == :lt, do: "text-[#E24B4A]", else: "text-[#1D9E75]")]}>
                   {format_amount(m.balance)}
                 </td>
-                <td class={["py-1 px-2 text-right font-mono", if(Decimal.compare(cum, 0) == :lt, do: "text-[#8b1a1a]", else: "text-[#d4a017]")]}>
+                <td class={["py-1 px-2 text-right font-amount", if(Decimal.compare(cum, 0) == :lt, do: "text-[#E24B4A]", else: "text-[#BA7517]")]}>
                   {format_amount(cum)}
                 </td>
               </tr>
@@ -191,29 +191,29 @@ defmodule IdcalWeb.ForecastLive.Show do
       <%!-- What-if toggles --%>
       <div class="grid gap-6 lg:grid-cols-2">
         <%!-- Income sources --%>
-        <div class="panel p-5">
+        <div class="card-neo p-5">
           <div class="flex items-center justify-between mb-3">
-            <h2 class="panel-title text-lg">🪙 {gettext("Wellsprings")}</h2>
-            <button phx-click="reset_scenarios" class="btn-medieval text-xs">{gettext("Reset")}</button>
+            <h2 class="card-title text-lg">{gettext("Sources")}</h2>
+            <button phx-click="reset_scenarios" class="btn-ghost text-xs">{gettext("Reset")}</button>
           </div>
-          <p class="text-muted text-xs italic-fell mb-3">{gettext("Toggle sources on/off to see projected impact.")}</p>
-          <div :if={@income_sources == []} class="italic-fell text-muted text-sm">
-            🕸️ {gettext("No recurring wellsprings.")}
+          <p class="text-slate text-xs mb-3">{gettext("Toggle sources on/off to see projected impact.")}</p>
+          <div :if={@income_sources == []} class="text-slate text-sm">
+            {gettext("No recurring sources.")}
           </div>
-          <div :for={source <- @income_sources} class="flex items-center justify-between py-2 border-b border-[#7a5c1e]/30">
+          <div :for={source <- @income_sources} class="flex items-center justify-between py-2 border-b border-[#E0DEDB]/30">
             <div class="flex items-center gap-3">
               <button
                 phx-click="toggle_source"
                 phx-value-id={source.id}
-                class={["w-5 h-5 border border-[#7a5c1e] flex items-center justify-center text-xs",
-                  if(source_enabled?(@toggles, source.id), do: "bg-[#3d8b3d] text-cream", else: "bg-[#1a1208] text-muted")
+                class={["w-5 h-5 border border-[#E0DEDB] flex items-center justify-center text-xs",
+                  if(source_enabled?(@toggles, source.id), do: "bg-[#1D9E75] text-ink", else: "bg-[#F8F7F5] text-slate")
                 ]}
               >
                 {if source_enabled?(@toggles, source.id), do: "✓", else: "✗"}
               </button>
               <div>
-                <span class={["text-cream", if(!source_enabled?(@toggles, source.id), do: "line-through opacity-50")]}>{source.name}</span>
-                <span class="text-muted text-xs ml-1">({source.income_category.name})</span>
+                <span class={["text-ink", if(!source_enabled?(@toggles, source.id), do: "line-through opacity-50")]}>{source.name}</span>
+                <span class="text-slate text-xs ml-1">({source.income_category.name})</span>
               </div>
             </div>
             <form phx-change="adjust_amount" class="flex items-center gap-1">
@@ -225,33 +225,33 @@ defmodule IdcalWeb.ForecastLive.Show do
                 value={Map.get(@amount_overrides, {:income_amount, source.id}, source.base_amount) |> Decimal.to_string()}
                 step="0.01"
                 min="0"
-                class="w-24 bg-[#1a1208] border border-[#7a5c1e] text-[#3d8b3d] text-right text-sm px-2 py-0.5 font-mono focus:border-[#d4a017] focus:outline-none"
+                class="w-24 bg-[#F8F7F5] border border-[#E0DEDB] text-[#1D9E75] text-right text-sm px-2 py-0.5 font-amount focus:border-[#BA7517] focus:outline-none"
               />
             </form>
           </div>
         </div>
 
         <%!-- Expense types --%>
-        <div class="panel p-5">
-          <h2 class="panel-title text-lg mb-3">💸 {gettext("Levies")}</h2>
-          <p class="text-muted text-xs italic-fell mb-3">{gettext("Toggle levies on/off to see projected impact.")}</p>
-          <div :if={@expense_types == []} class="italic-fell text-muted text-sm">
-            🕸️ {gettext("No recurring levies.")}
+        <div class="card-neo p-5">
+          <h2 class="card-title text-lg mb-3">{gettext("Types")}</h2>
+          <p class="text-slate text-xs mb-3">{gettext("Toggle types on/off to see projected impact.")}</p>
+          <div :if={@expense_types == []} class="text-slate text-sm">
+            {gettext("No recurring types.")}
           </div>
-          <div :for={type <- @expense_types} class="flex items-center justify-between py-2 border-b border-[#7a5c1e]/30">
+          <div :for={type <- @expense_types} class="flex items-center justify-between py-2 border-b border-[#E0DEDB]/30">
             <div class="flex items-center gap-3">
               <button
                 phx-click="toggle_type"
                 phx-value-id={type.id}
-                class={["w-5 h-5 border border-[#7a5c1e] flex items-center justify-center text-xs",
-                  if(type_enabled?(@toggles, type.id), do: "bg-[#8b1a1a] text-cream", else: "bg-[#1a1208] text-muted")
+                class={["w-5 h-5 border border-[#E0DEDB] flex items-center justify-center text-xs",
+                  if(type_enabled?(@toggles, type.id), do: "bg-[#E24B4A] text-ink", else: "bg-[#F8F7F5] text-slate")
                 ]}
               >
                 {if type_enabled?(@toggles, type.id), do: "✓", else: "✗"}
               </button>
               <div>
-                <span class={["text-cream", if(!type_enabled?(@toggles, type.id), do: "line-through opacity-50")]}>{type.name}</span>
-                <span class="text-muted text-xs ml-1">({type.expense_category.name})</span>
+                <span class={["text-ink", if(!type_enabled?(@toggles, type.id), do: "line-through opacity-50")]}>{type.name}</span>
+                <span class="text-slate text-xs ml-1">({type.expense_category.name})</span>
               </div>
             </div>
             <form phx-change="adjust_amount" class="flex items-center gap-1">
@@ -263,7 +263,7 @@ defmodule IdcalWeb.ForecastLive.Show do
                 value={Map.get(@amount_overrides, {:expense_amount, type.id}, type.base_amount) |> Decimal.to_string()}
                 step="0.01"
                 min="0"
-                class="w-24 bg-[#1a1208] border border-[#7a5c1e] text-[#8b1a1a] text-right text-sm px-2 py-0.5 font-mono focus:border-[#d4a017] focus:outline-none"
+                class="w-24 bg-[#F8F7F5] border border-[#E0DEDB] text-[#E24B4A] text-right text-sm px-2 py-0.5 font-amount focus:border-[#BA7517] focus:outline-none"
               />
             </form>
           </div>
