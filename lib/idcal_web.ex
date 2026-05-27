@@ -17,7 +17,7 @@ defmodule IdcalWeb do
   those modules here.
   """
 
-  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt)
+  def static_paths, do: ~w(assets fonts images favicon.ico idcal-favicon-32.svg idcal-favicon.svg idcal-logo.svg robots.txt)
 
   def router do
     quote do
