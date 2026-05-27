@@ -7,7 +7,7 @@ defmodule IdcalWeb.Locale do
   it to the Gettext backend.
   """
 
-  import Plug.Conn, only: [get_session: 2, assign: 3]
+  import Plug.Conn, only: [get_session: 2, get_req_header: 2, assign: 3]
 
   @supported ~w(en pt)
   @default "en"
@@ -27,9 +27,31 @@ defmodule IdcalWeb.Locale do
   def init(opts), do: opts
 
   def call(conn, _opts) do
-    locale = conn |> get_session(:locale) |> normalize()
+    locale =
+      case get_session(conn, :locale) do
+        nil -> conn |> detect_from_header() |> normalize()
+        saved -> normalize(saved)
+      end
+
     Gettext.put_locale(IdcalWeb.Gettext, locale)
     assign(conn, :locale, locale)
+  end
+
+  defp detect_from_header(conn) do
+    case get_req_header(conn, "accept-language") do
+      [header | _] -> parse_accept_language(header)
+      [] -> nil
+    end
+  end
+
+  defp parse_accept_language(header) do
+    header
+    |> String.split(",")
+    |> Enum.find_value(fn segment ->
+      lang = segment |> String.split(";") |> hd() |> String.trim() |> String.downcase()
+      prefix = lang |> String.split("-") |> hd()
+      if prefix in @supported, do: prefix
+    end)
   end
 
   ## LiveView on_mount
