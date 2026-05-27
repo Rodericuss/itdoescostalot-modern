@@ -105,7 +105,7 @@ defmodule IdcalWeb.InsightsLive.Show do
     })
   end
 
-  defp change_indicator(nil), do: "—"
+  defp change_indicator(nil), do: "-"
   defp change_indicator(pct) do
     cond do
       Decimal.gt?(pct, 0) -> "+#{Decimal.to_string(pct)}%"

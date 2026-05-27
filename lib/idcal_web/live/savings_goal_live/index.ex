@@ -210,7 +210,7 @@ defmodule IdcalWeb.SavingsGoalLive.Index do
       <%!-- Empty state --%>
       <div :if={@goals == [] && !@goal_form} class="card-neo p-10 text-center">
         <p class="text-slate mt-3">
-          {gettext("No goals yet — create one to start saving toward a target.")}
+          {gettext("No goals yet, create one to start saving toward a target.")}
         </p>
       </div>
 
@@ -316,7 +316,7 @@ defmodule IdcalWeb.SavingsGoalLive.Index do
                   <td class="py-1 px-2 text-ink">{c.year}</td>
                   <td class="py-1 px-2 text-ink">{c.month}</td>
                   <td class="py-1 px-2 text-right text-[#BA7517] font-amount">{format_amount(c.amount)}</td>
-                  <td class="py-1 px-2 text-slate">{c.note || "—"}</td>
+                  <td class="py-1 px-2 text-slate">{c.note || "-"}</td>
                   <td class="py-1 px-2 flex gap-1 justify-end">
                     <button phx-click="edit_contribution" phx-value-goal-id={goal.id} phx-value-id={c.id} class="text-slate hover:text-[#A31F34]">
                       <.icon name="hero-pencil-square" class="size-4" />

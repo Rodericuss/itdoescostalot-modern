@@ -135,13 +135,13 @@ defmodule IdcalWeb.ProfileLive.Compare do
             <tr :for={{lm, rm} <- Enum.zip(@left_data.months, @right_data.months)} class="border-b border-[#E0DEDB]/30">
               <td class="py-1 px-2 text-ink">{month_abbr(lm.month)}</td>
               <td class={["py-1 px-2 text-right font-amount", balance_color(lm.balance)]}>
-                {if lm.tracked, do: format_amount(lm.balance), else: "—"}
+                {if lm.tracked, do: format_amount(lm.balance), else: "-"}
               </td>
               <td class={["py-1 px-2 text-right font-amount", balance_color(rm.balance)]}>
-                {if rm.tracked, do: format_amount(rm.balance), else: "—"}
+                {if rm.tracked, do: format_amount(rm.balance), else: "-"}
               </td>
               <td class="py-1 px-2 text-right font-amount text-slate">
-                {if lm.tracked && rm.tracked, do: format_amount(Decimal.sub(lm.balance, rm.balance)), else: "—"}
+                {if lm.tracked && rm.tracked, do: format_amount(Decimal.sub(lm.balance, rm.balance)), else: "-"}
               </td>
             </tr>
           </tbody>

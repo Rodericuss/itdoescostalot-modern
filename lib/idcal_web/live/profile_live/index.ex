@@ -42,7 +42,7 @@ defmodule IdcalWeb.ProfileLive.Index do
 
       <div :if={@profiles == []} class="card-neo p-10 text-center">
         <p class="text-slate mt-3">
-          {gettext("No profiles yet — create your first one to start tracking.")}
+          {gettext("No profiles yet, create your first one to start tracking.")}
         </p>
       </div>
 

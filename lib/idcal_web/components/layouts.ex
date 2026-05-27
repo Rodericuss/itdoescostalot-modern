@@ -41,7 +41,7 @@ defmodule IdcalWeb.Layouts do
           <span class="inline-block w-7 h-7 bg-[#A31F34] border-2 border-[#1A1A1A] rounded-sm"></span>
           <span class="font-bold text-xl text-[#1A1A1A]">IDCAL</span>
           <span class="hidden sm:inline text-slate text-sm">
-            {gettext("It Does Cost A Lot")}
+            It Does Cost A Lot
           </span>
         </a>
         <ul class="flex items-center gap-4 text-sm font-medium">

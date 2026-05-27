@@ -321,7 +321,7 @@ defmodule IdcalWeb.ExpenseLive.Index do
       <%!-- Empty state --%>
       <div :if={@categories == [] && !@category_form} class="card-neo p-10 text-center">
         <p class="text-slate mt-3">
-          {gettext("No categories yet — add one to start tracking.")}
+          {gettext("No categories yet, add one to start tracking.")}
         </p>
       </div>
 
@@ -469,7 +469,7 @@ defmodule IdcalWeb.ExpenseLive.Index do
             <td class="py-1 px-2 text-ink">{entry.year}</td>
             <td class="py-1 px-2 text-ink">{entry.month}</td>
             <td class="py-1 px-2 text-right text-[#E24B4A] font-amount">{Decimal.to_string(entry.amount)}</td>
-            <td class="py-1 px-2 text-slate">{entry.note || "—"}</td>
+            <td class="py-1 px-2 text-slate">{entry.note || "-"}</td>
             <td class="py-1 px-2 flex gap-1 justify-end">
               <button phx-click="edit_entry" phx-value-type-id={@type.id} phx-value-id={entry.id} class="text-slate hover:text-[#A31F34]">
                 <.icon name="hero-pencil-square" class="size-4" />
