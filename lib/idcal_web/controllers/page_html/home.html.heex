@@ -1,87 +1,86 @@
 <Layouts.app flash={@flash} current_scope={@current_scope}>
   <%!-- Hero Section --%>
-  <div class="panel px-6 py-16 sm:py-24 text-center">
-    <div class="flex justify-center mb-4">
-      <span class="text-6xl">💰</span>
-    </div>
-    <h1 class="font-cinzel-decorative font-bold text-5xl sm:text-6xl text-gold">
+  <div class="card-neo px-6 py-16 sm:py-24 text-center">
+    <h1 class="font-bold text-5xl sm:text-6xl text-[#A31F34]">
       {gettext("It Does Cost A Lot")}
     </h1>
-    <p class="italic-fell mt-4 text-lg sm:text-xl max-w-xl mx-auto text-[#c4a060]">
-      {gettext("Chart the coin of your realm — income, expense, and the balance between.")}
+    <p class="mt-4 text-lg sm:text-xl max-w-xl mx-auto text-slate">
+      {gettext("Track your income, expenses, and balance — month by month.")}
     </p>
 
     <div class="mt-10 flex flex-wrap justify-center gap-4">
       <%= if @current_scope do %>
-        <.link href={~p"/profiles"} class="btn-medieval !py-3 !px-6 text-lg">📜 {gettext("Enter your Ledgers")}</.link>
+        <.link href={~p"/profiles"} class="btn-primary !py-3 !px-6 text-lg">{gettext("Go to Profiles")}</.link>
       <% else %>
-        <.link href={~p"/users/register"} class="btn-medieval !py-3 !px-6 text-lg !bg-[#3d8b3d]">
-          ⚔️ {gettext("Create your Adventurer")}
+        <.link href={~p"/users/register"} class="btn-primary !py-3 !px-6 text-lg">
+          {gettext("Create an account")}
         </.link>
-        <.link href={~p"/users/log-in"} class="btn-medieval !py-3 !px-6 text-lg">🏰 {gettext("Enter the Vault")}</.link>
+        <.link href={~p"/users/log-in"} class="btn-ghost !py-3 !px-6 text-lg">{gettext("Log in")}</.link>
       <% end %>
     </div>
   </div>
 
   <%!-- Features Section --%>
   <div class="mt-2">
-    <h2 class="font-cinzel-decorative text-gold text-2xl text-center mb-6">⚜️ {gettext("Your Financial Quest")} ⚜️</h2>
+    <h2 class="text-[#A31F34] text-2xl font-bold text-center mb-6">{gettext("Your Financial Overview")}</h2>
     <div class="grid gap-4 sm:grid-cols-3">
-      <div class="panel p-6 text-center">
-        <div class="text-4xl mb-3">🪙</div>
-        <h3 class="font-medieval text-gold text-lg">{gettext("Tally every coin")}</h3>
-        <p class="italic-fell text-muted mt-2">
-          {gettext("Recurring tithes and sporadic bounties alike, month by month.")}
+      <div class="card-neo p-6 text-center">
+        <div class="text-4xl mb-3">
+          <.icon name="hero-currency-dollar" class="size-10 text-[#1D9E75] mx-auto" />
+        </div>
+        <h3 class="font-semibold text-ink text-lg">{gettext("Track every entry")}</h3>
+        <p class="text-slate mt-2">
+          {gettext("Recurring and one-time entries, organized by month.")}
         </p>
       </div>
-      <div class="panel p-6 text-center">
-        <div class="text-4xl mb-3">🗺️</div>
-        <h3 class="font-medieval text-gold text-lg">{gettext("Chart the realm")}</h3>
-        <p class="italic-fell text-muted mt-2">
-          {gettext("Twelve moons at a glance — surplus in gold, deficit in crimson.")}
+      <div class="card-neo p-6 text-center">
+        <div class="text-4xl mb-3">
+          <.icon name="hero-chart-bar" class="size-10 text-[#A31F34] mx-auto" />
+        </div>
+        <h3 class="font-semibold text-ink text-lg">{gettext("Visualize your year")}</h3>
+        <p class="text-slate mt-2">
+          {gettext("Twelve months at a glance — surplus in green, deficit in red.")}
         </p>
       </div>
-      <div class="panel p-6 text-center">
-        <div class="text-4xl mb-3">📖</div>
-        <h3 class="font-medieval text-gold text-lg">{gettext("Many ledgers")}</h3>
-        <p class="italic-fell text-muted mt-2">{gettext("Keep separate tomes for each purse you carry.")}</p>
+      <div class="card-neo p-6 text-center">
+        <div class="text-4xl mb-3">
+          <.icon name="hero-user-group" class="size-10 text-[#185FA5] mx-auto" />
+        </div>
+        <h3 class="font-semibold text-ink text-lg">{gettext("Multiple profiles")}</h3>
+        <p class="text-slate mt-2">{gettext("Keep separate profiles for each financial context.")}</p>
       </div>
     </div>
   </div>
 
   <%!-- How it works section --%>
-  <div class="panel p-6 sm:p-8">
-    <h2 class="font-cinzel-decorative text-gold text-2xl text-center mb-8">📜 {gettext("The Adventurer's Path")}</h2>
-    <div class="columns-panel grid-cols-4 text-center">
+  <div class="card-neo p-6 sm:p-8">
+    <h2 class="text-[#A31F34] text-2xl font-bold text-center mb-8">{gettext("How It Works")}</h2>
+    <div class="grid grid-cols-4 gap-4 text-center">
       <div>
-        <div class="text-3xl mb-2">📚</div>
-        <div class="font-cinzel text-lg text-[#7a5c1e] font-bold">I</div>
-        <p class="font-medieval text-cream text-sm mt-1">{gettext("Forge a ledger")}</p>
+        <div class="w-10 h-10 rounded-full bg-[#A31F34] text-white flex items-center justify-center mx-auto font-bold border-2 border-[#1A1A1A]" style="box-shadow: 2px 2px 0 #1A1A1A;">1</div>
+        <p class="text-ink text-sm mt-2 font-medium">{gettext("Create a profile")}</p>
       </div>
       <div>
-        <div class="text-3xl mb-2">⚒️</div>
-        <div class="font-cinzel text-lg text-[#7a5c1e] font-bold">II</div>
-        <p class="font-medieval text-cream text-sm mt-1">{gettext("Add wellsprings & levies")}</p>
+        <div class="w-10 h-10 rounded-full bg-[#A31F34] text-white flex items-center justify-center mx-auto font-bold border-2 border-[#1A1A1A]" style="box-shadow: 2px 2px 0 #1A1A1A;">2</div>
+        <p class="text-ink text-sm mt-2 font-medium">{gettext("Add income and expenses")}</p>
       </div>
       <div>
-        <div class="text-3xl mb-2">🪶</div>
-        <div class="font-cinzel text-lg text-[#7a5c1e] font-bold">III</div>
-        <p class="font-medieval text-cream text-sm mt-1">{gettext("Inscribe monthly records")}</p>
+        <div class="w-10 h-10 rounded-full bg-[#A31F34] text-white flex items-center justify-center mx-auto font-bold border-2 border-[#1A1A1A]" style="box-shadow: 2px 2px 0 #1A1A1A;">3</div>
+        <p class="text-ink text-sm mt-2 font-medium">{gettext("Log monthly entries")}</p>
       </div>
       <div>
-        <div class="text-3xl mb-2">👑</div>
-        <div class="font-cinzel text-lg text-[#7a5c1e] font-bold">IV</div>
-        <p class="font-medieval text-cream text-sm mt-1">{gettext("Behold your treasury map")}</p>
+        <div class="w-10 h-10 rounded-full bg-[#A31F34] text-white flex items-center justify-center mx-auto font-bold border-2 border-[#1A1A1A]" style="box-shadow: 2px 2px 0 #1A1A1A;">4</div>
+        <p class="text-ink text-sm mt-2 font-medium">{gettext("See your financial dashboard")}</p>
       </div>
     </div>
   </div>
 
   <%!-- Bottom CTA --%>
   <div class="text-center py-6">
-    <p class="italic-fell text-muted">🛡️ {gettext("Free. No ads. Your data stays yours.")} 🛡️</p>
+    <p class="text-slate">{gettext("Free. No ads. Your data stays yours.")}</p>
     <%= unless @current_scope do %>
-      <.link href={~p"/users/register"} class="btn-medieval mt-4">
-        ⚔️ {gettext("Begin your Quest")}
+      <.link href={~p"/users/register"} class="btn-primary mt-4">
+        {gettext("Get started")}
       </.link>
     <% end %>
   </div>

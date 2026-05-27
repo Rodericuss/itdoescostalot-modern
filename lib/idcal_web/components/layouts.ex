@@ -35,40 +35,44 @@ defmodule IdcalWeb.Layouts do
 
   def app(assigns) do
     ~H"""
-    <header class="bg-[#2e1f0e] border-b-3 border-b-[#4a3510]" style="box-shadow: inset 0 -3px 0 #9a7a30;">
+    <header class="bg-white border-b-2 border-[#1A1A1A]">
       <div class="mx-auto max-w-6xl flex items-center justify-between px-4 py-3 sm:px-6">
         <a href="/" class="flex items-center gap-2">
-          <span class="text-xl">💰</span>
-          <span class="font-cinzel-decorative font-bold text-xl text-gold">IDCAL</span>
-          <span class="hidden sm:inline text-muted text-sm italic">
+          <span class="inline-block w-7 h-7 bg-[#A31F34] border-2 border-[#1A1A1A] rounded-sm"></span>
+          <span class="font-bold text-xl text-[#1A1A1A]">IDCAL</span>
+          <span class="hidden sm:inline text-slate text-sm">
             {gettext("It Does Cost A Lot")}
           </span>
         </a>
-        <ul class="flex items-center gap-4 font-cinzel text-sm">
+        <ul class="flex items-center gap-4 text-sm font-medium">
           <%= if @current_scope do %>
-            <li class="text-muted hidden sm:block">{@current_scope.user.email}</li>
-            <li>
-              <.link href={~p"/profiles"} class="hover:text-gold">📜 {gettext("Ledgers")}</.link>
+            <li class="hidden sm:block">
+              <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#A31F34] text-white text-xs font-bold border-2 border-[#1A1A1A]" title={@current_scope.user.email}>
+                {String.first(@current_scope.user.email) |> String.upcase()}
+              </span>
             </li>
             <li>
-              <.link href={~p"/users/settings"} class="hover:text-gold">
-                ⚙️ {gettext("Settings")}
+              <.link href={~p"/profiles"} class="text-ink hover:text-[#A31F34]">{gettext("Profiles")}</.link>
+            </li>
+            <li>
+              <.link href={~p"/users/settings"} class="text-ink hover:text-[#A31F34]">
+                {gettext("Settings")}
               </.link>
             </li>
             <li>
-              <.link href={~p"/users/log-out"} method="delete" class="hover:text-gold">
-                🚪 {gettext("Log out")}
+              <.link href={~p"/users/log-out"} method="delete" class="text-ink hover:text-[#A31F34]">
+                {gettext("Log out")}
               </.link>
             </li>
           <% else %>
             <li>
-              <.link href={~p"/users/register"} class="hover:text-gold">
-                ⚔️ {gettext("Register")}
+              <.link href={~p"/users/register"} class="text-ink hover:text-[#A31F34]">
+                {gettext("Register")}
               </.link>
             </li>
             <li>
-              <.link href={~p"/users/log-in"} class="hover:text-gold">
-                🏰 {gettext("Enter the Vault")}
+              <.link href={~p"/users/log-in"} class="btn-primary text-sm">
+                {gettext("Log in")}
               </.link>
             </li>
           <% end %>
@@ -92,17 +96,17 @@ defmodule IdcalWeb.Layouts do
     assigns = assign(assigns, :current, Gettext.get_locale(IdcalWeb.Gettext))
 
     ~H"""
-    <div class="flex items-center gap-1 font-cinzel text-sm" title={gettext("Language")}>
+    <div class="flex items-center gap-1 text-sm" title={gettext("Language")}>
       <.link
         href={~p"/locale/en"}
-        class={if @current == "en", do: "text-gold", else: "text-muted hover:text-gold"}
+        class={if @current == "en", do: "text-[#A31F34] font-semibold", else: "text-slate hover:text-[#A31F34]"}
       >
         EN
       </.link>
-      <span class="text-muted">|</span>
+      <span class="text-slate">|</span>
       <.link
         href={~p"/locale/pt"}
-        class={if @current == "pt", do: "text-gold", else: "text-muted hover:text-gold"}
+        class={if @current == "pt", do: "text-[#A31F34] font-semibold", else: "text-slate hover:text-[#A31F34]"}
       >
         PT
       </.link>

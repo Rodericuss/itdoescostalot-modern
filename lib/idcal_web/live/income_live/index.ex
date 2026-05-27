@@ -11,7 +11,7 @@ defmodule IdcalWeb.IncomeLive.Index do
 
     {:ok,
      socket
-     |> assign(:page_title, gettext("Coffers"))
+     |> assign(:page_title, gettext("Income"))
      |> assign(:profile, profile)
      |> assign(:categories, categories)
      |> assign(:category_form, nil)
@@ -74,7 +74,7 @@ defmodule IdcalWeb.IncomeLive.Index do
     {:noreply,
      socket
      |> assign(:categories, Finances.list_income_categories(socket.assigns.profile))
-     |> put_flash(:info, gettext("Guild disbanded."))}
+     |> put_flash(:info, gettext("Category deleted."))}
   end
 
   def handle_event("new_source", %{"category-id" => category_id}, socket) do
@@ -132,7 +132,7 @@ defmodule IdcalWeb.IncomeLive.Index do
     {:noreply,
      socket
      |> assign(:categories, Finances.list_income_categories(socket.assigns.profile))
-     |> put_flash(:info, gettext("Wellspring dried up."))}
+     |> put_flash(:info, gettext("Source removed."))}
   end
 
   def handle_event("new_entry", %{"source-id" => source_id}, socket) do
@@ -200,7 +200,7 @@ defmodule IdcalWeb.IncomeLive.Index do
     {:noreply,
      socket
      |> assign(:categories, Finances.list_income_categories(socket.assigns.profile))
-     |> put_flash(:info, gettext("Record expunged."))}
+     |> put_flash(:info, gettext("Entry deleted."))}
   end
 
   def handle_event("toggle_pin", %{"id" => id}, socket) do
@@ -216,57 +216,56 @@ defmodule IdcalWeb.IncomeLive.Index do
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <div class="flex items-center justify-between">
         <div>
-          <.link navigate={~p"/profiles/#{@profile}"} class="text-muted hover:text-gold font-cinzel text-sm">
+          <.link navigate={~p"/profiles/#{@profile}"} class="text-slate hover:text-[#A31F34] text-sm">
             &larr; {@profile.nickname}
           </.link>
-          <h1 class="font-cinzel-decorative font-bold text-3xl text-[#3d8b3d] mt-1">🪙 {gettext("Coffers")}</h1>
+          <h1 class="font-bold text-3xl text-[#1D9E75] mt-1">{gettext("Income")}</h1>
         </div>
-        <button phx-click="new_category" class="btn-medieval">
-          🏷️ {gettext("New Guild")}
+        <button phx-click="new_category" class="btn-ghost">
+          {gettext("New Category")}
         </button>
       </div>
 
-      <%!-- Guild form (new or edit) --%>
-      <div :if={@category_form} class="panel p-5">
-        <h2 class="panel-title text-lg mb-3">
-          {if @editing_category, do: gettext("Edit Guild"), else: gettext("New Guild")}
+      <%!-- Category form (new or edit) --%>
+      <div :if={@category_form} class="card-neo p-5">
+        <h2 class="card-title text-lg mb-3">
+          {if @editing_category, do: gettext("Edit Category"), else: gettext("New Category")}
         </h2>
         <.form for={@category_form} phx-submit="save_category" class="flex items-end gap-3">
-          <.input field={@category_form[:name]} label={gettext("Name")} placeholder={gettext("e.g. Crown's Pay, Mercenary Work")} />
-          <button type="submit" class="btn-medieval">{gettext("Save")}</button>
-          <button type="button" phx-click="cancel_category" class="btn-medieval btn-danger">{gettext("Cancel")}</button>
+          <.input field={@category_form[:name]} label={gettext("Name")} placeholder={gettext("e.g. Salary, Freelance")} />
+          <button type="submit" class="btn-primary">{gettext("Save")}</button>
+          <button type="button" phx-click="cancel_category" class="btn-ghost btn-danger">{gettext("Cancel")}</button>
         </.form>
       </div>
 
       <%!-- Empty state --%>
-      <div :if={@categories == [] && !@category_form} class="panel p-10 text-center">
-        <div class="text-5xl mb-3">🏚️</div>
-        <p class="italic-fell text-muted mt-3">
-          {gettext("No guilds yet — establish one to start tallying your coin.")}
+      <div :if={@categories == [] && !@category_form} class="card-neo p-10 text-center">
+        <p class="text-slate mt-3">
+          {gettext("No categories yet — add one to start tracking.")}
         </p>
       </div>
 
       <%!-- Category list --%>
-      <div :for={category <- @categories} class="panel p-5 space-y-4">
+      <div :for={category <- @categories} class="card-neo p-5 space-y-4">
         <div class="flex items-center justify-between">
-          <h2 class="panel-title text-xl">
-            {if category.pinned, do: "📌", else: "⚜️"} {category.name}
+          <h2 class="card-title text-xl">
+            {category.name}
           </h2>
           <div class="flex gap-2">
-            <button phx-click="new_source" phx-value-category-id={category.id} class="btn-medieval text-sm">
-              ⛏️ {gettext("Add Wellspring")}
+            <button phx-click="new_source" phx-value-category-id={category.id} class="btn-ghost text-sm">
+              {gettext("Add Source")}
             </button>
-            <button phx-click="toggle_pin" phx-value-id={category.id} class="btn-medieval text-sm" title={gettext("Pin")}>
-              {if category.pinned, do: "📌", else: "📍"}
+            <button phx-click="toggle_pin" phx-value-id={category.id} class="btn-ghost text-sm" title={gettext("Pin")}>
+              <.icon name={if category.pinned, do: "hero-bookmark-solid", else: "hero-bookmark"} class="size-4" />
             </button>
-            <button phx-click="edit_category" phx-value-id={category.id} class="btn-medieval text-sm">
+            <button phx-click="edit_category" phx-value-id={category.id} class="btn-ghost text-sm">
               <.icon name="hero-pencil-square" class="size-4" />
             </button>
             <button
               phx-click="delete_category"
               phx-value-id={category.id}
-              class="btn-medieval btn-danger text-sm"
-              data-confirm={gettext("Disband this guild and all its wellsprings?")}
+              class="btn-ghost btn-danger text-sm"
+              data-confirm={gettext("Delete this category and all its sources?")}
             >
               <.icon name="hero-trash" class="size-4" />
             </button>
@@ -274,57 +273,57 @@ defmodule IdcalWeb.IncomeLive.Index do
         </div>
 
         <%!-- Source form for this category --%>
-        <div :if={@source_form && to_string(@source_category_id) == to_string(category.id)} class="ml-4 border-l-2 border-[#7a5c1e] pl-4">
-          <h3 class="font-cinzel text-gold text-sm mb-2">
-            {if @editing_source, do: gettext("Edit Wellspring"), else: gettext("New Wellspring")}
+        <div :if={@source_form && to_string(@source_category_id) == to_string(category.id)} class="ml-4 border-l-2 border-[#E0DEDB] pl-4">
+          <h3 class="text-[#A31F34] text-sm mb-2">
+            {if @editing_source, do: gettext("Edit Source"), else: gettext("New Source")}
           </h3>
           <.form for={@source_form} phx-submit="save_source" class="space-y-2">
             <input type="hidden" name="income_source[income_category_id]" value={category.id} />
             <div class="flex flex-wrap items-end gap-3">
-              <.input field={@source_form[:name]} label={gettext("Name")} placeholder={gettext("e.g. Lord Pemberton")} />
+              <.input field={@source_form[:name]} label={gettext("Name")} placeholder={gettext("e.g. Client XPTO")} />
               <.input
                 field={@source_form[:recurrence]}
                 type="select"
                 label={gettext("Recurrence")}
                 options={[{gettext("Monthly"), :monthly}, {gettext("Sporadic"), :sporadic}]}
               />
-              <.input field={@source_form[:base_amount]} type="number" label={gettext("Base Tithe")} placeholder="0.00" step="0.01" min="0" />
+              <.input field={@source_form[:base_amount]} type="number" label={gettext("Base Amount")} placeholder="0.00" step="0.01" min="0" />
             </div>
             <div class="flex gap-2">
-              <button type="submit" class="btn-medieval">{gettext("Save")}</button>
-              <button type="button" phx-click="cancel_source" class="btn-medieval btn-danger">{gettext("Cancel")}</button>
+              <button type="submit" class="btn-primary">{gettext("Save")}</button>
+              <button type="button" phx-click="cancel_source" class="btn-ghost btn-danger">{gettext("Cancel")}</button>
             </div>
           </.form>
         </div>
 
         <%!-- Sources list --%>
         <div :if={category.sources != []} class="ml-4 space-y-3">
-          <div :for={source <- category.sources} class="border-l-2 border-[#7a5c1e] pl-4">
+          <div :for={source <- category.sources} class="border-l-2 border-[#E0DEDB] pl-4">
             <div class="flex items-center justify-between">
               <div>
-                <span class="text-cream font-cinzel">{source.name}</span>
+                <span class="text-ink">{source.name}</span>
                 <span class={[
-                  "ml-2 text-xs px-2 py-0.5 rounded",
-                  if(source.recurrence == :monthly, do: "bg-[#3d8b3d]/20 text-[#3d8b3d]", else: "bg-[#d4a017]/20 text-[#d4a017]")
+                  "tag-status ml-2",
+                  if(source.recurrence == :monthly, do: "tag-income", else: "tag-warning")
                 ]}>
                   {if source.recurrence == :monthly, do: gettext("Monthly"), else: gettext("Sporadic")}
                 </span>
-                <span :if={source.base_amount} class="ml-2 text-muted text-sm">
-                  {gettext("Tithe:")} {Decimal.to_string(source.base_amount)}
+                <span :if={source.base_amount} class="ml-2 text-slate text-sm">
+                  {gettext("Base:")} {Decimal.to_string(source.base_amount)}
                 </span>
               </div>
               <div class="flex gap-2">
-                <button phx-click="new_entry" phx-value-source-id={source.id} class="btn-medieval text-xs">
-                  <.icon name="hero-plus" class="size-3" /> {gettext("Record")}
+                <button phx-click="new_entry" phx-value-source-id={source.id} class="btn-ghost text-xs">
+                  <.icon name="hero-plus" class="size-3" /> {gettext("Entry")}
                 </button>
-                <button phx-click="edit_source" phx-value-id={source.id} class="btn-medieval text-xs">
+                <button phx-click="edit_source" phx-value-id={source.id} class="btn-ghost text-xs">
                   <.icon name="hero-pencil-square" class="size-3" />
                 </button>
                 <button
                   phx-click="delete_source"
                   phx-value-id={source.id}
-                  class="btn-medieval btn-danger text-xs"
-                  data-confirm={gettext("Dry up this wellspring and all its records?")}
+                  class="btn-ghost btn-danger text-xs"
+                  data-confirm={gettext("Delete this source and all its entries?")}
                 >
                   <.icon name="hero-trash" class="size-3" />
                 </button>
@@ -332,9 +331,9 @@ defmodule IdcalWeb.IncomeLive.Index do
             </div>
 
             <%!-- Entry form for this source --%>
-            <div :if={@entry_form && @entry_source && @entry_source.id == source.id} class="mt-3 ml-4 border-l-2 border-[#3d8b3d] pl-3">
-              <h4 class="font-cinzel text-[#3d8b3d] text-sm mb-2">
-                {if @editing_entry, do: gettext("Edit Record"), else: gettext("New Record")}
+            <div :if={@entry_form && @entry_source && @entry_source.id == source.id} class="mt-3 ml-4 border-l-2 border-[#1D9E75] pl-3">
+              <h4 class="text-[#1D9E75] text-sm mb-2">
+                {if @editing_entry, do: gettext("Edit Entry"), else: gettext("New Entry")}
               </h4>
               <.form for={@entry_form} phx-submit="save_entry" class="space-y-2">
                 <input type="hidden" name="income_entry[income_source_id]" value={source.id} />
@@ -345,8 +344,8 @@ defmodule IdcalWeb.IncomeLive.Index do
                   <.input field={@entry_form[:note]} label={gettext("Note")} placeholder={gettext("optional")} />
                 </div>
                 <div class="flex gap-2">
-                  <button type="submit" class="btn-medieval">{gettext("Save")}</button>
-                  <button type="button" phx-click="cancel_entry" class="btn-medieval btn-danger">{gettext("Cancel")}</button>
+                  <button type="submit" class="btn-primary">{gettext("Save")}</button>
+                  <button type="button" phx-click="cancel_entry" class="btn-ghost btn-danger">{gettext("Cancel")}</button>
                 </div>
               </.form>
             </div>
@@ -356,8 +355,8 @@ defmodule IdcalWeb.IncomeLive.Index do
           </div>
         </div>
 
-        <p :if={category.sources == []} class="ml-4 italic-fell text-muted text-sm">
-          🕸️ {gettext("No wellsprings yet.")}
+        <p :if={category.sources == []} class="ml-4 text-slate text-sm">
+          {gettext("No sources yet.")}
         </p>
       </div>
     </Layouts.app>
@@ -369,7 +368,7 @@ defmodule IdcalWeb.IncomeLive.Index do
     <div class="mt-2 ml-4 overflow-x-auto">
       <table class="w-full text-sm">
         <thead>
-          <tr class="text-gold font-cinzel text-xs border-b border-[#7a5c1e]">
+          <tr class="text-[#A31F34] text-xs border-b border-[#E0DEDB]">
             <th class="text-left py-1 px-2">{gettext("Year")}</th>
             <th class="text-left py-1 px-2">{gettext("Month")}</th>
             <th class="text-right py-1 px-2">{gettext("Amount")}</th>
@@ -378,21 +377,21 @@ defmodule IdcalWeb.IncomeLive.Index do
           </tr>
         </thead>
         <tbody>
-          <tr :for={entry <- @entries} class="border-b border-[#7a5c1e]/30 hover:bg-[#2e1f0e]">
-            <td class="py-1 px-2 text-cream">{entry.year}</td>
-            <td class="py-1 px-2 text-cream">{entry.month}</td>
-            <td class="py-1 px-2 text-right text-[#3d8b3d] font-mono">{Decimal.to_string(entry.amount)}</td>
-            <td class="py-1 px-2 text-muted">{entry.note || "—"}</td>
+          <tr :for={entry <- @entries} class="border-b border-[#E0DEDB]/30 hover:bg-[#F8F7F5]">
+            <td class="py-1 px-2 text-ink">{entry.year}</td>
+            <td class="py-1 px-2 text-ink">{entry.month}</td>
+            <td class="py-1 px-2 text-right text-[#1D9E75] font-amount">{Decimal.to_string(entry.amount)}</td>
+            <td class="py-1 px-2 text-slate">{entry.note || "—"}</td>
             <td class="py-1 px-2 flex gap-1 justify-end">
-              <button phx-click="edit_entry" phx-value-source-id={@source.id} phx-value-id={entry.id} class="text-muted hover:text-gold">
+              <button phx-click="edit_entry" phx-value-source-id={@source.id} phx-value-id={entry.id} class="text-slate hover:text-[#A31F34]">
                 <.icon name="hero-pencil-square" class="size-4" />
               </button>
               <button
                 phx-click="delete_entry"
                 phx-value-source-id={@source.id}
                 phx-value-id={entry.id}
-                class="text-muted hover:text-[#8b1a1a]"
-                data-confirm={gettext("Expunge this record?")}
+                class="text-slate hover:text-[#E24B4A]"
+                data-confirm={gettext("Delete this entry?")}
               >
                 <.icon name="hero-trash" class="size-4" />
               </button>

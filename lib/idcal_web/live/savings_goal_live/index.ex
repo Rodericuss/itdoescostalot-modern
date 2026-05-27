@@ -13,7 +13,7 @@ defmodule IdcalWeb.SavingsGoalLive.Index do
 
     {:ok,
      socket
-     |> assign(:page_title, gettext("Quests"))
+     |> assign(:page_title, gettext("Goals"))
      |> assign(:profile, profile)
      |> assign(:goals, goals)
      |> assign(:goal_form, nil)
@@ -73,7 +73,7 @@ defmodule IdcalWeb.SavingsGoalLive.Index do
     {:noreply,
      socket
      |> assign(:goals, Finances.list_savings_goals(socket.assigns.profile))
-     |> put_flash(:info, gettext("Quest abandoned."))}
+     |> put_flash(:info, gettext("Goal deleted."))}
   end
 
   def handle_event("new_contribution", %{"goal-id" => goal_id}, socket) do
@@ -141,7 +141,7 @@ defmodule IdcalWeb.SavingsGoalLive.Index do
     {:noreply,
      socket
      |> assign(:goals, Finances.list_savings_goals(socket.assigns.profile))
-     |> put_flash(:info, gettext("Record expunged."))}
+     |> put_flash(:info, gettext("Entry deleted."))}
   end
 
   defp goal_progress(goal, profile) do
@@ -153,17 +153,17 @@ defmodule IdcalWeb.SavingsGoalLive.Index do
 
   defp progress_bar_color(pct) do
     cond do
-      Decimal.gte?(pct, 100) -> "bg-[#3d8b3d]"
-      Decimal.gte?(pct, 75) -> "bg-[#d4a017]"
-      true -> "bg-[#8b5213]"
+      Decimal.gte?(pct, 100) -> "bg-[#1D9E75]"
+      Decimal.gte?(pct, 75) -> "bg-[#BA7517]"
+      true -> "bg-[#BA7517]"
     end
   end
 
   defp deadline_urgency(months_left) do
     cond do
-      months_left <= 0 -> "text-[#8b1a1a] font-bold"
-      months_left <= 3 -> "text-[#d4a017]"
-      true -> "text-muted"
+      months_left <= 0 -> "text-[#E24B4A] font-bold"
+      months_left <= 3 -> "text-[#BA7517]"
+      true -> "text-slate"
     end
   end
 
@@ -173,20 +173,20 @@ defmodule IdcalWeb.SavingsGoalLive.Index do
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <div class="flex items-center justify-between">
         <div>
-          <.link navigate={~p"/profiles/#{@profile}"} class="text-muted hover:text-gold font-cinzel text-sm">
+          <.link navigate={~p"/profiles/#{@profile}"} class="text-slate hover:text-[#A31F34] text-sm">
             &larr; {@profile.nickname}
           </.link>
-          <h1 class="font-cinzel-decorative font-bold text-3xl text-[#d4a017] mt-1">🏆 {gettext("Quests")}</h1>
+          <h1 class="font-bold text-3xl text-[#BA7517] mt-1">{gettext("Goals")}</h1>
         </div>
-        <button phx-click="new_goal" class="btn-medieval">
-          ⚔️ {gettext("New Quest")}
+        <button phx-click="new_goal" class="btn-primary">
+          {gettext("New Goal")}
         </button>
       </div>
 
       <%!-- Goal form --%>
-      <div :if={@goal_form} class="panel p-5">
-        <h2 class="panel-title text-lg mb-3">
-          {if @editing_goal, do: gettext("Edit Quest"), else: gettext("New Quest")}
+      <div :if={@goal_form} class="card-neo p-5">
+        <h2 class="card-title text-lg mb-3">
+          {if @editing_goal, do: gettext("Edit Goal"), else: gettext("New Goal")}
         </h2>
         <.form for={@goal_form} phx-submit="save_goal" class="space-y-3">
           <div class="flex flex-wrap items-end gap-3">
@@ -201,51 +201,50 @@ defmodule IdcalWeb.SavingsGoalLive.Index do
             />
           </div>
           <div class="flex gap-2">
-            <button type="submit" class="btn-medieval">{gettext("Save")}</button>
-            <button type="button" phx-click="cancel_goal" class="btn-medieval btn-danger">{gettext("Cancel")}</button>
+            <button type="submit" class="btn-primary">{gettext("Save")}</button>
+            <button type="button" phx-click="cancel_goal" class="btn-ghost btn-danger">{gettext("Cancel")}</button>
           </div>
         </.form>
       </div>
 
       <%!-- Empty state --%>
-      <div :if={@goals == [] && !@goal_form} class="panel p-10 text-center">
-        <div class="text-5xl mb-3">🗺️</div>
-        <p class="italic-fell text-muted mt-3">
-          {gettext("No quests yet — embark on one to start saving toward your goal.")}
+      <div :if={@goals == [] && !@goal_form} class="card-neo p-10 text-center">
+        <p class="text-slate mt-3">
+          {gettext("No goals yet — create one to start saving toward a target.")}
         </p>
       </div>
 
       <%!-- Goals list --%>
-      <div :for={goal <- @goals} class="panel p-5 space-y-4">
+      <div :for={goal <- @goals} class="card-neo p-5 space-y-4">
         <% progress = goal_progress(goal, @profile) %>
         <div class="flex items-start justify-between">
           <div>
-            <h2 class="panel-title text-xl">🏆 {goal.name}</h2>
+            <h2 class="card-title text-xl">{goal.name}</h2>
             <div class="flex flex-wrap gap-4 mt-1 text-sm">
-              <span class="text-muted">
-                🎯 {gettext("Target:")} <span class="text-cream">{format_amount(goal.target_amount)}</span>
+              <span class="text-slate">
+                {gettext("Target:")} <span class="text-ink">{format_amount(goal.target_amount)}</span>
               </span>
               <span class={deadline_urgency(progress.months_left)}>
-                📅 {goal.deadline}
+                {goal.deadline}
                 ({ngettext("%{count} month left", "%{count} months left", progress.months_left)})
               </span>
-              <span class="text-muted text-xs px-2 py-0.5 bg-[#2e1f0e] border border-[#7a5c1e]">
+              <span class="tag-status tag-warning">
                 {tracking_mode_label(goal.tracking_mode)}
               </span>
             </div>
           </div>
           <div class="flex gap-2">
-            <button :if={goal.tracking_mode == :manual} phx-click="new_contribution" phx-value-goal-id={goal.id} class="btn-medieval text-sm">
+            <button :if={goal.tracking_mode == :manual} phx-click="new_contribution" phx-value-goal-id={goal.id} class="btn-ghost text-sm">
               <.icon name="hero-plus" class="size-3" /> {gettext("Contribute")}
             </button>
-            <button phx-click="edit_goal" phx-value-id={goal.id} class="btn-medieval text-sm">
+            <button phx-click="edit_goal" phx-value-id={goal.id} class="btn-ghost text-sm">
               <.icon name="hero-pencil-square" class="size-4" />
             </button>
             <button
               phx-click="delete_goal"
               phx-value-id={goal.id}
-              class="btn-medieval btn-danger text-sm"
-              data-confirm={gettext("Abandon this quest?")}
+              class="btn-ghost btn-danger text-sm"
+              data-confirm={gettext("Delete this goal?")}
             >
               <.icon name="hero-trash" class="size-4" />
             </button>
@@ -255,33 +254,33 @@ defmodule IdcalWeb.SavingsGoalLive.Index do
         <%!-- Progress bar --%>
         <div>
           <div class="flex justify-between text-sm mb-1">
-            <span class="text-cream">{format_amount(progress.saved)} / {format_amount(goal.target_amount)}</span>
-            <span class="text-gold">{Decimal.to_string(progress.percentage)}%</span>
+            <span class="text-ink">{format_amount(progress.saved)} / {format_amount(goal.target_amount)}</span>
           </div>
-          <div class="w-full bg-[#1a1208] border border-[#7a5c1e] h-5">
+          <div class="bar-neo">
             <div
-              class={["h-full transition-all", progress_bar_color(progress.percentage)]}
+              class={["bar-fill", progress_bar_color(progress.percentage)]}
               style={"width: #{min(Decimal.to_float(progress.percentage), 100)}%"}
             />
+            <span class="bar-label">{Decimal.to_string(progress.percentage)}%</span>
           </div>
         </div>
 
         <%!-- Required monthly surplus --%>
-        <div :if={progress.months_left > 0 && Decimal.gt?(progress.remaining, 0)} class="text-sm italic-fell text-muted">
-          📜 {gettext("To reach thy goal, thou must save")}
-          <span class="text-[#d4a017] font-mono">{format_amount(progress.required_monthly)}</span>
+        <div :if={progress.months_left > 0 && Decimal.gt?(progress.remaining, 0)} class="text-sm text-slate">
+          {gettext("To reach your goal, save")}
+          <span class="text-[#BA7517] font-amount">{format_amount(progress.required_monthly)}</span>
           {gettext("per month.")}
         </div>
-        <div :if={Decimal.gte?(progress.percentage, 100)} class="text-sm italic-fell text-[#3d8b3d]">
-          🎉 {gettext("Quest complete! Thy goal hath been achieved!")}
+        <div :if={Decimal.gte?(progress.percentage, 100)} class="text-sm text-[#1D9E75]">
+          {gettext("Goal reached!")}
         </div>
-        <div :if={progress.months_left <= 0 && Decimal.lt?(progress.percentage, 100)} class="text-sm italic-fell text-[#8b1a1a]">
-          ⚠️ {gettext("The deadline hath passed and the quest remains unfinished.")}
+        <div :if={progress.months_left <= 0 && Decimal.lt?(progress.percentage, 100)} class="text-sm text-[#E24B4A]">
+          {gettext("The deadline has passed and the goal is not yet met.")}
         </div>
 
         <%!-- Contribution form --%>
-        <div :if={@contribution_form && @contribution_goal && @contribution_goal.id == goal.id} class="ml-4 border-l-2 border-[#d4a017] pl-4">
-          <h3 class="font-cinzel text-gold text-sm mb-2">
+        <div :if={@contribution_form && @contribution_goal && @contribution_goal.id == goal.id} class="ml-4 border-l-2 border-[#BA7517] pl-4">
+          <h3 class="text-[#A31F34] text-sm mb-2">
             {if @editing_contribution, do: gettext("Edit Contribution"), else: gettext("New Contribution")}
           </h3>
           <.form for={@contribution_form} phx-submit="save_contribution" class="space-y-2">
@@ -292,19 +291,19 @@ defmodule IdcalWeb.SavingsGoalLive.Index do
               <.input field={@contribution_form[:note]} label={gettext("Note")} placeholder={gettext("optional")} />
             </div>
             <div class="flex gap-2">
-              <button type="submit" class="btn-medieval">{gettext("Save")}</button>
-              <button type="button" phx-click="cancel_contribution" class="btn-medieval btn-danger">{gettext("Cancel")}</button>
+              <button type="submit" class="btn-primary">{gettext("Save")}</button>
+              <button type="button" phx-click="cancel_contribution" class="btn-ghost btn-danger">{gettext("Cancel")}</button>
             </div>
           </.form>
         </div>
 
         <%!-- Contributions table --%>
         <div :if={goal.tracking_mode == :manual && goal.contributions != []} class="ml-4">
-          <h3 class="font-cinzel text-gold text-sm mb-2">{gettext("Contributions")}</h3>
+          <h3 class="text-[#A31F34] text-sm mb-2">{gettext("Contributions")}</h3>
           <div class="overflow-x-auto">
             <table class="w-full text-sm">
               <thead>
-                <tr class="text-gold font-cinzel text-xs border-b border-[#7a5c1e]">
+                <tr class="text-[#A31F34] text-xs border-b border-[#E0DEDB]">
                   <th class="text-left py-1 px-2">{gettext("Year")}</th>
                   <th class="text-left py-1 px-2">{gettext("Month")}</th>
                   <th class="text-right py-1 px-2">{gettext("Amount")}</th>
@@ -313,21 +312,21 @@ defmodule IdcalWeb.SavingsGoalLive.Index do
                 </tr>
               </thead>
               <tbody>
-                <tr :for={c <- goal.contributions} class="border-b border-[#7a5c1e]/30 hover:bg-[#2e1f0e]">
-                  <td class="py-1 px-2 text-cream">{c.year}</td>
-                  <td class="py-1 px-2 text-cream">{c.month}</td>
-                  <td class="py-1 px-2 text-right text-[#d4a017] font-mono">{format_amount(c.amount)}</td>
-                  <td class="py-1 px-2 text-muted">{c.note || "—"}</td>
+                <tr :for={c <- goal.contributions} class="border-b border-[#E0DEDB]/30 hover:bg-[#F8F7F5]">
+                  <td class="py-1 px-2 text-ink">{c.year}</td>
+                  <td class="py-1 px-2 text-ink">{c.month}</td>
+                  <td class="py-1 px-2 text-right text-[#BA7517] font-amount">{format_amount(c.amount)}</td>
+                  <td class="py-1 px-2 text-slate">{c.note || "—"}</td>
                   <td class="py-1 px-2 flex gap-1 justify-end">
-                    <button phx-click="edit_contribution" phx-value-goal-id={goal.id} phx-value-id={c.id} class="text-muted hover:text-gold">
+                    <button phx-click="edit_contribution" phx-value-goal-id={goal.id} phx-value-id={c.id} class="text-slate hover:text-[#A31F34]">
                       <.icon name="hero-pencil-square" class="size-4" />
                     </button>
                     <button
                       phx-click="delete_contribution"
                       phx-value-goal-id={goal.id}
                       phx-value-id={c.id}
-                      class="text-muted hover:text-[#8b1a1a]"
-                      data-confirm={gettext("Expunge this record?")}
+                      class="text-slate hover:text-[#E24B4A]"
+                      data-confirm={gettext("Delete this entry?")}
                     >
                       <.icon name="hero-trash" class="size-4" />
                     </button>

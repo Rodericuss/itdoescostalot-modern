@@ -15,38 +15,38 @@
   themes: false;
 }
 
-/* IDCAL — medieval RPG theme (RuneScape 2007-era inspired) */
+/* IDCAL — modern fintech theme */
 @plugin "../vendor/daisyui-theme" {
-  name: "medieval";
+  name: "fintech";
   default: true;
-  prefersdark: true;
-  color-scheme: "dark";
-  --color-base-100: #0d0b07;
-  --color-base-200: #0d0b07;
-  --color-base-300: #0d0b07;
-  --color-base-content: #f0dfa0;
-  --color-primary: #6b3d0f;
-  --color-primary-content: #f0dfa0;
-  --color-secondary: #7a5c1e;
-  --color-secondary-content: #1a1208;
-  --color-accent: #d4a017;
-  --color-accent-content: #1a1208;
-  --color-neutral: #0d0b07;
-  --color-neutral-content: #f0dfa0;
-  --color-info: #7a5c1e;
-  --color-info-content: #f0dfa0;
-  --color-success: #3d8b3d;
-  --color-success-content: #f0dfa0;
-  --color-warning: #d4a017;
-  --color-warning-content: #1a1208;
-  --color-error: #8b1a1a;
-  --color-error-content: #f0dfa0;
-  --radius-selector: 0;
-  --radius-field: 0;
-  --radius-box: 0;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: #F8F7F5;
+  --color-base-200: #F8F7F5;
+  --color-base-300: #E0DEDB;
+  --color-base-content: #1A1A1A;
+  --color-primary: #A31F34;
+  --color-primary-content: #FFFFFF;
+  --color-secondary: #5F5E5A;
+  --color-secondary-content: #FFFFFF;
+  --color-accent: #BA7517;
+  --color-accent-content: #FFFFFF;
+  --color-neutral: #1A1A1A;
+  --color-neutral-content: #F8F7F5;
+  --color-info: #185FA5;
+  --color-info-content: #FFFFFF;
+  --color-success: #1D9E75;
+  --color-success-content: #FFFFFF;
+  --color-warning: #BA7517;
+  --color-warning-content: #FFFFFF;
+  --color-error: #E24B4A;
+  --color-error-content: #FFFFFF;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
-  --border: 2px;
+  --border: 1px;
   --depth: 1;
   --noise: 0;
 }
@@ -59,175 +59,292 @@
 /* Make LiveView wrapper divs transparent for layout */
 [data-phx-session], [data-phx-teleported-src] { display: contents }
 
-/* ── IDCAL medieval styling ───────────────────────────────────────── */
+/* ── IDCAL fintech styling ───────────────────────────────────────── */
 
 :root {
-  --idcal-gold: #d4a017;
-  --idcal-border: #7a5c1e;
-  --idcal-cream: #f0dfa0;
-  --idcal-muted: #a08050;
-  --idcal-income: #3d8b3d;
-  --idcal-expense: #8b1a1a;
+  --idcal-brand: #A31F34;
+  --idcal-brand-hover: #7A1626;
+  --idcal-border: #E0DEDB;
+  --idcal-ink: #1A1A1A;
+  --idcal-slate: #5F5E5A;
+  --idcal-positive: #1D9E75;
+  --idcal-negative: #E24B4A;
+  --idcal-warning: #BA7517;
+  --idcal-info: #185FA5;
 }
 
 html, body {
-  font-family: "IM Fell English", Georgia, serif;
-  background: #0d0b07 !important;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: #F8F7F5 !important;
+  color: #1A1A1A;
   min-height: 100%;
 }
 
 h1, h2, h3, h4, .font-heading {
-  font-family: "Cinzel", serif;
-  letter-spacing: 0.02em;
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
-.font-cinzel { font-family: "Cinzel", serif; }
-.font-cinzel-decorative { font-family: "Cinzel Decorative", "Cinzel", serif; }
-.font-medieval { font-family: "MedievalSharp", "Cinzel", cursive; }
-.font-body { font-family: "IM Fell English", Georgia, serif; }
-.italic-fell { font-family: "IM Fell English", Georgia, serif; font-style: italic; }
-
-/* Amounts use monospace for column alignment */
-.amount {
-  font-family: "Courier New", monospace;
+/* Serif font for financial numbers */
+.font-amount {
+  font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
   font-variant-numeric: tabular-nums;
 }
 
-.text-income { color: var(--idcal-income); }
-.text-expense { color: var(--idcal-expense); }
-.text-gold { color: var(--idcal-gold); }
-.text-cream { color: var(--idcal-cream); }
-.text-muted { color: var(--idcal-muted); }
-
-/* Old-school inventory-slot panels — flat, no gradients, chunky beveled borders */
-.panel {
-  background-color: #2e1f0e;
-  border: 3px solid var(--idcal-border);
-  border-top-color: #9a7a30;
-  border-left-color: #9a7a30;
-  border-right-color: #4a3510;
-  border-bottom-color: #4a3510;
+.amount {
+  font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+  font-variant-numeric: tabular-nums;
 }
 
-.panel-title {
-  font-family: "Cinzel", serif;
-  font-weight: 700;
-  color: var(--idcal-gold);
-  border-bottom: 2px solid var(--idcal-border);
-  padding-bottom: 0.4rem;
-}
+.text-positive { color: var(--idcal-positive); }
+.text-negative { color: var(--idcal-negative); }
+.text-brand { color: var(--idcal-brand); }
+.text-ink { color: var(--idcal-ink); }
+.text-slate { color: var(--idcal-slate); }
 
-/* Column-style grid panels (RS stats interface) */
-.columns-panel {
-  display: grid;
-  background-color: #1a1208;
-  border: 3px solid var(--idcal-border);
-  border-top-color: #9a7a30;
-  border-left-color: #9a7a30;
-  border-right-color: #4a3510;
-  border-bottom-color: #4a3510;
-}
-
-.columns-panel > * {
-  padding: 0.6rem 0.75rem;
+/* Cards — clean white surfaces */
+.card-surface {
+  background-color: #FFFFFF;
   border: 1px solid var(--idcal-border);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-/* Old-school buttons — flat, beveled, no gradients */
-.btn-medieval {
+.card-title {
+  font-weight: 600;
+  color: var(--idcal-ink);
+  border-bottom: 1px solid var(--idcal-border);
+  padding-bottom: 0.5rem;
+}
+
+/* Primary buttons */
+.btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: "Cinzel", serif;
-  background-color: #6b3d0f;
-  color: var(--idcal-cream);
-  border: 2px solid;
-  border-top-color: #9a6a2a;
-  border-left-color: #9a6a2a;
-  border-right-color: #3a2008;
-  border-bottom-color: #3a2008;
+  background-color: var(--idcal-brand);
+  color: #FFFFFF;
+  border: 2px solid var(--idcal-brand);
+  border-radius: 0.375rem;
   padding: 0.5rem 1rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.15s, box-shadow 0.15s;
 }
-.btn-medieval:hover {
-  background-color: #8b5213;
-  border-top-color: #d4a017;
-  border-left-color: #d4a017;
-  border-right-color: #4a3510;
-  border-bottom-color: #4a3510;
+.btn-primary:hover {
+  background-color: var(--idcal-brand-hover);
+  box-shadow: 2px 2px 0 var(--idcal-brand-hover);
 }
-.btn-medieval:active {
-  border-top-color: #3a2008;
-  border-left-color: #3a2008;
-  border-right-color: #9a6a2a;
-  border-bottom-color: #9a6a2a;
-}
-.btn-medieval:disabled {
+.btn-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* Ghost/secondary buttons */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: transparent;
+  color: var(--idcal-ink);
+  border: 2px solid var(--idcal-ink);
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-ghost:hover {
+  border-color: var(--idcal-brand);
+  color: var(--idcal-brand);
+}
+
+/* Danger button */
 .btn-danger {
-  background-color: #5a1212;
-  border-top-color: #8b3030;
-  border-left-color: #8b3030;
-  border-right-color: #3a0808;
-  border-bottom-color: #3a0808;
+  background-color: #FCEBEB;
+  color: #A32D2D;
+  border: 2px solid #E24B4A;
 }
 .btn-danger:hover {
-  background-color: #8b1a1a;
-  border-top-color: #d4a017;
-  border-left-color: #d4a017;
-  border-right-color: #4a3510;
-  border-bottom-color: #4a3510;
+  background-color: #E24B4A;
+  color: #FFFFFF;
 }
 
-/* Inputs — inset bevel for recessed look */
-.input-medieval {
-  background-color: #1a1208;
-  color: var(--idcal-cream);
-  border: 2px solid;
-  border-top-color: #3a2008;
-  border-left-color: #3a2008;
-  border-right-color: #9a7a30;
-  border-bottom-color: #9a7a30;
-  padding: 0.4rem 0.6rem;
+/* Inputs */
+.input-field {
+  background-color: #FFFFFF;
+  color: var(--idcal-ink);
+  border: 1px solid var(--idcal-border);
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  transition: border-color 0.15s;
 }
-.input-medieval:focus {
+.input-field:focus {
   outline: none;
-  border-top-color: #4a3510;
-  border-left-color: #4a3510;
-  border-right-color: #d4a017;
-  border-bottom-color: #d4a017;
+  border-color: var(--idcal-brand);
+  box-shadow: 0 0 0 3px rgba(163, 31, 52, 0.1);
 }
 
-/* Tables — flat borders, alternating rows */
-.table-medieval { width: 100%; border-collapse: collapse; }
-.table-medieval th {
-  font-family: "Cinzel", serif;
-  color: var(--idcal-gold);
+/* Tables */
+.table-clean { width: 100%; border-collapse: collapse; }
+.table-clean th {
+  font-weight: 600;
+  color: var(--idcal-slate);
   text-align: left;
   padding: 0.5rem 0.75rem;
   border-bottom: 2px solid var(--idcal-border);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
-.table-medieval td {
+.table-clean td {
   padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid rgba(122, 92, 30, 0.35);
+  border-bottom: 1px solid rgba(224, 222, 219, 0.5);
 }
-.table-medieval tbody tr:nth-child(even) {
-  background-color: rgba(0, 0, 0, 0.25);
+.table-clean tbody tr:hover {
+  background-color: #F8F7F5;
 }
 
-/* Header bar — flat, chunky, no gradients */
+/* Header bar */
 .header-bar {
-  background-color: #2e1f0e;
-  border-bottom: 3px solid var(--idcal-border);
-  border-bottom-color: #4a3510;
-  box-shadow: 0 3px 0 #9a7a30 inset;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--idcal-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-/* Separator — thick flat divider line */
-.divider-medieval {
+/* Separator */
+.divider-clean {
   border: none;
-  border-top: 2px solid var(--idcal-border);
-  border-bottom: 1px solid #4a3510;
+  border-top: 1px solid var(--idcal-border);
+}
+
+/* Cards — subtle hover on existing surfaces */
+.card-surface {
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+/* ── Neobrutalista design system ────────────────────────────────── */
+
+.card-neo {
+  background: #FFFFFF;
+  border: 2px solid #1A1A1A;
+  border-radius: 0.5rem;
+  box-shadow: 3px 3px 0 #1A1A1A;
+  padding: 1.25rem;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.card-neo:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 #1A1A1A;
+}
+
+.card-stat {
+  background: #FFFFFF;
+  border: 2px solid #1A1A1A;
+  border-radius: 0.5rem;
+  box-shadow: 3px 3px 0 #1A1A1A;
+  padding: 1.25rem;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.card-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 #1A1A1A;
+}
+
+.card-hero {
+  background: #1A1A1A;
+  color: #FFFFFF;
+  border: 2px solid #1A1A1A;
+  border-radius: 0.75rem;
+  padding: 1.5rem 2rem;
+}
+
+/* Pill toggle buttons */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 2px solid #1A1A1A;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: transparent;
+  color: #1A1A1A;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-pill:hover {
+  background: #1A1A1A;
+  color: #F8F7F5;
+}
+.btn-pill.active {
+  background: #1A1A1A;
+  color: #F8F7F5;
+}
+
+/* Typography — large serif amounts */
+.amount-xl {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-variant-numeric: tabular-nums;
+  font-size: 2.25rem;
+  font-weight: 600;
+}
+.amount-lg {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.label-upper {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #5F5E5A;
+}
+
+/* Status tags / badges */
+.tag-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.tag-income { background: rgba(29,158,117,0.15); color: #1D9E75; }
+.tag-expense { background: rgba(226,75,74,0.15); color: #E24B4A; }
+.tag-warning { background: rgba(186,117,23,0.15); color: #BA7517; }
+
+/* Delta indicators */
+.delta-up { color: #1D9E75; font-size: 0.8rem; }
+.delta-up::before { content: "▲ "; font-size: 0.6rem; }
+.delta-down { color: #E24B4A; font-size: 0.8rem; }
+.delta-down::before { content: "▼ "; font-size: 0.6rem; }
+
+/* Neobruta progress bar */
+.bar-neo {
+  width: 100%;
+  height: 1.25rem;
+  border: 2px solid #1A1A1A;
+  border-radius: 0.25rem;
+  background: #F8F7F5;
+  overflow: hidden;
+  position: relative;
+}
+.bar-neo > .bar-fill {
+  height: 100%;
+  transition: width 0.3s;
+}
+.bar-neo > .bar-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #1A1A1A;
 }
