@@ -1,0 +1,8 @@
+<svg viewBox="0 0 240 56" width="240" height="56" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="4" width="48" height="48" rx="10" fill="#A31F34"/>
+  <polyline points="8,44 18,32 26,37 36,22" fill="none" stroke="#F8F7F5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="36" y1="22" x2="44" y2="14" stroke="#F8F7F5" stroke-width="3" stroke-linecap="round"/>
+  <polyline points="36,14 44,14 44,22" fill="none" stroke="#F8F7F5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="64" y="30" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#1A1A1A" letter-spacing="-0.5">IDCAL</text>
+  <text x="64" y="46" font-family="system-ui,sans-serif" font-size="11" font-weight="400" fill="#5F5E5A" letter-spacing="0.4">it does cost a lot</text>
+</svg>

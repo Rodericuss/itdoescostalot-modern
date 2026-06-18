@@ -38,7 +38,7 @@ defmodule IdcalWeb.Layouts do
     <header class="bg-white border-b-2 border-[#1A1A1A]">
       <div class="mx-auto max-w-6xl flex items-center justify-between px-4 py-3 sm:px-6">
         <a href="/" class="flex items-center gap-2">
-          <span class="inline-block w-7 h-7 bg-[#A31F34] border-2 border-[#1A1A1A] rounded-sm"></span>
+          <img src={~p"/idcal-favicon-32.svg"} class="w-7 h-7" alt="IDCAL" />
           <span class="font-bold text-xl text-[#1A1A1A]">IDCAL</span>
           <span class="hidden sm:inline text-slate text-sm">
             It Does Cost A Lot
@@ -139,7 +139,7 @@ defmodule IdcalWeb.Layouts do
           <.icon name="hero-bars-3" class="size-6 text-[#1A1A1A]" />
         </button>
         <a href="/" class="flex items-center gap-2">
-          <span class="inline-block w-6 h-6 bg-[#A31F34] border-2 border-[#1A1A1A] rounded-sm"></span>
+          <img src={~p"/idcal-favicon-32.svg"} class="w-6 h-6" alt="IDCAL" />
           <span class="font-bold text-lg text-[#1A1A1A]">IDCAL</span>
         </a>
         <span class="text-sm font-medium text-slate truncate max-w-[8rem]">{@profile.nickname}</span>
@@ -183,7 +183,7 @@ defmodule IdcalWeb.Layouts do
       <%!-- Profile header --%>
       <div class="p-4 border-b-2 border-[#1A1A1A]">
         <a href="/" class="flex items-center gap-2 mb-3">
-          <span class="inline-block w-6 h-6 bg-[#A31F34] border-2 border-[#1A1A1A] rounded-sm"></span>
+          <img src={~p"/idcal-favicon-32.svg"} class="w-6 h-6" alt="IDCAL" />
           <span class="font-bold text-lg text-[#1A1A1A]">IDCAL</span>
         </a>
         <div class="flex items-center gap-2">
